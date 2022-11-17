@@ -1,0 +1,33 @@
+.searchbar {
+	width: 33.3536585366%;
+	height: 50px;
+
+	background: linear-gradient(90deg, #212429 57.04%, #476699 138.57%);
+	border-radius: 500px;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 16px;
+
+	&__loupe {
+		color: #fff;
+		min-width: 35px;
+		min-height: 35px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__input {
+		border: none;
+		width: 53.747714808%;
+		height: fit-content;
+		background-color: transparent;
+
+		font-weight: 300;
+		font-size: 1rem;
+		line-height: 29px;
+		color: #707070;
+	}
+}
