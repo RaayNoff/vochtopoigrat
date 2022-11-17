@@ -16,16 +16,24 @@
 	padding: 0 12px;
 }
 
-a {
-	text-decoration: none;
-	color: inherit;
-}
-
 html,
 body {
 	font-family: "SF UI", sans-serif;
 	font-weight: 400;
 	font-size: $fontrem;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+	font-family: inherit;
+}
+button {
+	font-family: inherit;
+}
+
+input {
+	outline: none;
 }
 
 #__next {
