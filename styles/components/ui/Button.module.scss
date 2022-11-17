@@ -1,0 +1,17 @@
+.button {
+	border: none;
+	background: linear-gradient(90deg, #1986fe -26.11%, #226dff 120.56%);
+	box-shadow: inset 0px 0px 1px 1px rgba(255, 255, 255, 0.15);
+
+	font-weight: 500;
+	font-size: 1rem;
+	line-height: 29px;
+	color: #fff;
+	border-radius: 500px;
+	padding: 10px 0 11px 0;
+	min-width: 180px;
+
+	@media (min-width: 767.98px) {
+		cursor: pointer;
+	}
+}
