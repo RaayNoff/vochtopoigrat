@@ -1,0 +1,10 @@
+@import "../../lib/variables.scss";
+
+.navlink {
+	&__text {
+		color: #fff;
+		font-size: $fontrem;
+		line-height: 29px;
+		font-weight: 300;
+	}
+}
