@@ -5,27 +5,23 @@
 	},
 	"extends": [
 		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended"
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@next/next/recommended"
 	],
-	"overrides": [
-	],
+	"overrides": [],
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": [
-		"@typescript-eslint",
-		"import"
-	],
+	"plugins": ["@typescript-eslint", "import"],
 	"rules": {
-		"indent": [ "warn", "tab" ],
-		"semi": [ "error", "always" ],
-		"comma-dangle": [ "error", "always-multiline"],
-		"linebreak-style": [ "error", "unix" ],
-		"max-len": [ "warn", { "code": 80 }],
-		"quotes": [ "error", "double" ],
-		"jsx-quotes": [ "error", "prefer-double" ],
+		"indent": ["warn", "tab"],
+		"semi": ["error", "always"],
+		"comma-dangle": ["error", "always-multiline"],
+		"max-len": ["warn", { "code": 80 }],
+		"quotes": ["error", "double"],
+		"jsx-quotes": ["error", "prefer-double"],
 
 		"prefer-const": "error",
 		"no-await-in-loop": "error",
@@ -40,27 +36,46 @@
 		"no-duplicate-imports": "error",
 		"@typescript-eslint/no-empty-function": "warn",
 
-		"object-curly-spacing": [ "warn", "always" ],
-		"comma-spacing": [ "warn", { 
-			"before": false, 
-			"after": true
-		} ],
-		"array-bracket-spacing": [ "warn", "always", { 
-			"singleValue": true,
-			"arraysInArrays": false,
-			"objectsInArrays": true
-		} ],
+		"object-curly-spacing": ["warn", "always"],
+		"comma-spacing": [
+			"warn",
+			{
+				"before": false,
+				"after": true
+			}
+		],
+		"array-bracket-spacing": [
+			"warn",
+			"always",
+			{
+				"singleValue": true,
+				"arraysInArrays": false,
+				"objectsInArrays": true
+			}
+		],
 
-		"grouped-accessor-pairs": [ "error", "getBeforeSet" ],
+		"grouped-accessor-pairs": ["error", "getBeforeSet"],
 		"no-dupe-class-members": "error",
-		"lines-between-class-members": [ "warn", "always" ],
+		"lines-between-class-members": ["warn", "always"],
 		"no-setter-return": "error",
 		"@typescript-eslint/member-ordering": "error",
 
-		"import/order": [ "error", {
-			"groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-			"newlines-between": "always-and-inside-groups"
-		}],
+		"import/order": [
+			"error",
+			{
+				"groups": [
+					"builtin",
+					"external",
+					"internal",
+					"parent",
+					"sibling",
+					"index",
+					"object",
+					"type"
+				],
+				"newlines-between": "always-and-inside-groups"
+			}
+		],
 		"@typescript-eslint/adjacent-overload-signatures": "warn"
 	}
 }
