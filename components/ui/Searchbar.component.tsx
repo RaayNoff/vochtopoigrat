@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import { FC } from "react";
-import { SlMagnifier } from "react-icons/sl";
+import { FiSearch } from "react-icons/fi";
 
 import s from "../../styles/components/ui/Searchbar.module.scss";
 
@@ -14,7 +14,7 @@ const Searchbar: FC = () => {
 	return (
 		<section className={clsx(s.searchbar)}>
 			<div className={clsx(s.searchbar__loupe)}>
-				<SlMagnifier />
+				<FiSearch />
 			</div>
 			<input
 				id="search"
