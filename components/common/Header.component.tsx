@@ -17,16 +17,28 @@ const Header: FC = () => {
 					</h1>
 
 					<nav className={clsx(s.header__nav, s.nav)}>
-						<Navlink href={Routes.HOME} className={s.nav__link}>
+						<Navlink href={Routes.HOME} className={s.nav__link} testid="home-link">
 							Home
 						</Navlink>
-						<Navlink href={Routes.RANDOM} className={s.nav__link}>
+						<Navlink
+							href={Routes.RANDOM}
+							className={s.nav__link}
+							testid="random-link"
+						>
 							Random
 						</Navlink>
-						<Navlink href={Routes.CHARTS} className={s.nav__link}>
+						<Navlink
+							href={Routes.CHARTS}
+							className={s.nav__link}
+							testid="charts-link"
+						>
 							Charts
 						</Navlink>
-						<Navlink href={Routes.RELEASES} className={s.nav__link}>
+						<Navlink
+							href={Routes.RELEASES}
+							className={s.nav__link}
+							testid="releases-link"
+						>
 							Release calendar
 						</Navlink>
 					</nav>
