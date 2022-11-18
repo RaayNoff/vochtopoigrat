@@ -16,7 +16,7 @@ const Navlink: FC<INavlinkProps> = ({ className, href, children }) => {
 
 	return (
 		<Link href={href} className={clsx(s.navlink, className)} ref={linkRef}>
-			<span className={s.navlink__text}>{children}</span>
+			{children}
 		</Link>
 	);
 };
