@@ -9,14 +9,20 @@ interface INavlinkProps {
 	href: string;
 	children?: React.ReactNode;
 	className?: string;
+	testid?: string;
 }
 
-const Navlink: FC<INavlinkProps> = ({ className, href, children }) => {
+const Navlink: FC<INavlinkProps> = ({ className, href, children, testid }) => {
 	const linkRef = useActiveLinkRef(href, s.active);
 
 	return (
-		<Link href={href} className={clsx(s.navlink, className)} ref={linkRef}>
-			<span className={s.navlink__text}>{children}</span>
+		<Link
+			href={href}
+			className={clsx(s.navlink, className)}
+			ref={linkRef}
+			data-testid={testid}
+		>
+			{children}
 		</Link>
 	);
 };
