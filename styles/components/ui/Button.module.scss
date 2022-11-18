@@ -12,6 +12,9 @@
 	min-width: 180px;
 
 	@media (min-width: 767.98px) {
-		cursor: pointer;
+		&:hover {
+			cursor: pointer;
+			box-shadow: -2px 2px 15px 2px rgba(34, 109, 255, 0.35), inset 0px 0px 1px 1px rgba(255, 255, 255, 0.15);
+		}
 	}
 }
