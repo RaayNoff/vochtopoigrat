@@ -4,6 +4,7 @@ import { FC } from "react";
 
 import Header from "../components/common/Header.component";
 import s from "../styles/layouts/MainLayout.module.scss";
+import Footer from "../components/common/Footer.component";
 
 export interface IMainLayoutProps {
 	children?: React.ReactNode;
@@ -26,6 +27,7 @@ const MainLayout: FC<IMainLayoutProps> = ({
 			<main data-testid={testid} className={clsx(selfClassName, s.main)}>
 				{children}
 			</main>
+			<Footer />
 		</>
 	);
 };
