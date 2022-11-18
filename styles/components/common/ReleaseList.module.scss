@@ -1,0 +1,31 @@
+.latest_games {
+  color: white;
+  &__platform {
+    &_list {
+      display: flex;
+    }
+  }
+  &__item {
+    margin-top: 10px;
+    border: 1px solid rgb(99, 55, 99);
+  }
+  &__link {
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 43px;
+    color: #e1e1e1;
+  }
+  &__tags {
+    &_list {
+      max-width: 600px;
+      display: flex;
+      flex-wrap: wrap;
+    }
+    &_item {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 29px;
+      color: #d6d6d6;
+    }
+  }
+}
