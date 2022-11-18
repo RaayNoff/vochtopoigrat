@@ -9,11 +9,13 @@ export interface IMainLayoutProps {
 	children?: React.ReactNode;
 	title?: string;
 	selfClassName?: string;
+	testid?: string;
 }
 const MainLayout: FC<IMainLayoutProps> = ({
 	children,
 	selfClassName,
 	title = "WTP | Home",
+	testid,
 }) => {
 	return (
 		<>
@@ -21,7 +23,9 @@ const MainLayout: FC<IMainLayoutProps> = ({
 				<title>{title}</title>
 			</Head>
 			<Header />
-			<main className={clsx(selfClassName, s.main)}>{children}</main>
+			<main data-testid={testid} className={clsx(selfClassName, s.main)}>
+				{children}
+			</main>
 		</>
 	);
 };
