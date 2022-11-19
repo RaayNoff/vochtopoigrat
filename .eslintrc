@@ -20,7 +20,7 @@
 		"indent": ["warn", "tab"],
 		"semi": ["error", "always"],
 		"comma-dangle": ["error", "always-multiline"],
-		"max-len": ["warn", { "code": 80 }],
+		"max-len": ["warn", { "code": 120 }],
 		"quotes": ["error", "double"],
 		"jsx-quotes": ["error", "prefer-double"],
 
