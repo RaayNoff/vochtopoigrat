@@ -1,5 +1,6 @@
 import axios from "axios";
 import clsx from "clsx";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 import styles from "../../styles/components/common/ReleaseList.module.scss";
@@ -28,7 +29,9 @@ interface gameListItem {
 	id: number;
 	metacritic: number;
 	name: string;
-	parent_platforms: { id: number; name: string; slug: string }[];
+	parent_platforms: {
+		platform: { id: number; name: string; slug: string };
+	}[];
 	platforms: {
 		platform: {
 			games_count: number;
@@ -81,13 +84,17 @@ interface gameListItem {
 }
 
 const ReleaseList: React.FC = () => {
-	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [data, setData] = useState<gameListItem[]>();
+	const [ isLoading, setIsLoading ] = useState<boolean>(false);
+	const [ data, setData ] = useState<gameListItem[]>();
+
+	const gamesUrl = "https://api.rawg.io/api/games";
+	const apiKey = "?key=5942455621404e6dae027f9513f71abb";
+	const gamesToShow = "&page_size=5";
 
 	useEffect(() => {
 		setIsLoading(true);
 		axios
-			.get("https://api.rawg.io/api/games?key=5942455621404e6dae027f9513f71abb")
+			.get(gamesUrl + apiKey + gamesToShow)
 			.then((res) => res.data.results)
 			.then((res) => {
 				setData(res);
@@ -100,11 +107,15 @@ const ReleaseList: React.FC = () => {
 		<section className={clsx(styles.latest_games)}>
 			<ul className={styles.latest_games__list}>
 				{data?.map((game) => (
-					<li className={styles.latest_games__item} key={game.id}>
-						<a href="#" className={styles.latest_games__link}>
+					<li
+						className={styles.latest_games__item}
+						key={game.id}
+						style={{ backgroundImage: `linear-gradient(90deg, #2B2E35 30%, rgba(0, 0, 0, 0) 94.46%), url(${game.background_image})` }}
+					>
+						<Link href="#" className={styles.latest_games__link}>
 							{game.name}
 							<ul className={styles.latest_games__tags_list}>
-								{game.tags.map((tag) => (
+								{game?.tags.map((tag) => (
 									<li className={styles.latest_games__tags_item} key={tag.id}>
 										{tag.name}
 									</li>
@@ -112,12 +123,15 @@ const ReleaseList: React.FC = () => {
 							</ul>
 							<ul className={styles.latest_games__platform_list}>
 								{game?.parent_platforms.map((platform) => (
-									<li className={styles.latest_games__platform_item} key={platform.id}>
-										{platform.name}
+									<li
+										className={styles.latest_games__platform_item}
+										key={platform.platform.id}
+									>
+										{platform.platform.name}
 									</li>
 								))}
 							</ul>
-						</a>
+						</Link>
 					</li>
 				))}
 			</ul>

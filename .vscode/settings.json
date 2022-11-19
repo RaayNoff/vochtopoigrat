@@ -1,0 +1,16 @@
+{
+	"prettier.useTabs": true,
+	"editor.autoClosingBrackets": "always",
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBrackets": true,
+	"prettier.bracketSpacing": true,
+	"prettier.bracketSameLine": false,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+	"javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+	"typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
+	"typescript.format.insertSpaceAfterTypeAssertion": true,
+	"editor.trimAutoWhitespace": true,
+	"editor.formatOnSave": false,
+	"eslint.run": "onType"
+}
