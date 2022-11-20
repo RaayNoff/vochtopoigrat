@@ -2,13 +2,6 @@ import Image from "next/image";
 import clsx from "clsx";
 import { FC } from "react";
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Autoplay } from "swiper";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/pagination";
 
 import testImage from "../../assets/images/test.jpg";
 import card1 from "../../assets/images/card1.png";
