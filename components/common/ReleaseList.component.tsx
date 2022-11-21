@@ -1,49 +1,36 @@
 import clsx from "clsx";
-import Link from "next/link";
 
 import { FC } from "react";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import s from "../../styles/components/common/ReleaseList.module.scss";
+import GameItem from "../ui/GameItem.component";
 
 const ReleaseList: FC = () => {
-	const { games: data } = useTypedSelector((state) => state.games);
+	const { games, isLoading, error } = useTypedSelector((state) => state.games);
+
+	if (isLoading) {
+		return <p>Идет загрузка...</p>;
+	}
+
+	if (error) {
+		return <p>{error}</p>;
+	}
 
 	return (
-		<section className={clsx(s.latest_games)}>
-			<ul className={s.latest_games__list}>
-				{data?.map((game) => (
-					<li
-						className={s.latest_games__item}
-						key={game.id}
-						style={{
-							backgroundImage: `linear-gradient(90deg, #2B2E35 30%, rgba(0, 0, 0, 0) 94.46%), url(${game.background_image})`,
-						}}
-					>
-						<Link href="#" className={s.latest_games__link}>
-							{game.name}
-							<ul className={s.latest_games__tags_list}>
-								{game?.tags.map((tag) => (
-									<li className={s.latest_games__tags_item} key={tag.id}>
-										{tag.name}
-									</li>
-								))}
-							</ul>
-							<ul className={s.latest_games__platform_list}>
-								{game?.parent_platforms.map((platform) => (
-									<li
-										className={s.latest_games__platform_item}
-										key={platform.platform.id}
-									>
-										{platform.platform.name}
-									</li>
-								))}
-							</ul>
-						</Link>
+		<section className={clsx(s.releaseList)}>
+			<div className={clsx(s.releaseList__shadowUp)}></div>
+
+			<ul className={clsx(s.releaseList__list)}>
+				{games.map((game) => (
+					<li key={game.id} className={clsx(s.releaseList__item)}>
+						<GameItem key={game.id} gameId={game.id} />
 					</li>
 				))}
 			</ul>
+
+			<div className={clsx(s.releaseList__shadowDown)}></div>
 		</section>
 	);
 };

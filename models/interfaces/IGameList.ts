@@ -42,17 +42,16 @@ interface Platform {
 	requirements_ru: RequirementsRu;
 }
 
-interface Platform3 {
+export interface ActualPlatform {
 	id: number;
 	name: string;
-	slug: string;
+	slug: "pc" | "playstation" | "xbox" | "nintendo" | "mac" | "linux" | "android";
+}
+export interface ParentPlatform {
+	platform: ActualPlatform;
 }
 
- interface ParentPlatform {
-	platform: Platform3;
-}
-
- interface Genre {
+interface Genre {
 	id: number;
 	name: string;
 	slug: string;
@@ -60,7 +59,7 @@ interface Platform3 {
 	image_background: string;
 }
 
- interface Store2 {
+interface Store2 {
 	id: number;
 	name: string;
 	slug: string;
@@ -69,12 +68,12 @@ interface Platform3 {
 	image_background: string;
 }
 
- interface Store {
+interface Store {
 	id: number;
 	store: Store2;
 }
 
- interface Tag {
+interface Tag {
 	id: number;
 	name: string;
 	slug: string;
@@ -83,18 +82,18 @@ interface Platform3 {
 	image_background: string;
 }
 
- interface EsrbRating {
+interface EsrbRating {
 	id: number;
 	name: string;
 	slug: string;
 }
 
- interface ShortScreenshot {
+interface ShortScreenshot {
 	id: number;
 	image: string;
 }
 
-export interface Result {
+export interface Game {
 	id: number;
 	slug: string;
 	name: string;
@@ -126,13 +125,13 @@ export interface Result {
 	short_screenshots: ShortScreenshot[];
 }
 
- interface Year2 {
+interface Year2 {
 	year: number;
 	count: number;
 	nofollow: boolean;
 }
 
- interface Year {
+interface Year {
 	from: number;
 	to: number;
 	filter: string;
@@ -142,7 +141,7 @@ export interface Result {
 	count: number;
 }
 
- interface Filters {
+interface Filters {
 	years: Year[];
 }
 
@@ -150,7 +149,7 @@ export interface IGameList {
 	count: number;
 	next: string;
 	previous?: any;
-	results: Result[];
+	results: Game[];
 	seo_title: string;
 	seo_description: string;
 	seo_keywords: string;

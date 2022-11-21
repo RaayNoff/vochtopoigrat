@@ -1,9 +1,5 @@
 import { FC } from "react";
 
-import { useActions } from "../../hooks/useActions";
-
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-
 import MainLayout from "../../layouts/MainLayout.component";
 
 const Charts: FC = () => {

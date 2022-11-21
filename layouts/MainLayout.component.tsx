@@ -25,7 +25,7 @@ const MainLayout: FC<IMainLayoutProps> = ({
 			</Head>
 			<Header />
 			<main data-testid={testid} className={clsx(selfClassName, s.main)}>
-				{children}
+				<div className="container">{children}</div>
 			</main>
 			<Footer />
 		</>
