@@ -3,44 +3,19 @@ import clsx from "clsx";
 
 import { FC, useEffect, useRef, useState } from "react";
 
-
-import testImage from "../../assets/images/test.jpg";
-import card1 from "../../assets/images/card1.png";
-import card2 from "../../assets/images/card2.png";
-import card3 from "../../assets/images/card3.png";
-
 import s from "../../styles/components/common/Carousel.module.scss";
 
-const Carousel: FC = () => {
+type CarouselPropsType = {
+	id: number,
+	img: string,
+	title: string,
+}
+
+const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 	const [ slideAction, setSlideAction ] = useState<number>(0);
-	const nextImageRef = useRef<HTMLDivElement>();
-	const sliders = [
-		{
-			id: 1,
-			img: card1,
-		},
-		{
-			id: 2,
-			img: card2,
-		},
-		{
-			id: 3,
-			img: card3,
-		},
-		{
-			id: 4,
-			img: card1,
-		},
-		{
-			id: 5,
-			img: card2,
-		},
-		{
-			id: 6,
-			img: card3,
-		},
-	];
-	const [ srcBg, setSrcBg ] = useState(sliders[slideAction].img.src);
+	// eslint-disable-next-line prefer-const
+	let nextImageRef = useRef<HTMLDivElement | null>(null);
+	const [ srcBg, setSrcBg ] = useState<string>("");
 
 	const nextImage = () => {
 		if (slideAction + 1 == sliders.length) {
@@ -64,9 +39,13 @@ const Carousel: FC = () => {
 
 		if (isNext) { nextImage(); }
 		if (isPrev) { prevImage(); }
+		setSrcBg(sliders[slideAction].img);
 	};
 
+	useEffect(() => { setSrcBg(sliders[slideAction].img); }, [ slideAction ]);
+
 	useEffect(() => {
+		// setSrcBg(sliders[slideAction].img);
 		const autoplay = setInterval(() => {
 			nextImageRef.current?.click();
 		}, 5000);
@@ -96,8 +75,7 @@ const Carousel: FC = () => {
 						)}
 						onClick={ event => {onClickSlider(event);} }
 					>
-						{/* // eslint-disable-next-line @next/next/no-img-element */}
-						<img src={img.img.src} alt="img" />
+						<img src={img.img} alt={img.title} />
 					</div>
 				);
 			} )}
