@@ -42,10 +42,14 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 		setSrcBg(sliders[slideAction].img);
 	};
 
-	useEffect(() => { setSrcBg(sliders[slideAction].img); }, [ slideAction ]);
+	useEffect(() => {
+		if ( sliders[slideAction] ) {
+			setSrcBg(sliders[slideAction].img);
+		} else { setSrcBg(""); }
+	}, [ slideAction, sliders ]);
 
 	useEffect(() => {
-		// setSrcBg(sliders[slideAction].img);
+		// setSrcBg(sliders[0].img);
 		const autoplay = setInterval(() => {
 			nextImageRef.current?.click();
 		}, 5000);
