@@ -9,7 +9,7 @@ import MainLayout from "../../layouts/MainLayout.component";
 const Home: FC = () => {
 	return (
 		<MainLayout testid="home-page">
-			<Carousel></Carousel>
+			<Carousel />
 
 			{/* <ReleaseList /> */}
 		</MainLayout>
