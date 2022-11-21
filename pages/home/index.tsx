@@ -22,7 +22,7 @@ const Home: FC<IHomeProps> = ({ games }) => {
 
 	return (
 		<MainLayout testid="home-page">
-			<Carousel></Carousel>
+			<Carousel />
 
 			<ReleaseList />
 		</MainLayout>
