@@ -16,8 +16,8 @@
 	},
 	"plugins": ["@typescript-eslint", "import"],
 	"rules": {
+		"@next/next/no-img-element": "off",
 		"no-undef": "off",
-		"indent": ["warn", "tab"],
 		"semi": ["error", "always"],
 		"comma-dangle": ["error", "always-multiline"],
 		"max-len": ["warn", { "code": 120 }],
