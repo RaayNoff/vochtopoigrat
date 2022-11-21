@@ -1,6 +1,8 @@
 import Image from "next/image";
 import clsx from "clsx";
+
 import { FC, useEffect, useRef, useState } from "react";
+
 
 import testImage from "../../assets/images/test.jpg";
 import card1 from "../../assets/images/card1.png";
