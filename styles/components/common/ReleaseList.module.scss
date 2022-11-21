@@ -1,55 +1,27 @@
-.latest_games {
-	color: white;
-	max-width: 1087px;
+.releaseList {
+	display: flex;
+	flex-direction: column;
+
+	&__wrapper {
+		width: 1120px;
+		max-height: 930px;
+	}
+
+	&__shadowUp {
+		width: 98.5%;
+		min-height: 50px;
+		background: linear-gradient(180deg, #212429 0%, rgba(33, 36, 41, 0.59375) 4.6%, rgba(33, 36, 41, 0) 9.3%);
+	}
+	&__shadowDown {
+		width: 98.5%;
+		min-height: 50px;
+		background: linear-gradient(180deg, #212429 0%, rgba(33, 36, 41, 0.59375) 4.6%, rgba(33, 36, 41, 0) 9.3%);
+	}
+
 	&__item {
-		padding: 31px 0 24px 53px;
-		background-repeat: no-repeat;
-		background-size: cover;
-		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-		border-radius: 50px;
-		border-radius: 50px;
-		margin-top: 10px;
-		&:first-child {
-			margin-top: 46px;
-		}
-		&:last-child { 
-			margin-bottom: 46px; 
-		}
-	}
-	&__link {
-		font-weight: 800;
-		font-size: 36px;
-		line-height: 43px;
-		color: #e1e1e1;
-	}
-	&__tags {
-		&_list {
-			display: flex;
-			flex-wrap: wrap;
-			max-width: 50%;
-		}
-		&_item {
-			font-weight: 300;
-			font-size: 16px;
-			line-height: 29px;
-			color: #d6d6d6;
-			margin-right: 10px;
-		}
-	}
-	&__platform {
-		&_list {
-			display: flex;
-			margin-top: 20px;
-		}
-		&_item {
-			font-weight: 300;
-			font-size: 24px;
-			line-height: 29px;
-			color: #d6d6d6;
-			margin-right: 10px;
-			&:last-child {
-				margin-right: 0;
-			}
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
 		}
 	}
 }
