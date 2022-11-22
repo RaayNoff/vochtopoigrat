@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { Game } from "../../models/interfaces/IGameList";
 import { IGamesState } from "../../models/interfaces/IGamesState";
+import { Game } from "../../types/api";
+
 import { fetchGames } from "../action-creators/Games.actions";
 
 const initialState: IGamesState = {

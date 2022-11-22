@@ -1,6 +1,10 @@
 declare type Rating = {
 	id: number;
-	title: string;
+	title: 
+		| "exceptional" 
+		| "recommended"
+		| "meh" 
+		| "skip";
 	count: number;
 	percent: number;
 }
@@ -16,10 +20,34 @@ type AddedByStatus = {
 
 declare type Platform = {
 	id: number;
-	name: string;
-	slug: string;
-	image?: any;
-	year_end?: any;
+	name: 
+		| "PC"
+		| "Xbox Series S/X"
+		| "PlayStation 4"
+		| "PlayStation 3"
+		| "Xbox 360"
+		| "Xbox One"
+		| "PlayStation 5"
+		| "Nintendo Switch"
+		| "Linux"
+		| "macOS"
+		| "Android"
+	;
+	slug: 
+		| "pc"
+		| "xbox-series-x"
+		| "playstation4"
+		| "playstation3"
+		| "xbox360"
+		| "xbox-one"
+		| "playstation5"
+		| "nintendo-switch"
+		| "linux"
+		| "macos"
+		| "android"
+		;
+	image?: string;
+	year_end?: number;
 	year_start?: number;
 	games_count: number;
 	image_background: string;
@@ -35,7 +63,7 @@ type RequirementsRu = {
 	recommended: string;
 }
 
-type Platforms = {
+export type Platforms = {
 	platform: Platform;
 	released_at: string;
 	requirements_en: RequirementsEn;
@@ -44,27 +72,88 @@ type Platforms = {
 
 type ParentPlatform = {
 	id: number;
-	name: string;
-	slug: string;
+	name: 
+		| "PC"
+		| "Xbox"
+		| "Android"
+		| "Apple Macintosh"
+		| "Linux"
+		| "Nintendo"
+		| "PlayStation"
+		;
+	slug: 
+		| "pc"
+		| "xbox"
+		| "android"
+		| "mac"
+		| "linux"
+		| "nintendo"
+		| "playstation"
+		;
 }
 
 type ParentPlatforms = {
 	platform: ParentPlatform;
 }
 
-type Genre = {
+export type Genre = {
 	id: number;
-	name: string;
-	slug: string;
+	name: 
+		| "Action"
+		| "Adventure"
+		| "RPG"
+		| "Shooter"
+		| "Puzzle"
+		| "Massively Multiplayer"
+	;
+	slug: 
+		| "action"
+		| "adventure"
+		| "role-playing-games-rpg"
+		| "shooter"
+		| "puzzle"
+		| "platformer"
+		| "massively-multiplayer"
+	;
 	games_count: number;
 	image_background: string;
 }
 
 declare type Store = {
 	id: number;
-	name: string;
-	slug: string;
-	domain: string;
+	name: 
+		| "PlayStation Store"
+		| "Epic Games"
+		| "Steam"
+		| "Xbox 360 Store"
+		| "Xbox Store"
+		| "GOG"
+		| "Nintendo Store"
+		| "Google Play"
+		| "App Store"
+	;
+	slug: 
+		| "playstation-store"
+		| "epic-games"
+		| "steam"
+		| "xbox360"
+		| "xbox-store"
+		| "gog"
+		| "nintendo"
+		| "google-play"
+		| "apple-appstore"
+	;
+	domain: 
+		| "store.playstation.com"
+		| "epicgames.com"
+		| "store.steampowered.com"
+		| "marketplace.xbox.com"
+		| "microsoft.com"
+		| "gog.com"
+		| "nintendo.com"
+		| "play.google.com"
+		| "apps.apple.com"
+	;
 	games_count: number;
 	image_background: string;
 }
@@ -78,7 +167,7 @@ declare type Tag = {
 	id: number;
 	name: string;
 	slug: string;
-	language: string;
+	language: "eng";
 	games_count: number;
 	image_background: string;
 }
@@ -94,7 +183,7 @@ type ShortScreenshot = {
 	image: string;
 }
 
-declare type Games = {
+declare type Game = {
 	id: number;
 	slug: string;
 	name: string;
@@ -149,8 +238,8 @@ type Filters = {
 declare type ApiGamesTypes = {
 	count: number;
 	next: string;
-	previous?: any;
-	results: Games[];
+	previous?: string | null;
+	results: Game[];
 	seo_title: string;
 	seo_description: string;
 	seo_keywords: string;
