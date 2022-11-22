@@ -29,7 +29,7 @@ const GameItem: FC<IGameItemProps> = ({ gameId }) => {
 					<ul className={clsx(s.game__platforms, s.platforms)}>
 						{plats?.map((item) => (
 							<li key={item.platform.id} className={clsx(s.platforms__item)}>
-								<PlatformIcon key={item.platform.id} platform={item.platform.slug} />
+								<PlatformIcon key={item.platform.id} platform={item.platform} />
 							</li>
 						))}
 					</ul>

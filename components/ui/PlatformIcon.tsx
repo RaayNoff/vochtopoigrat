@@ -1,15 +1,18 @@
 import { FC } from "react";
 
 import { DiAndroid, DiApple, DiLinux, DiWindows } from "react-icons/di";
-import { FaPlaystation, FaXbox } from "react-icons/fa";
+import { FaPlaystation, FaXbox, FaAppStoreIos } from "react-icons/fa";
+
 import { SiNintendoswitch } from "react-icons/si";
 
-interface IPlatformIconProps {
-	platform: string;
+import { ParentPlatform } from "../../types/api";
+
+interface IPlatformIcon {
+	platform: ParentPlatform;
 }
 
-const PlatformIcon: FC<IPlatformIconProps> = ({ platform }) => {
-	switch (platform) {
+const PlatformIcon: FC<IPlatformIcon> = ({ platform }) => {
+	switch (platform.slug) {
 		case "android":
 			return <DiAndroid />;
 		case "linux":
@@ -24,9 +27,11 @@ const PlatformIcon: FC<IPlatformIconProps> = ({ platform }) => {
 			return <FaPlaystation />;
 		case "xbox":
 			return <FaXbox />;
+		case "ios":
+			return <FaAppStoreIos />;
 
 		default:
-			return <></>;
+			return null;
 	}
 };
 

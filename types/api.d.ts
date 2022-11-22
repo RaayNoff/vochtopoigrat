@@ -1,13 +1,9 @@
 declare type Rating = {
 	id: number;
-	title: 
-		| "exceptional" 
-		| "recommended"
-		| "meh" 
-		| "skip";
+	title: "exceptional" | "recommended" | "meh" | "skip";
 	count: number;
 	percent: number;
-}
+};
 
 type AddedByStatus = {
 	yet: number;
@@ -16,11 +12,11 @@ type AddedByStatus = {
 	toplay: number;
 	dropped: number;
 	playing: number;
-}
+};
 
 declare type Platform = {
 	id: number;
-	name: 
+	name:
 		| "PC"
 		| "Xbox Series S/X"
 		| "PlayStation 4"
@@ -31,9 +27,8 @@ declare type Platform = {
 		| "Nintendo Switch"
 		| "Linux"
 		| "macOS"
-		| "Android"
-	;
-	slug: 
+		| "Android";
+	slug:
 		| "pc"
 		| "xbox-series-x"
 		| "playstation4"
@@ -44,44 +39,42 @@ declare type Platform = {
 		| "nintendo-switch"
 		| "linux"
 		| "macos"
-		| "android"
-		;
+		| "android";
 	image?: string;
 	year_end?: number;
 	year_start?: number;
 	games_count: number;
 	image_background: string;
-}
+};
 
 type RequirementsEn = {
 	minimum: string;
 	recommended: string;
-}
+};
 
 type RequirementsRu = {
 	minimum: string;
 	recommended: string;
-}
+};
 
 export type Platforms = {
 	platform: Platform;
 	released_at: string;
 	requirements_en: RequirementsEn;
 	requirements_ru: RequirementsRu;
-}
+};
 
 type ParentPlatform = {
 	id: number;
-	name: 
+	name:
 		| "PC"
 		| "Xbox"
 		| "Android"
 		| "Apple Macintosh"
 		| "Linux"
 		| "Nintendo"
-		| "PlayStation"
-		;
-	slug: 
+		| "PlayStation";
+	slug:
 		| "pc"
 		| "xbox"
 		| "android"
@@ -89,39 +82,37 @@ type ParentPlatform = {
 		| "linux"
 		| "nintendo"
 		| "playstation"
-		;
-}
+		| "ios";
+};
 
 type ParentPlatforms = {
 	platform: ParentPlatform;
-}
+};
 
 export type Genre = {
 	id: number;
-	name: 
+	name:
 		| "Action"
 		| "Adventure"
 		| "RPG"
 		| "Shooter"
 		| "Puzzle"
-		| "Massively Multiplayer"
-	;
-	slug: 
+		| "Massively Multiplayer";
+	slug:
 		| "action"
 		| "adventure"
 		| "role-playing-games-rpg"
 		| "shooter"
 		| "puzzle"
 		| "platformer"
-		| "massively-multiplayer"
-	;
+		| "massively-multiplayer";
 	games_count: number;
 	image_background: string;
-}
+};
 
 declare type Store = {
 	id: number;
-	name: 
+	name:
 		| "PlayStation Store"
 		| "Epic Games"
 		| "Steam"
@@ -130,9 +121,8 @@ declare type Store = {
 		| "GOG"
 		| "Nintendo Store"
 		| "Google Play"
-		| "App Store"
-	;
-	slug: 
+		| "App Store";
+	slug:
 		| "playstation-store"
 		| "epic-games"
 		| "steam"
@@ -141,9 +131,8 @@ declare type Store = {
 		| "gog"
 		| "nintendo"
 		| "google-play"
-		| "apple-appstore"
-	;
-	domain: 
+		| "apple-appstore";
+	domain:
 		| "store.playstation.com"
 		| "epicgames.com"
 		| "store.steampowered.com"
@@ -152,16 +141,15 @@ declare type Store = {
 		| "gog.com"
 		| "nintendo.com"
 		| "play.google.com"
-		| "apps.apple.com"
-	;
+		| "apps.apple.com";
 	games_count: number;
 	image_background: string;
-}
+};
 
 type Stores = {
 	id: number;
 	store: Store;
-}
+};
 
 declare type Tag = {
 	id: number;
@@ -170,18 +158,18 @@ declare type Tag = {
 	language: "eng";
 	games_count: number;
 	image_background: string;
-}
+};
 
 type EsrbRating = {
 	id: number;
 	name: string;
 	slug: string;
-}
+};
 
 type ShortScreenshot = {
 	id: number;
 	image: string;
-}
+};
 
 declare type Game = {
 	id: number;
@@ -213,13 +201,13 @@ declare type Game = {
 	tags: Tag[];
 	esrb_rating: EsrbRating;
 	short_screenshots: ShortScreenshot[];
-}
+};
 
 type Year = {
 	year: number;
 	count: number;
 	nofollow: boolean;
-}
+};
 
 type Years = {
 	from: number;
@@ -229,11 +217,11 @@ type Years = {
 	years: Year[];
 	nofollow: boolean;
 	count: number;
-}
+};
 
 type Filters = {
 	years: Years[];
-}
+};
 
 declare type ApiGamesTypes = {
 	count: number;
@@ -249,4 +237,4 @@ declare type ApiGamesTypes = {
 	description: string;
 	filters: Filters;
 	nofollow_collections: string[];
-}
+};
