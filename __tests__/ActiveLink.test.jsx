@@ -4,7 +4,10 @@ import mockRouter from "next-router-mock";
 import Home from "../pages/home";
 import Random from "../pages/random";
 import Charts from "../pages/charts";
+
 import Releases from "../pages/releases";
+
+import { renderWithRedux } from "../helpers/renderWithRedux.js";
 
 //Mocking next router + links
 jest.mock("next/router", () => require("next-router-mock"));
@@ -13,8 +16,7 @@ jest.mock("next/dist/client/router", () => require("next-router-mock"));
 describe("ActiveLink test", () => {
 	test("Home link", () => {
 		mockRouter.push("/home");
-		render(<Home />);
-
+		renderWithRedux(<Home />);
 		const homeLink = screen.getByTestId("home-link");
 		const randomLink = screen.getByTestId("random-link");
 		const chartsLink = screen.getByTestId("charts-link");
