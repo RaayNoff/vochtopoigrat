@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Game } from "../models/interfaces/IGameList";
+import { Game } from "../types/api";
 
 import { useTypedSelector } from "./useTypedSelector";
 
