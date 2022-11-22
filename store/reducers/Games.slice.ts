@@ -3,12 +3,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IGamesState } from "../../models/interfaces/IGamesState";
 import { Game } from "../../types/api";
 
-import { fetchGames } from "../action-creators/Games.actions";
+import { fetchNextGamesPage } from "../action-creators/Games.actions";
 
 const initialState: IGamesState = {
 	isLoading: false,
 	error: null,
 	games: [],
+	currentPage: 1,
 };
 
 export const gamesSlice = createSlice({
@@ -18,17 +19,27 @@ export const gamesSlice = createSlice({
 		setGames: (state, action: PayloadAction<Game[]>) => {
 			state.games = action.payload;
 		},
+		setCurrentPage: (state, action: PayloadAction<number>) => {
+			state.currentPage = action.payload;
+		},
 	},
-	extraReducers: {
-		[fetchGames.fulfilled.type]: (state, action: PayloadAction<Game[]>) => {
-			state.isLoading = false;
-			state.games = action.payload;
-		},
-		[fetchGames.pending.type]: (state) => {
-			state.isLoading = true;
-		},
-		[fetchGames.rejected.type]: (state, action: PayloadAction<string>) => {
-			state.error = action.payload;
-		},
+	extraReducers: (builder) => {
+		builder.addCase(
+			fetchNextGamesPage.fulfilled.type,
+			(state, action: PayloadAction<Game[]>) => {
+				state.isLoading = false;
+				state.games = state.games.concat(action.payload);
+			},
+		),
+			builder.addCase(fetchNextGamesPage.pending.type, (state) => {
+				state.isLoading = true;
+			}),
+			builder.addCase(
+				fetchNextGamesPage.rejected.type,
+				(state, action: PayloadAction<string>) => {
+					state.isLoading = false;
+					state.error = action.payload;
+				},
+			);
 	},
 });

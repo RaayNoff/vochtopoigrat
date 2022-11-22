@@ -6,19 +6,23 @@ import { ApiGamesTypes, Game } from "../../types/api";
 import { AppDispatch } from "..";
 import { gamesSlice } from "../reducers/Games.slice";
 
-export const fetchGames = createAsyncThunk(
-	"games/fetchAll",
-	async (_, thunkAPI) => {
+export const fetchNextGamesPage = createAsyncThunk(
+	"games/fetchNextPage",
+	async (page: number, thunkAPI) => {
 		try {
 			const response = await axios.get<ApiGamesTypes>(
-				`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+				`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
 			);
 			return response.data.results;
 		} catch (error) {
-			return thunkAPI.rejectWithValue("Не удалось загрузить страницу");
+			return thunkAPI.rejectWithValue("Не удалось загрузить следующую страницу");
 		}
 	},
 );
+
+export const setCurrentPage = (page: number) => (dispatch: AppDispatch) => {
+	dispatch(gamesSlice.actions.setCurrentPage(page));
+};
 
 export const setGames = (games: Game[]) => (dispatch: AppDispatch) => {
 	dispatch(gamesSlice.actions.setGames(games));

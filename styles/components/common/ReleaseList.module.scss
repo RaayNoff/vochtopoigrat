@@ -4,21 +4,29 @@
 	flex-direction: column;
 
 	&__list {
-		overflow-y: scroll;
-		max-height: 930px;
 		display: flex;
 		flex-direction: column;
 	}
 
-	&__shadowUp {
-		width: 98.5%;
-		min-height: 50px;
-		background: linear-gradient(180deg, #212429 0%, rgba(33, 36, 41, 0.59375) 4.6%, rgba(33, 36, 41, 0) 9.3%);
+	&__loader {
+		margin-bottom: 30px;
+		align-self: center;
 	}
-	&__shadowDown {
-		width: 98.5%;
-		min-height: 50px;
-		background: linear-gradient(180deg, #212429 0%, rgba(33, 36, 41, 0.59375) 4.6%, rgba(33, 36, 41, 0) 9.3%);
+
+	&__shadow {
+		pointer-events: none;
+		z-index: 2;
+		width: 98%;
+		height: 100px;
+
+		&:first-child {
+			transform: translateY(50px);
+			background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
+		}
+		&:last-child {
+			transform: translateY(-50px);
+			background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
+		}
 	}
 
 	&__item {
@@ -28,4 +36,8 @@
 			margin-bottom: 0;
 		}
 	}
+}
+
+.wrapper {
+	max-height: 930px;
 }

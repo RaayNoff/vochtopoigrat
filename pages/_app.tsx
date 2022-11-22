@@ -1,4 +1,6 @@
+import "overlayscrollbars/overlayscrollbars.css";
 import "../styles/globals.scss";
+
 import NextNProgress from "nextjs-progressbar";
 import { Provider } from "react-redux";
 
