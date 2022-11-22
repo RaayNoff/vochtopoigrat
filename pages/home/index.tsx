@@ -1,6 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
+import Games from "../../components/common/Games.component";
 
 import ReleaseList from "../../components/common/ReleaseList.component";
 import { useActions } from "../../hooks/useActions";
@@ -38,7 +39,7 @@ const Home: FC = () => {
 		<MainLayout testid="home-page">
 			{/* <Carousel sliders={props} /> */}
 
-			<ReleaseList />
+			<Games />
 		</MainLayout>
 	);
 };
