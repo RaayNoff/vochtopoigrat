@@ -14,7 +14,11 @@ const initialState: IGamesState = {
 export const gamesSlice = createSlice({
 	name: "games",
 	initialState,
-	reducers: {},
+	reducers: {
+		setGames: (state, action: PayloadAction<Game[]>) => {
+			state.games = action.payload;
+		},
+	},
 	extraReducers: {
 		[fetchGames.fulfilled.type]: (state, action: PayloadAction<Game[]>) => {
 			state.isLoading = false;

@@ -1,13 +1,12 @@
-import { FC, useEffect, useMemo, useState } from "react";
+import axios from "axios";
+import { FC, useEffect } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
 import Games from "../../components/common/Games.component";
-
-import ReleaseList from "../../components/common/ReleaseList.component";
 import { useActions } from "../../hooks/useActions";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import MainLayout from "../../layouts/MainLayout.component";
+import { ApiGamesTypes, Game } from "../../types/api";
 
 type SliderPropsType = {
 	id: number;
@@ -15,24 +14,15 @@ type SliderPropsType = {
 	title: string;
 };
 
-const Home: FC = () => {
-	const { fetchGames } = useActions();
-	const { games } = useTypedSelector((state) => state.games);
-	const [props, setProps] = useState<SliderPropsType[]>([]);
+interface IHomeProps {
+	initialGames: Game[];
+}
+
+const Home: FC<IHomeProps> = ({ initialGames: games }) => {
+	const { setGames } = useActions();
 
 	useEffect(() => {
-		const sliders = games.map((item) => {
-			return {
-				id: item.id,
-				img: item.background_image,
-				title: item.name,
-			} as SliderPropsType;
-		});
-		setProps(sliders);
-	}, []);
-
-	useEffect(() => {
-		fetchGames();
+		setGames(games);
 	}, []);
 
 	return (
@@ -45,3 +35,21 @@ const Home: FC = () => {
 };
 
 export default Home;
+
+export const getServerSideProps = async () => {
+	let games: Game[];
+	try {
+		const response = await axios.get<ApiGamesTypes>(
+			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+		);
+		games = response.data.results;
+
+		return {
+			props: {
+				initialGames: games,
+			},
+		};
+	} catch (error) {
+		console.log(error);
+	}
+};

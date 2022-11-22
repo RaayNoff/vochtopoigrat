@@ -2,7 +2,9 @@ import axios from "axios";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { ApiGamesTypes } from "../../types/api";
+import { ApiGamesTypes, Game } from "../../types/api";
+import { AppDispatch } from "..";
+import { gamesSlice } from "../reducers/Games.slice";
 
 export const fetchGames = createAsyncThunk(
 	"games/fetchAll",
@@ -17,3 +19,7 @@ export const fetchGames = createAsyncThunk(
 		}
 	},
 );
+
+export const setGames = (games: Game[]) => (dispatch: AppDispatch) => {
+	dispatch(gamesSlice.actions.setGames(games));
+};
