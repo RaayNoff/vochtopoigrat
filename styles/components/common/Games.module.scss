@@ -1,0 +1,9 @@
+.games {
+	width: 100%;
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+}
