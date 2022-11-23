@@ -40,7 +40,7 @@ const ReleaseList: FC = () => {
 				className={s.wrapper}
 			>
 				<ul className={clsx(s.releaseList__list)}>
-					{games.map((game) => (
+					{games?.map((game) => (
 						<li key={game.id} className={clsx(s.releaseList__item)}>
 							<GameItem key={game.id} gameId={game.id} />
 						</li>
