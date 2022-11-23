@@ -5,7 +5,11 @@ import { useActions } from "./useActions";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
-	const { currentPage, isLoading } = useTypedSelector((state) => state.games);
+	const {
+		currentPage,
+		isLoading,
+		next: isNextPageAvailable,
+	} = useTypedSelector((state) => state.games);
 	const { setCurrentPage, fetchNextGamesPage } = useActions();
 
 	const observer = useRef<any>(null);
@@ -17,11 +21,11 @@ export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 			entries: IntersectionObserverEntry[],
 			observer: IntersectionObserver,
 		) {
-			if (entries[0].isIntersecting) {
+			if (entries[0].isIntersecting && isNextPageAvailable) {
 				setCurrentPage(currentPage + 1);
 			}
 		};
-		observer.current = new IntersectionObserver(callback, {});
+		observer.current = new IntersectionObserver(callback);
 		observer.current.observe(observableRef.current);
 	}, [isLoading]);
 

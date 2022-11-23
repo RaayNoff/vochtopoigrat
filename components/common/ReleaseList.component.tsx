@@ -46,8 +46,8 @@ const ReleaseList: FC = () => {
 						</li>
 					))}
 					{isLoading && <Loader className={s.releaseList__loader} />}
+					<div ref={lastElement} style={{ height: "1px" }}></div>
 				</ul>
-				<div ref={lastElement} style={{ height: "1px" }}></div>
 			</OverlayScrollbarsComponent>
 			<div className={s.releaseList__shadow}></div>
 		</section>

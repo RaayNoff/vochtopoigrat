@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGamesState } from "../../models/interfaces/IGamesState";
-import { Game } from "../../types/api";
+import { ApiGamesTypes, Game } from "../../types/api";
 
 import { fetchNextGamesPage } from "../action-creators/Games.actions";
 
@@ -10,6 +10,7 @@ const initialState: IGamesState = {
 	error: null,
 	games: [],
 	currentPage: 1,
+	next: "available",
 };
 
 export const gamesSlice = createSlice({
@@ -26,9 +27,11 @@ export const gamesSlice = createSlice({
 	extraReducers: (builder) => {
 		builder.addCase(
 			fetchNextGamesPage.fulfilled.type,
-			(state, action: PayloadAction<Game[]>) => {
+			(state, action: PayloadAction<ApiGamesTypes>) => {
 				state.isLoading = false;
-				state.games = state.games.concat(action.payload);
+				state.next = action.payload.next;
+				console.log(state.next);
+				state.games = state.games.concat(action.payload.results);
 			},
 		),
 			builder.addCase(fetchNextGamesPage.pending.type, (state) => {

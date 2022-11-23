@@ -13,7 +13,7 @@ export const fetchNextGamesPage = createAsyncThunk(
 			const response = await axios.get<ApiGamesTypes>(
 				`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
 			);
-			return response.data.results;
+			return response.data;
 		} catch (error) {
 			return thunkAPI.rejectWithValue("Не удалось загрузить следующую страницу");
 		}
