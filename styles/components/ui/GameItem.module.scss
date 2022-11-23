@@ -49,8 +49,8 @@
 	&__pic {
 		width: 100%;
 		height: 100%;
-		object-fit: fill;
-		object-position: center center;
+		object-fit: cover;
+		object-position: center 25%;
 	}
 
 	&__gradient {
