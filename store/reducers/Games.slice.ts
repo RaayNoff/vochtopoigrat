@@ -30,7 +30,6 @@ export const gamesSlice = createSlice({
 			(state, action: PayloadAction<ApiGamesTypes>) => {
 				state.isLoading = false;
 				state.next = action.payload.next;
-				console.log(state.next);
 				state.games = state.games.concat(action.payload.results);
 			},
 		),

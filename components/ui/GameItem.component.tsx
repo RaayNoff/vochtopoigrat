@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
@@ -6,6 +7,7 @@ import { useGameById } from "../../hooks/useGameById";
 import { Routes } from "../../models/enums/Routes";
 
 import s from "../../styles/components/ui/GameItem.module.scss";
+import Loader from "./Loader.component";
 
 import PlatformIcon from "./PlatformIcon";
 
@@ -35,8 +37,22 @@ const GameItem: FC<IGameItemProps> = ({ gameId }) => {
 					</ul>
 				</section>
 				<section className={clsx(s.game__image, s.image)}>
-					<img src={picture} alt={name} className={clsx(s.image__pic)} />
-					<div className={clsx(s.image__gradient)}></div>
+					{picture ? (
+						<Image
+							src={picture}
+							alt={name}
+							className={clsx(s.image__pic)}
+							width={500}
+							height={500}
+							priority
+						/>
+					) : (
+						<p className={clsx(s.image__noImgText)}>NO IMAGE</p>
+					)}
+
+					<div
+						className={clsx(s.image__gradient, !picture && s.image__noImgGradient)}
+					></div>
 				</section>
 			</article>
 		</Link>

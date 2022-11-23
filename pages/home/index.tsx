@@ -39,9 +39,6 @@ export default Home;
 export const getServerSideProps = async () => {
 	let games: Game[];
 	try {
-		console.log(
-			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
-		);
 		const response = await axios.get<ApiGamesTypes>(
 			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
 		);
