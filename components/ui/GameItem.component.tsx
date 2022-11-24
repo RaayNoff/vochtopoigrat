@@ -7,7 +7,6 @@ import { useGameById } from "../../hooks/useGameById";
 import { Routes } from "../../models/enums/Routes";
 
 import s from "../../styles/components/ui/GameItem.module.scss";
-import Loader from "./Loader.component";
 
 import PlatformIcon from "./PlatformIcon";
 

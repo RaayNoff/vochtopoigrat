@@ -1,0 +1,54 @@
+.gameLink {
+	width: 100%;
+
+	border-bottom: 2px solid #212429;
+	transition: background-color 150ms ease;
+
+	&__container {
+		padding: 7px 20px 7px 6px;
+		display: flex;
+		flex-direction: row;
+		// justify-content: space-between;
+	}
+
+	&__imageContainer {
+		margin-right: 1.3333333333rem;
+	}
+
+	&__name {
+		font-weight: 300;
+		font-size: 1rem;
+		line-height: 29px;
+		max-height: 60px;
+		color: #ffffff;
+		transform: translateY(20%);
+
+		word-break: normal;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
+	@media (min-width: 767.98px) {
+		&:hover {
+			background: #226dff;
+		}
+	}
+}
+
+.imageContainer {
+	width: 27.7879341865%;
+	min-width: 27.7879341865%;
+	border-radius: 5px;
+	overflow: hidden;
+	height: 86px;
+
+	&__img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center 25%;
+	}
+}
