@@ -11,7 +11,14 @@ export const fetchNextGamesPage = createAsyncThunk(
 	async (page: number, thunkAPI) => {
 		try {
 			const response = await axios.get<ApiGamesTypes>(
-				`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page=${page}`,
+				`${process.env.NEXT_PUBLIC_API_URL}`,
+				{
+					params: {
+						key: `${process.env.NEXT_PUBLIC_API_KEY}`,
+						page,
+						page_size: 5,
+					},
+				},
 			);
 			return response.data;
 		} catch (error) {

@@ -40,7 +40,13 @@ export const getServerSideProps = async () => {
 	let games: Game[];
 	try {
 		const response = await axios.get<ApiGamesTypes>(
-			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}`,
+			`${process.env.NEXT_PUBLIC_API_URL}`,
+			{
+				params: {
+					key: `${process.env.NEXT_PUBLIC_API_KEY}`,
+					page_size: 5,
+				},
+			},
 		);
 		games = response.data.results;
 
