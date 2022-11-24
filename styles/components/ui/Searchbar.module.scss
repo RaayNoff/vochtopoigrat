@@ -8,20 +8,17 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-left: 16px;
+	padding-left: 30px;
 
 	&__loupe {
-		color: #fff;
-		min-width: 35px;
-		min-height: 35px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
+		width: 35px;
+		height: 35px;
+		padding-top: 3.8px;
 	}
 
 	&__input {
 		border: none;
-		width: 53.747714808%;
+		width: 77.2340036563%;
 		height: fit-content;
 		background-color: transparent;
 

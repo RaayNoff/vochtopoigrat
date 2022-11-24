@@ -13,9 +13,6 @@ const Searchbar: FC = () => {
 
 	return (
 		<section className={clsx(s.searchbar)}>
-			<div className={clsx(s.searchbar__loupe)}>
-				<FiSearch />
-			</div>
 			<input
 				id="search"
 				type="text"
@@ -26,7 +23,7 @@ const Searchbar: FC = () => {
 				className={clsx(s.searchbar__button)}
 				callback={() => searchCallback}
 			>
-				Search
+				<FiSearch className={clsx(s.searchbar__loupe)} />
 			</Button>
 		</section>
 	);
