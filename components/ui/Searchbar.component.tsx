@@ -1,9 +1,10 @@
 import clsx from "clsx";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
 
 import { useActions } from "../../hooks/useActions";
 import { useDebounce } from "../../hooks/useDebounce";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import s from "../../styles/components/ui/Searchbar.module.scss";
@@ -20,6 +21,11 @@ const Searchbar: FC = () => {
 	const { setSearchBarActive, setSearchQuery, fetchSearch } = useActions();
 
 	const debouncedSearch = useDebounce(fetchSearch, 500);
+
+	// const menuRef = useRef<HTMLElement>(null);
+	// useOutsideClick(menuRef, () => {
+	// 	setSearchBarActive(false);
+	// });
 
 	useEffect(() => {
 		if (searchQuery.length && !isSearchActive) setSearchBarActive(true);
