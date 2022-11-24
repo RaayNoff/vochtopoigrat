@@ -238,3 +238,11 @@ declare type ApiGamesTypes = {
 	filters: Filters;
 	nofollow_collections: string[];
 };
+
+declare type ApiSearchTypes = {
+	count: number;
+	next: string;
+	previous?: string | null;
+	results: Game[];
+	user_platforms: boolean;
+};
