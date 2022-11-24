@@ -44,12 +44,6 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 		if (isPrev) {
 			prevImage();
 		}
-		if (isNext) {
-			nextImage();
-		}
-		if (isPrev) {
-			prevImage();
-		}
 		setSrcBg(sliders[slideAction].img);
 	};
 
@@ -96,7 +90,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 							onClickSlider(event);
 						}}
 					>
-						<img src={img.img} alt={img.title} />
+						<Image width={1000} height={1000} priority src={img.img} alt={img.title} />
 					</div>
 				);
 			})}
