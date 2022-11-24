@@ -34,7 +34,7 @@ describe("ActiveLink test", () => {
 
 	test("Random link", () => {
 		mockRouter.push("/random");
-		render(<Random />);
+		renderWithRedux(<Random />);
 
 		const homeLink = screen.getByTestId("home-link");
 		const randomLink = screen.getByTestId("random-link");
@@ -49,7 +49,7 @@ describe("ActiveLink test", () => {
 
 	test("Charts link", () => {
 		mockRouter.push("/charts");
-		render(<Charts />);
+		renderWithRedux(<Charts />);
 
 		const homeLink = screen.getByTestId("home-link");
 		const randomLink = screen.getByTestId("random-link");
@@ -64,7 +64,7 @@ describe("ActiveLink test", () => {
 
 	test("Releases link", () => {
 		mockRouter.push("/releases");
-		render(<Releases />);
+		renderWithRedux(<Releases />);
 
 		const homeLink = screen.getByTestId("home-link");
 		const randomLink = screen.getByTestId("random-link");
