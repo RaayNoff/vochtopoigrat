@@ -48,7 +48,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 	};
 
 	useEffect(() => {
-		if (sliders[slideAction]) {
+		if (sliders && sliders[slideAction]) {
 			setSrcBg(sliders[slideAction].img);
 		} else {
 			setSrcBg("");
@@ -73,7 +73,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 			}}
 		>
 			<div className={clsx(s.carousel__blur)}></div>
-			{sliders.map((img, index) => {
+			{sliders?.map((img, index) => {
 				return (
 					<div
 						key={img.id}
@@ -90,7 +90,13 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 							onClickSlider(event);
 						}}
 					>
-						<Image width={1000} height={1000} priority src={img.img} alt={img.title} />
+						<Image
+							width={1000}
+							height={1000}
+							priority
+							src={img.img}
+							alt={img.title}
+						/>
 					</div>
 				);
 			})}
@@ -102,7 +108,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 				}}
 			></div>
 			<div className={clsx(s.pagination)}>
-				{sliders.map((_, index) => {
+				{sliders?.map((_, index) => {
 					return (
 						<div
 							key={index}

@@ -20,18 +20,18 @@ interface IHomeProps {
 
 const Home: FC<IHomeProps> = ({ initialGames: games }) => {
 	const { setGames } = useActions();
-	const [ props, setProps ] = useState<SliderPropsType[]>([]);
+	const [props, setProps] = useState<SliderPropsType[]>([]);
 
 	useEffect(() => {
-		const sliders = games.map(( item => {
+		const sliders = games?.map((item) => {
 			return {
 				id: item.id,
 				img: item.background_image,
 				title: item.name,
 			} as SliderPropsType;
-		} ));
+		});
 		setProps(sliders);
-	}, [  ]);
+	}, []);
 
 	useEffect(() => {
 		setGames(games);
@@ -52,7 +52,10 @@ export const getServerSideProps = async () => {
 	let games: Game[];
 	try {
 		const options = { method: "GET" };
-		const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`, options);
+		const res = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`,
+			options,
+		);
 		// console.log(await res.json());
 		const data: ApiGamesTypes = await res.json();
 		games = data.results;
