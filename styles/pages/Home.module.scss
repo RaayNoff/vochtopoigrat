@@ -1,0 +1,12 @@
+.home {
+	display: flex;
+	flex-direction: column;
+
+	&__carousel {
+		margin-bottom: 156px;
+	}
+
+	&__games {
+		margin-bottom: 161px;
+	}
+}

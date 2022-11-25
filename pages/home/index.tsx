@@ -1,4 +1,3 @@
-import axios from "axios";
 import { FC, useEffect, useState } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
@@ -7,6 +6,8 @@ import { useActions } from "../../hooks/useActions";
 
 import MainLayout from "../../layouts/MainLayout.component";
 import { ApiGamesTypes, Game } from "../../types/api";
+
+import s from "../../styles/pages/Home.module.scss";
 
 type SliderPropsType = {
 	id: number;
@@ -38,10 +39,10 @@ const Home: FC<IHomeProps> = ({ initialGames: games }) => {
 	}, []);
 
 	return (
-		<MainLayout testid="home-page">
-			<Carousel sliders={props} />
+		<MainLayout testid="home-page" selfClassName={s.home}>
+			<Carousel sliders={props} className={s.home__carousel} />
 
-			<Games />
+			<Games className={s.home__games} />
 		</MainLayout>
 	);
 };
