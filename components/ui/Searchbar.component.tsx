@@ -32,9 +32,12 @@ const Searchbar: FC = () => {
 		else if (!searchQuery.length && isSearchActive) setSearchBarActive(false);
 	}, [searchQuery, isSearchActive]);
 
+	useEffect(() => {
+		debouncedSearch(searchQuery);
+	}, [searchQuery]);
+
 	const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchQuery(e.target.value);
-		debouncedSearch(searchQuery);
 	};
 
 	return (
