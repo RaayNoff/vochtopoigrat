@@ -3,7 +3,6 @@
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	padding: 50px 0;
 
 	&__list {
 		display: flex;
@@ -34,11 +33,11 @@
 	}
 
 	&::before {
-		top: 0;
+		top: -5%;
 		background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
 	&::after {
-		bottom: 0;
+		bottom: -4%;
 		background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
 }
