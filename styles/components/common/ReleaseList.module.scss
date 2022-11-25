@@ -1,7 +1,9 @@
 .releaseList {
 	width: 69.756097561%;
+	position: relative;
 	display: flex;
 	flex-direction: column;
+	padding: 50px 0;
 
 	&__list {
 		display: flex;
@@ -9,24 +11,8 @@
 	}
 
 	&__loader {
-		margin-bottom: 30px;
+		margin-bottom: 50px;
 		align-self: center;
-	}
-
-	&__shadow {
-		pointer-events: none;
-		z-index: 2;
-		width: 98%;
-		height: 100px;
-
-		&:first-child {
-			transform: translateY(50px);
-			background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
-		}
-		&:last-child {
-			transform: translateY(-50px);
-			background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
-		}
 	}
 
 	&__item {
@@ -35,6 +21,25 @@
 		&:last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		pointer-events: none;
+		z-index: 2;
+		width: 97.5%;
+		height: 100px;
+	}
+
+	&::before {
+		top: 0;
+		background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
+	}
+	&::after {
+		bottom: 0;
+		background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
 }
 

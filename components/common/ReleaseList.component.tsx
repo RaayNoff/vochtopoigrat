@@ -20,7 +20,6 @@ const ReleaseList: FC = () => {
 
 	return (
 		<section className={clsx(s.releaseList)}>
-			<div className={s.releaseList__shadow}></div>
 			<OverlayScrollbarsComponent
 				defer
 				options={{
@@ -49,7 +48,6 @@ const ReleaseList: FC = () => {
 					<div ref={lastElement} style={{ height: "1px" }}></div>
 				</ul>
 			</OverlayScrollbarsComponent>
-			<div className={s.releaseList__shadow}></div>
 		</section>
 	);
 };
