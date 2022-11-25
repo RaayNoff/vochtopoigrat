@@ -6,7 +6,7 @@ import s from "../../styles/components/ui/Button.module.scss";
 interface IButtonProps {
 	children?: React.ReactNode;
 	className?: string;
-	callback?: () => void;
+	callback?: (...args: any) => void;
 }
 
 const Button: FC<IButtonProps> = ({ children, callback, className }) => {
