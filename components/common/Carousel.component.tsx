@@ -35,6 +35,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 	};
 
 	const onClickSlider = (event: React.MouseEvent<HTMLDivElement>) => {
+		event.stopPropagation();
 		const isNext = event.currentTarget.classList.contains(s.slide__next);
 		const isPrev = event.currentTarget.classList.contains(s.slide__prev);
 
