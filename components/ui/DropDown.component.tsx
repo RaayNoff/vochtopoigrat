@@ -1,12 +1,11 @@
 import clsx from "clsx";
-import { FC, RefObject, forwardRef } from "react";
+import { FC } from "react";
 
 import s from "../../styles/components/ui/DropDown.module.scss";
 
 interface IDropDownProps {
 	children?: React.ReactNode;
 	isVisible?: boolean;
-	// ref?: RefObject<HTMLElement>;
 }
 
 const DropDown: FC<IDropDownProps> = ({ children, isVisible }) => {
@@ -16,5 +15,4 @@ const DropDown: FC<IDropDownProps> = ({ children, isVisible }) => {
 		</menu>
 	);
 };
-
 export default DropDown;

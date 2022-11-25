@@ -20,17 +20,18 @@ const Searchbar: FC = () => {
 
 	const { setSearchBarActive, setSearchQuery, fetchSearch } = useActions();
 
-	const debouncedSearch = useDebounce(fetchSearch, 500);
-
-	// const menuRef = useRef<HTMLElement>(null);
-	// useOutsideClick(menuRef, () => {
-	// 	setSearchBarActive(false);
-	// });
+	const searchbarRef = useRef<HTMLElement>(null);
+	useOutsideClick(searchbarRef, () => {
+		setSearchBarActive(false);
+		setSearchQuery("");
+	});
 
 	useEffect(() => {
 		if (searchQuery.length && !isSearchActive) setSearchBarActive(true);
 		else if (!searchQuery.length && isSearchActive) setSearchBarActive(false);
 	}, [searchQuery, isSearchActive]);
+
+	const debouncedSearch = useDebounce(fetchSearch, 500);
 
 	useEffect(() => {
 		debouncedSearch(searchQuery);
@@ -41,7 +42,7 @@ const Searchbar: FC = () => {
 	};
 
 	return (
-		<section className={clsx(s.searchbar)}>
+		<section ref={searchbarRef} className={clsx(s.searchbar)}>
 			<input
 				id="search"
 				type="text"
