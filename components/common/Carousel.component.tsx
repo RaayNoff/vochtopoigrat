@@ -12,7 +12,12 @@ type CarouselPropsType = {
 	title: string;
 };
 
-const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
+interface ICarouselProps {
+	sliders: CarouselPropsType[];
+	className?: string;
+}
+
+const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 	const [slideAction, setSlideAction] = useState<number>(0);
 	// eslint-disable-next-line prefer-const
 	let nextImageRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +73,7 @@ const Carousel: FC<{ sliders: CarouselPropsType[] }> = ({ sliders }) => {
 
 	return (
 		<section
-			className={s.carousel}
+			className={clsx(s.carousel, className)}
 			style={{
 				"--url": `url(${srcBg})`,
 			}}
