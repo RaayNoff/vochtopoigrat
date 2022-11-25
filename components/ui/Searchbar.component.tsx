@@ -34,6 +34,7 @@ const Searchbar: FC = () => {
 	const debouncedSearch = useDebounce(fetchSearch, 500);
 
 	useEffect(() => {
+		if (!searchQuery.length) return;
 		debouncedSearch(searchQuery);
 	}, [searchQuery]);
 
