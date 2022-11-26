@@ -97,7 +97,9 @@ export type Genre = {
 		| "RPG"
 		| "Shooter"
 		| "Puzzle"
-		| "Massively Multiplayer";
+		| "Platformer"
+		| "Massively Multiplayer"
+		| "Indie";
 	slug:
 		| "action"
 		| "adventure"
@@ -105,7 +107,8 @@ export type Genre = {
 		| "shooter"
 		| "puzzle"
 		| "platformer"
-		| "massively-multiplayer";
+		| "massively-multiplayer"
+		| "indie";
 	games_count: number;
 	image_background: string;
 };

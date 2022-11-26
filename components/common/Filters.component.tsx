@@ -3,7 +3,7 @@ import { FC } from "react";
 
 import s from "../../styles/components/common/Filters.module.scss";
 import Button from "../ui/Button.component";
-import Select from "../ui/Checkbox.component";
+import Checkbox from "../ui/Checkbox.component";
 
 import Accordion from "./Accordion.component";
 
@@ -12,8 +12,8 @@ const Filters: FC = () => {
 
 	return (
 		<aside className={clsx(s.filters)}>
-			<Accordion title="Жанр">
-				<Select name="Экшен" />
+			<Accordion title="Genres">
+				<Checkbox name="Action" />
 			</Accordion>
 			<Button
 				callback={(e: MouseEvent) => handleReset(e)}
