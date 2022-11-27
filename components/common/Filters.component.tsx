@@ -12,15 +12,14 @@ import FiltersStatic from "../../models/static/FiltersStatic";
 import Accordion from "./Accordion.component";
 
 const Filters: FC = () => {
-	const { isLoading } = useTypedSelector((state) => state.games);
-	const { handleClick, resetFilters } = useFitlers();
+	const { handleClick, resetFilters, isRestricted } = useFitlers();
 
 	return (
 		<aside className={clsx(s.filters)} onClick={(e) => handleClick(e)}>
 			<Accordion
 				title="Genres"
 				className={s.accordion}
-				availableCondition={isLoading}
+				availableCondition={isRestricted}
 			>
 				{FiltersStatic.genres.map((g) => (
 					<Checkbox
@@ -34,7 +33,7 @@ const Filters: FC = () => {
 			<Accordion
 				title="Tags"
 				className={s.accordion}
-				availableCondition={isLoading}
+				availableCondition={isRestricted}
 			>
 				{FiltersStatic.tags.map((t) => (
 					<Checkbox

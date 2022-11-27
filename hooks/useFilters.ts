@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { GenresSlug, TagSlug } from "../types/api";
 
@@ -8,6 +8,13 @@ import { useTypedSelector } from "./useTypedSelector";
 export const useFitlers = () => {
 	const { next, currentPage, applyedGenresList, applyedTagsList } =
 		useTypedSelector((state) => state.games);
+
+	const [isRestricted, setIsRestricted] = useState(false);
+
+	useEffect(() => {
+		next ? setIsRestricted(false) : setIsRestricted(true);
+	}, [next]);
+
 	const {
 		setNextPage,
 		setCurrentPage,
@@ -68,5 +75,5 @@ export const useFitlers = () => {
 		}
 	};
 
-	return { resetFilters, handleClick };
+	return { resetFilters, handleClick, isRestricted };
 };
