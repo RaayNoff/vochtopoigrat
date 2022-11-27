@@ -44,7 +44,9 @@
 	}
 }
 .content {
+	position: relative;
 	display: block;
+
 	&__wrapper {
 		transition: all 350ms ease-in-out;
 		max-height: 0;
@@ -54,7 +56,20 @@
 		&_opened {
 			max-height: 180px;
 			pointer-events: all;
-			margin-bottom: 1.5em;
+			margin-bottom: 1em;
 		}
+	}
+
+	&__restricted::after {
+		content: "";
+		position: absolute;
+		z-index: 100;
+		top: -10%;
+		left: 0;
+		width: 100%;
+		height: 110%;
+		background-color: rgba(rgb(83, 83, 83), 0.3);
+		pointer-events: all;
+		border-radius: 10px;
 	}
 }

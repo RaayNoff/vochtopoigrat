@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGamesState } from "../../models/interfaces/IGamesState";
-import { ApiGamesTypes, Game } from "../../types/api";
-import { GenresSlug } from "../../types/filters";
+import { ApiGamesTypes, Game, GenresSlug, TagSlug } from "../../types/api";
 
 import { fetchNextGamesPage } from "../action-creators/Games.actions";
 
@@ -13,6 +12,7 @@ const initialState: IGamesState = {
 	currentPage: 1,
 	next: "available",
 	applyedGenresList: [],
+	applyedTagsList: [],
 };
 
 export const gamesSlice = createSlice({
@@ -33,11 +33,20 @@ export const gamesSlice = createSlice({
 				(g) => g !== action.payload,
 			);
 		},
+		addTag: (state, action: PayloadAction<TagSlug>) => {
+			state.applyedTagsList.push(action.payload);
+		},
+		removeTag: (state, action: PayloadAction<TagSlug>) => {
+			state.applyedTagsList = state.applyedTagsList.filter((t) => {
+				t !== action.payload;
+			});
+		},
 		setNextPage: (state, action: PayloadAction<string>) => {
 			state.next = action.payload;
 		},
 		clearFilters: (state) => {
 			state.applyedGenresList = [];
+			state.applyedTagsList = [];
 		},
 	},
 	extraReducers: (builder) => {

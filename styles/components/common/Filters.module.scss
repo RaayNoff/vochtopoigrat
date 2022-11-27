@@ -11,14 +11,17 @@
 
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	align-items: center;
 
 	&__reset {
+		margin-top: auto;
 		width: 85.5855855856%;
 	}
 
-	&__genre {
+	&__checkbox {
 		margin-bottom: 15px;
 	}
+}
+.accordion {
+	margin-bottom: 1.25em;
 }

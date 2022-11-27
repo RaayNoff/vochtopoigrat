@@ -1,24 +1,13 @@
+import { GenresName, GenresSlug, TagName, TagSlug } from "./api";
+
 export type FilterGenres = {
 	id: number;
-	name:
-		| "Action"
-		| "Adventure"
-		| "RPG"
-		| "Shooter"
-		| "Puzzle"
-		| "Platformer"
-		| "Massively Multiplayer"
-		| "Indie";
+	name: GenresName;
 	slug: GenresSlug;
 };
 
-export type GenresSlug =
-	| "action"
-	| "adventure"
-	| "role-playing-games-rpg"
-	| "shooter"
-	| "puzzle"
-	| "platformer"
-	| "massively-multiplayer"
-	| "indie"
-	| null;
+export type FilterTags = {
+	id: number;
+	name: TagName;
+	slug: TagSlug;
+};

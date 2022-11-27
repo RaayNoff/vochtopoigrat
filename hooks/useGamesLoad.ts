@@ -5,9 +5,8 @@ import { useActions } from "./useActions";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
-	const { currentPage, isLoading, applyedGenresList } = useTypedSelector(
-		(state) => state.games,
-	);
+	const { currentPage, isLoading, applyedGenresList, applyedTagsList } =
+		useTypedSelector((state) => state.games);
 
 	const { setCurrentPage, fetchNextGamesPage } = useActions();
 
@@ -36,6 +35,7 @@ export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 		fetchNextGamesPage({
 			page: currentPage,
 			genres: applyedGenresList.join(","),
+			tags: applyedTagsList.join(","),
 		});
 	}, [currentPage]);
 };

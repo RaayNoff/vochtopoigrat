@@ -9,9 +9,16 @@ import s from "../../styles/components/common/Accordion.module.scss";
 interface IAccordionProps {
 	children?: React.ReactNode;
 	title?: string;
+	className?: string;
+	availableCondition?: boolean;
 }
 
-const Accordion: FC<IAccordionProps> = ({ children, title = "accordion" }) => {
+const Accordion: FC<IAccordionProps> = ({
+	children,
+	title = "accordion",
+	className,
+	availableCondition,
+}) => {
 	const [opened, setOpened] = useState(true);
 
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
@@ -20,7 +27,7 @@ const Accordion: FC<IAccordionProps> = ({ children, title = "accordion" }) => {
 	};
 
 	return (
-		<article className={s.accordion}>
+		<article className={clsx(s.accordion, className)}>
 			<header
 				className={clsx(s.accordion__header, s.header)}
 				onClick={(e) => handleClick(e)}
@@ -35,6 +42,7 @@ const Accordion: FC<IAccordionProps> = ({ children, title = "accordion" }) => {
 					s.accordion__content,
 					s.content,
 					opened && s.content__opened,
+					availableCondition && s.content__restricted,
 				)}
 			>
 				<OverlayScrollbarsComponent

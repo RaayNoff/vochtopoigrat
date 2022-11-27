@@ -89,26 +89,30 @@ type ParentPlatforms = {
 	platform: ParentPlatform;
 };
 
+export type GenresName =
+	| "Action"
+	| "Adventure"
+	| "RPG"
+	| "Shooter"
+	| "Puzzle"
+	| "Platformer"
+	| "Massively Multiplayer"
+	| "Indie";
+
+export type GenresSlug =
+	| "action"
+	| "adventure"
+	| "role-playing-games-rpg"
+	| "shooter"
+	| "puzzle"
+	| "platformer"
+	| "massively-multiplayer"
+	| "indie";
+
 export type Genre = {
 	id: number;
-	name:
-		| "Action"
-		| "Adventure"
-		| "RPG"
-		| "Shooter"
-		| "Puzzle"
-		| "Platformer"
-		| "Massively Multiplayer"
-		| "Indie";
-	slug:
-		| "action"
-		| "adventure"
-		| "role-playing-games-rpg"
-		| "shooter"
-		| "puzzle"
-		| "platformer"
-		| "massively-multiplayer"
-		| "indie";
+	name: GenresName;
+	slug: GenresSlug;
 	games_count: number;
 	image_background: string;
 };
@@ -154,10 +158,68 @@ type Stores = {
 	store: Store;
 };
 
-declare type Tag = {
+export type TagName =
+	| "Singleplayer"
+	| "Multiplayer"
+	| "Steam Achievements"
+	| "Atmospheric"
+	| "Great Soundtrack"
+	| "RPG"
+	| "Co-op"
+	| "Open World"
+	| "First-Person"
+	| "Third Person"
+	| "Funny"
+	| "Sandbox"
+	| "Comedy"
+	| "Moddable"
+	| "Crime"
+	| "vr mod"
+	| "Story Rich"
+	| "Fantasy"
+	| "Dark"
+	| "Nudity"
+	| "Choices Matter"
+	| "Mature"
+	| "Medieval"
+	| "Magic"
+	| "Multiple Endings"
+	| "FPS"
+	| "Female Protagonist";
+
+export type TagSlug =
+	| "singleplayer"
+	| "multiplayer"
+	| "steam-achievements"
+	| "atmospheric"
+	| "great-soundtrack"
+	| "rpg"
+	| "co-op"
+	| "open-world"
+	| "first-person"
+	| "third-person"
+	| "funny"
+	| "sandbox"
+	| "comedy"
+	| "moddable"
+	| "crime"
+	| "vr-mod"
+	| "story-rich"
+	| "fantasy"
+	| "dark"
+	| "nudity"
+	| "choices-matter"
+	| "mature"
+	| "medieval"
+	| "magic"
+	| "multiple-endings"
+	| "fps"
+	| "female-protagonist";
+
+export type Tag = {
 	id: number;
-	name: string;
-	slug: string;
+	name: TagName;
+	slug: TagSlug;
 	language: "eng";
 	games_count: number;
 	image_background: string;
