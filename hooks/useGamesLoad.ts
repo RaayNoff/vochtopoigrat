@@ -5,11 +5,10 @@ import { useActions } from "./useActions";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
-	const {
-		currentPage,
-		isLoading,
-		next: isNextPageAvailable,
-	} = useTypedSelector((state) => state.games);
+	const { currentPage, isLoading, applyedGenresList } = useTypedSelector(
+		(state) => state.games,
+	);
+
 	const { setCurrentPage, fetchNextGamesPage } = useActions();
 
 	const observer = useRef<any>(null);
@@ -17,14 +16,16 @@ export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 	useEffect(() => {
 		if (isLoading) return;
 		if (observer.current) observer.current.disconnect();
+
 		const callback = function (
 			entries: IntersectionObserverEntry[],
 			observer: IntersectionObserver,
 		) {
-			if (entries[0].isIntersecting && isNextPageAvailable) {
+			if (entries[0].isIntersecting) {
 				setCurrentPage(currentPage + 1);
 			}
 		};
+
 		observer.current = new IntersectionObserver(callback);
 		observer.current.observe(observableRef.current);
 	}, [isLoading]);
@@ -32,6 +33,9 @@ export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 	useEffect(() => {
 		if (currentPage === 1) return;
 
-		fetchNextGamesPage(currentPage);
+		fetchNextGamesPage({
+			page: currentPage,
+			genres: applyedGenresList.join(","),
+		});
 	}, [currentPage]);
 };

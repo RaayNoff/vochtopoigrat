@@ -12,7 +12,7 @@ import GameItem from "../ui/GameItem.component";
 import Loader from "../ui/Loader.component";
 
 const ReleaseList: FC = () => {
-	const { games, isLoading } = useTypedSelector((state) => state.games);
+	const { games, isLoading, next } = useTypedSelector((state) => state.games);
 
 	const lastElement = useRef<HTMLDivElement>(null);
 
@@ -44,8 +44,15 @@ const ReleaseList: FC = () => {
 							<GameItem key={game.id} gameId={game.id} />
 						</li>
 					))}
-					{isLoading && <Loader className={s.releaseList__loader} />}
-					<div ref={lastElement} style={{ height: "1px" }}></div>
+					{isLoading && (
+						<Loader
+							className={clsx(
+								s.releaseList__loader,
+								isLoading && !games.length && s.releaseList__loader_opened,
+							)}
+						/>
+					)}
+					{next && <div ref={lastElement} style={{ height: "1px" }}></div>}
 				</ul>
 			</OverlayScrollbarsComponent>
 		</section>

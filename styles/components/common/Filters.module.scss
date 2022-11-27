@@ -2,7 +2,7 @@
 
 .filters {
 	width: 27.0731707317%;
-	max-height: 921px;
+	height: 921px;
 	border-radius: 50px;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 	background-color: $firstBG;
@@ -16,5 +16,9 @@
 
 	&__reset {
 		width: 85.5855855856%;
+	}
+
+	&__genre {
+		margin-bottom: 15px;
 	}
 }

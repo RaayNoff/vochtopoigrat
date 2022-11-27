@@ -12,6 +12,10 @@
 	&__loader {
 		margin-bottom: 50px;
 		align-self: center;
+
+		&_opened {
+			margin-top: 40%;
+		}
 	}
 
 	&__item {
@@ -37,11 +41,12 @@
 		background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
 	&::after {
-		bottom: -4%;
+		bottom: -5.5%;
 		background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
 }
 
 .wrapper {
+	min-height: 300px;
 	max-height: 930px;
 }

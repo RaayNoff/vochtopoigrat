@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 import { FC, useState } from "react";
 
 import { FiChevronDown } from "react-icons/fi";
@@ -11,11 +12,19 @@ interface IAccordionProps {
 }
 
 const Accordion: FC<IAccordionProps> = ({ children, title = "accordion" }) => {
-	const [opened, setOpened] = useState(false);
+	const [opened, setOpened] = useState(true);
+
+	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
+		if (e.currentTarget.classList.contains(s.accordion__header))
+			setOpened((prev) => !prev);
+	};
 
 	return (
-		<article className={s.accordion} onClick={() => setOpened((prev) => !prev)}>
-			<header className={clsx(s.accordion__header, s.header)}>
+		<article className={s.accordion}>
+			<header
+				className={clsx(s.accordion__header, s.header)}
+				onClick={(e) => handleClick(e)}
+			>
 				<FiChevronDown
 					className={clsx(s.header__chevron, opened && s.header__opened)}
 				/>
@@ -27,9 +36,27 @@ const Accordion: FC<IAccordionProps> = ({ children, title = "accordion" }) => {
 					s.content,
 					opened && s.content__opened,
 				)}
-				onClick={(e) => e.stopPropagation()}
 			>
-				{children}
+				<OverlayScrollbarsComponent
+					defer
+					options={{
+						overflow: {
+							y: "scroll",
+							x: "hidden",
+						},
+						scrollbars: {
+							visibility: "auto",
+							autoHide: "never",
+							autoHideDelay: 1300,
+							dragScroll: true,
+							clickScroll: false,
+						},
+						paddingAbsolute: false,
+					}}
+					className={clsx(s.content__wrapper, opened && s.content__wrapper_opened)}
+				>
+					{children}
+				</OverlayScrollbarsComponent>
 			</footer>
 		</article>
 	);

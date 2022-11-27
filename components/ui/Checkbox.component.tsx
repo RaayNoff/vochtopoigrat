@@ -1,31 +1,32 @@
 import clsx from "clsx";
-import { FC, useState, useRef, useEffect } from "react";
+import { FC, useState } from "react";
 
 import { FiCheck } from "react-icons/fi";
+import { SiNamebase } from "react-icons/si";
 
 import s from "../../styles/components/ui/Checkbox.module.scss";
+import { GenresSlug } from "../../types/filters";
 
 interface ICheckboxProps {
-	name: string;
+	title: string;
+	className?: string;
+	name: GenresSlug;
 }
 
-const Checkbox: FC<ICheckboxProps> = ({ name }) => {
+const Checkbox: FC<ICheckboxProps> = ({ title, className, name }) => {
 	const [checked, setChecked] = useState(false);
-
-	const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
-		setChecked((prev) => !prev);
-	};
 
 	return (
 		<label className={clsx(s.checkbox)}>
 			<input
 				type="checkbox"
-				className={clsx(s.checkbox__input)}
-				onClick={(e) => handleClick(e)}
+				className={clsx(s.checkbox__input, "filterCheckbox")}
+				onClick={() => setChecked((prev) => !prev)}
+				name={name || ""}
 			/>
-			<div className={clsx(s.checkbox__custom, s.custom)}>
+			<div className={clsx(s.checkbox__custom, s.custom, className)}>
 				<div className={s.custom__box}>{checked && <FiCheck />}</div>
-				<p className={s.custom__text}>{name}</p>
+				<p className={s.custom__text}>{title}</p>
 			</div>
 		</label>
 	);
