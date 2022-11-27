@@ -1,82 +1,51 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import clsx from "clsx";
 
-import { useActions } from "../../hooks/useActions";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import s from "../../styles/components/common/Filters.module.scss";
-import { GenresSlug } from "../../types/filters";
 import Button from "../ui/Button.component";
 import Checkbox from "../ui/Checkbox.component";
-
+import { useFitlers } from "../../hooks/useFilters";
 import FiltersStatic from "../../models/static/FiltersStatic";
 
 import Accordion from "./Accordion.component";
 
 const Filters: FC = () => {
-	const {
-		addGenreFilter,
-		removeGenreFilter,
-		fetchNextGamesPage,
-		setCurrentPage,
-		setGames,
-		setNextPage,
-		clearAllFilters,
-	} = useActions();
-	const { applyedGenresList, currentPage, next } = useTypedSelector(
-		(state) => state.games,
-	);
-
-	const resetGames = () => {
-		setNextPage("");
-		setCurrentPage(1);
-		setGames([]);
-	};
-
-	const resetFilters = () => {
-		resetGames();
-		clearAllFilters();
-
-		document
-			.querySelectorAll<HTMLInputElement>(".filterCheckbox")
-			.forEach((c) => {
-				if (c.checked) c.click();
-			});
-	};
-
-	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
-		const target = e.target as HTMLInputElement;
-		const genre = target.getAttribute("name") as GenresSlug;
-
-		if (genre) {
-			applyedGenresList.includes(genre)
-				? removeGenreFilter(genre)
-				: addGenreFilter(genre);
-
-			resetGames();
-		}
-	};
-
-	useEffect(() => {
-		if (!next)
-			fetchNextGamesPage({
-				page: currentPage,
-				genres: applyedGenresList.join(","),
-			});
-	}, [next, applyedGenresList]);
+	const { isLoading } = useTypedSelector((state) => state.games);
+	const { handleClick, resetFilters } = useFitlers();
 
 	return (
 		<aside className={clsx(s.filters)} onClick={(e) => handleClick(e)}>
-			<Accordion title="Genres">
+			<Accordion
+				title="Genres"
+				className={s.accordion}
+				availableCondition={isLoading}
+			>
 				{FiltersStatic.genres.map((g) => (
 					<Checkbox
-						name={g.slug}
-						className={s.filters__genre}
+						name={`genre-${g.slug}`}
+						className={s.filters__checkbox}
 						key={g.id}
 						title={g.name}
 					/>
 				))}
 			</Accordion>
+			<Accordion
+				title="Tags"
+				className={s.accordion}
+				availableCondition={isLoading}
+			>
+				{FiltersStatic.tags.map((t) => (
+					<Checkbox
+						key={t.id}
+						title={t.name}
+						name={`tag-${t.slug}`}
+						className={s.filters__checkbox}
+					/>
+				))}
+			</Accordion>
+
 			<Button callback={() => resetFilters()} className={s.filters__reset}>
 				Reset
 			</Button>
