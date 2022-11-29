@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { NextPage } from "next";
 
 import MainLayout from "../../layouts/MainLayout.component";
 
-const Releases: FC = () => {
+const Releases: NextPage = () => {
 	return <MainLayout testid="releases-page">Releases!</MainLayout>;
 };
 

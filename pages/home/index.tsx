@@ -1,4 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { NextPage } from "next";
+
+import { useEffect, useState } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
 import Games from "../../components/common/Games.component";
@@ -19,7 +21,7 @@ interface IHomeProps {
 	initialGames: Game[];
 }
 
-const Home: FC<IHomeProps> = ({ initialGames: games }) => {
+const Home: NextPage<IHomeProps> = ({ initialGames: games }) => {
 	const { setGames } = useActions();
 	const [props, setProps] = useState<SliderPropsType[]>([]);
 

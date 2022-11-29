@@ -1,8 +1,8 @@
-import { FC } from "react";
+import { NextPage } from "next";
 
 import MainLayout from "../../layouts/MainLayout.component";
 
-const Charts: FC = () => {
+const Charts: NextPage = () => {
 	return <MainLayout testid="charts-page"></MainLayout>;
 };
 

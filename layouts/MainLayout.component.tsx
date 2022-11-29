@@ -11,12 +11,14 @@ export interface IMainLayoutProps {
 	title?: string;
 	selfClassName?: string;
 	testid?: string;
+	disableFooter?: boolean;
 }
 const MainLayout: FC<IMainLayoutProps> = ({
 	children,
 	selfClassName,
 	title = "WTP | Home",
 	testid,
+	disableFooter,
 }) => {
 	return (
 		<>
@@ -27,7 +29,7 @@ const MainLayout: FC<IMainLayoutProps> = ({
 			<main data-testid={testid} className={clsx(selfClassName, s.main)}>
 				{children}
 			</main>
-			<Footer />
+			{!disableFooter && <Footer />}
 		</>
 	);
 };
