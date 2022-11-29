@@ -117,28 +117,32 @@ export type Genre = {
 	image_background: string;
 };
 
+export type StoreName =
+	| "PlayStation Store"
+	| "Epic Games"
+	| "Steam"
+	| "Xbox 360 Store"
+	| "Xbox Store"
+	| "GOG"
+	| "Nintendo Store"
+	| "Google Play"
+	| "App Store";
+
+export type StoreSlug =
+	| "playstation-store"
+	| "epic-games"
+	| "steam"
+	| "xbox360"
+	| "xbox-store"
+	| "gog"
+	| "nintendo"
+	| "google-play"
+	| "apple-appstore";
+
 declare type Store = {
 	id: number;
-	name:
-		| "PlayStation Store"
-		| "Epic Games"
-		| "Steam"
-		| "Xbox 360 Store"
-		| "Xbox Store"
-		| "GOG"
-		| "Nintendo Store"
-		| "Google Play"
-		| "App Store";
-	slug:
-		| "playstation-store"
-		| "epic-games"
-		| "steam"
-		| "xbox360"
-		| "xbox-store"
-		| "gog"
-		| "nintendo"
-		| "google-play"
-		| "apple-appstore";
+	name: StoreName;
+	slug: StoreSlug;
 	domain:
 		| "store.playstation.com"
 		| "epicgames.com"

@@ -1,4 +1,4 @@
-import { Game, GenresSlug, TagSlug } from "../../types/api";
+import { Game, GenresSlug, StoreSlug, TagSlug } from "../../types/api";
 
 export interface IGamesState {
 	isLoading: boolean;
@@ -8,4 +8,5 @@ export interface IGamesState {
 	currentPage: number;
 	applyedGenresList: GenresSlug[];
 	applyedTagsList: TagSlug[];
+	applyedStoresList: StoreSlug[];
 }

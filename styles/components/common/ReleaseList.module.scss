@@ -44,6 +44,20 @@
 		bottom: -5.5%;
 		background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
 	}
+
+	&__noGames {
+		position: absolute;
+		top: 80%;
+		left: 50%;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+
+		font-weight: 300;
+		font-size: 1.5rem;
+		line-height: 29px;
+		color: #707070;
+	}
 }
 
 .wrapper {

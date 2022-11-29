@@ -1,7 +1,7 @@
-import { FilterGenres, FilterTags } from "../../types/filters";
+import { FilterGenres, FilterStores, FilterTags } from "../../types/filters";
 
 class FiltersStatic {
-	genres: FilterGenres[] = [
+	genres: readonly FilterGenres[] = [
 		{
 			id: 1,
 			name: "Action",
@@ -44,7 +44,7 @@ class FiltersStatic {
 		},
 	];
 
-	tags: FilterTags[] = [
+	tags: readonly FilterTags[] = [
 		{ id: 1, name: "Atmospheric", slug: "atmospheric" },
 		{ id: 2, name: "Choices Matter", slug: "choices-matter" },
 		{ id: 3, name: "Co-op", slug: "co-op" },
@@ -71,6 +71,54 @@ class FiltersStatic {
 		{ id: 24, name: "Story Rich", slug: "story-rich" },
 		{ id: 25, name: "Third Person", slug: "third-person" },
 		{ id: 26, name: "vr mod", slug: "vr-mod" },
+	];
+
+	stores: readonly FilterStores[] = [
+		{
+			id: 1,
+			name: "App Store",
+			slug: "apple-appstore",
+		},
+		{
+			id: 2,
+			name: "Epic Games",
+			slug: "epic-games",
+		},
+		{
+			id: 3,
+			name: "GOG",
+			slug: "gog",
+		},
+		{
+			id: 4,
+			name: "Google Play",
+			slug: "google-play",
+		},
+		{
+			id: 5,
+			name: "Nintendo Store",
+			slug: "nintendo",
+		},
+		{
+			id: 6,
+			name: "PlayStation Store",
+			slug: "playstation-store",
+		},
+		{
+			id: 7,
+			name: "Steam",
+			slug: "steam",
+		},
+		{
+			id: 8,
+			name: "Xbox 360 Store",
+			slug: "xbox360",
+		},
+		{
+			id: 9,
+			name: "Xbox Store",
+			slug: "xbox-store",
+		},
 	];
 }
 

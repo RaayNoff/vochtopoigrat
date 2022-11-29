@@ -2,15 +2,13 @@ import clsx from "clsx";
 import { FC, useState } from "react";
 
 import { FiCheck } from "react-icons/fi";
-import { SiNamebase } from "react-icons/si";
 
 import s from "../../styles/components/ui/Checkbox.module.scss";
-import { GenresSlug } from "../../types/filters";
 
 interface ICheckboxProps {
 	title: string;
 	className?: string;
-	name: GenresSlug;
+	name: string;
 }
 
 const Checkbox: FC<ICheckboxProps> = ({ title, className, name }) => {

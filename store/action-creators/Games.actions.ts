@@ -2,25 +2,33 @@ import axios from "axios";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { ApiGamesTypes, Game, TagSlug } from "../../types/api";
+import {
+	ApiGamesTypes,
+	Game,
+	GenresSlug,
+	StoreSlug,
+	TagSlug,
+} from "../../types/api";
 import { AppDispatch } from "..";
 import { gamesSlice } from "../reducers/Games.slice";
-import { GenresSlug } from "../../types/filters";
 
 interface IFetchNextGamesPageArgs {
 	page: number;
 	genres?: string;
 	tags?: string;
+	stores?: string;
 }
 
 export const fetchNextGamesPage = createAsyncThunk(
 	"games/fetchNextPage",
 	async (
-		{ genres = "", page, tags = "" }: IFetchNextGamesPageArgs,
+		{ genres = "", page, tags = "", stores = "" }: IFetchNextGamesPageArgs,
 		thunkAPI,
 	) => {
 		try {
-			const params = {
+			const params: {
+				[key: string | number]: string | number;
+			} = {
 				key: `${process.env.NEXT_PUBLIC_API_KEY}`,
 				page,
 				page_size: 5,
@@ -28,6 +36,7 @@ export const fetchNextGamesPage = createAsyncThunk(
 
 			if (genres) params.genres = genres;
 			if (tags) params.tags = tags;
+			if (stores) params.stores = stores;
 
 			const response = await axios.get<ApiGamesTypes>(
 				`${process.env.NEXT_PUBLIC_API_URL}`,
@@ -68,6 +77,14 @@ export const addTagFilter = (tag: TagSlug) => (dispatch: AppDispatch) => {
 export const removeTagFilter = (tag: TagSlug) => (dispatch: AppDispatch) => {
 	dispatch(gamesSlice.actions.removeTag(tag));
 };
+export const addStoreFilter = (store: StoreSlug) => (dispatch: AppDispatch) => {
+	dispatch(gamesSlice.actions.addStore(store));
+};
+
+export const removeStoreFilter =
+	(store: StoreSlug) => (dispatch: AppDispatch) => {
+		dispatch(gamesSlice.actions.removeStore(store));
+	};
 
 export const setNextPage = (value: string) => (dispatch: AppDispatch) => {
 	dispatch(gamesSlice.actions.setNextPage(value));

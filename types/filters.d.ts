@@ -1,4 +1,11 @@
-import { GenresName, GenresSlug, TagName, TagSlug } from "./api";
+import {
+	GenresName,
+	GenresSlug,
+	StoreName,
+	StoreSlug,
+	TagName,
+	TagSlug,
+} from "./api";
 
 export type FilterGenres = {
 	id: number;
@@ -10,4 +17,10 @@ export type FilterTags = {
 	id: number;
 	name: TagName;
 	slug: TagSlug;
+};
+
+export type FilterStores = {
+	id: number;
+	name: StoreName;
+	slug: StoreSlug;
 };

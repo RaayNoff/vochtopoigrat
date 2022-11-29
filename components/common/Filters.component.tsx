@@ -1,25 +1,25 @@
 import { FC } from "react";
 import clsx from "clsx";
 
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-
 import s from "../../styles/components/common/Filters.module.scss";
 import Button from "../ui/Button.component";
 import Checkbox from "../ui/Checkbox.component";
 import { useFitlers } from "../../hooks/useFilters";
 import FiltersStatic from "../../models/static/FiltersStatic";
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 import Accordion from "./Accordion.component";
 
 const Filters: FC = () => {
-	const { handleClick, resetFilters, isRestricted } = useFitlers();
+	const { handleClick, resetFilters } = useFitlers();
+	const { isLoading } = useTypedSelector((state) => state.games);
 
 	return (
 		<aside className={clsx(s.filters)} onClick={(e) => handleClick(e)}>
 			<Accordion
 				title="Genres"
 				className={s.accordion}
-				availableCondition={isRestricted}
+				availableCondition={isLoading}
 			>
 				{FiltersStatic.genres.map((g) => (
 					<Checkbox
@@ -33,13 +33,27 @@ const Filters: FC = () => {
 			<Accordion
 				title="Tags"
 				className={s.accordion}
-				availableCondition={isRestricted}
+				availableCondition={isLoading}
 			>
 				{FiltersStatic.tags.map((t) => (
 					<Checkbox
 						key={t.id}
 						title={t.name}
 						name={`tag-${t.slug}`}
+						className={s.filters__checkbox}
+					/>
+				))}
+			</Accordion>
+			<Accordion
+				title="Stores"
+				className={s.accordion}
+				availableCondition={isLoading}
+			>
+				{FiltersStatic.stores.map((st) => (
+					<Checkbox
+						key={st.id}
+						title={st.name}
+						name={`store-${st.id}`}
 						className={s.filters__checkbox}
 					/>
 				))}

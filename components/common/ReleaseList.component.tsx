@@ -53,6 +53,9 @@ const ReleaseList: FC = () => {
 						/>
 					)}
 					{next && <div ref={lastElement} style={{ height: "1px" }}></div>}
+					{!games?.length && !isLoading && (
+						<p className={s.releaseList__noGames}>No games found</p>
+					)}
 				</ul>
 			</OverlayScrollbarsComponent>
 		</section>

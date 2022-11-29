@@ -5,7 +5,7 @@ import { useActions } from "./useActions";
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
-	const { currentPage, isLoading, applyedGenresList, applyedTagsList } =
+	const { currentPage, isLoading, applyedGenresList, applyedTagsList, next } =
 		useTypedSelector((state) => state.games);
 
 	const { setCurrentPage, fetchNextGamesPage } = useActions();
@@ -14,6 +14,7 @@ export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 
 	useEffect(() => {
 		if (isLoading) return;
+		if (!next) return;
 		if (observer.current) observer.current.disconnect();
 
 		const callback = function (

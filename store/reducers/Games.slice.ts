@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { IGamesState } from "../../models/interfaces/IGamesState";
-import { ApiGamesTypes, Game, GenresSlug, TagSlug } from "../../types/api";
+import {
+	ApiGamesTypes,
+	Game,
+	GenresSlug,
+	StoreSlug,
+	TagSlug,
+} from "../../types/api";
 
 import { fetchNextGamesPage } from "../action-creators/Games.actions";
 
@@ -13,6 +19,7 @@ const initialState: IGamesState = {
 	next: "available",
 	applyedGenresList: [],
 	applyedTagsList: [],
+	applyedStoresList: [],
 };
 
 export const gamesSlice = createSlice({
@@ -39,6 +46,14 @@ export const gamesSlice = createSlice({
 		removeTag: (state, action: PayloadAction<TagSlug>) => {
 			state.applyedTagsList = state.applyedTagsList.filter((t) => {
 				t !== action.payload;
+			});
+		},
+		addStore: (state, action: PayloadAction<StoreSlug>) => {
+			state.applyedStoresList.push(action.payload);
+		},
+		removeStore: (state, action: PayloadAction<StoreSlug>) => {
+			state.applyedStoresList = state.applyedStoresList.filter((s) => {
+				s !== action.payload;
 			});
 		},
 		setNextPage: (state, action: PayloadAction<string>) => {

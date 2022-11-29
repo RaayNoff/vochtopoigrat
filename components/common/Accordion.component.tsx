@@ -19,7 +19,7 @@ const Accordion: FC<IAccordionProps> = ({
 	className,
 	availableCondition,
 }) => {
-	const [opened, setOpened] = useState(true);
+	const [opened, setOpened] = useState(false);
 
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (e.currentTarget.classList.contains(s.accordion__header))
