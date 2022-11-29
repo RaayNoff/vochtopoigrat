@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
+import imagePlaceholder from "../../assets/images/noImage.jpg";
+
 import { useSearchedGameById } from "../../hooks/useSearchedGameById";
 import s from "../../styles/components/ui/SearchGameItem.module.scss";
 
@@ -21,7 +23,7 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
 				<div className={clsx(s.gameLink__imageContainer, s.imageContainer)}>
 					<Image
 						className={clsx(s.imageContainer__img)}
-						src={game.background_image || ""}
+						src={game.background_image || imagePlaceholder}
 						alt={game.name}
 						width={500}
 						height={500}
