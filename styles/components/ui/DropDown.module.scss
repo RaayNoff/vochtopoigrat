@@ -1,0 +1,29 @@
+.dropDown {
+	position: absolute;
+	z-index: 99;
+	top: 110%;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #2b2e35;
+	width: 100%;
+	min-height: 300px;
+	height: fit-content;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+	border-radius: 0px 0px 20px 20px;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 250ms ease-in-out;
+
+	&__container {
+		padding: 27px 0 21px 0;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__visible {
+		pointer-events: all;
+
+		opacity: 1;
+	}
+}

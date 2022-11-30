@@ -1,0 +1,66 @@
+.releaseList {
+	width: 69.756097561%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+
+	&__list {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__loader {
+		margin-bottom: 50px;
+		align-self: center;
+
+		&_opened {
+			margin-top: 40%;
+		}
+	}
+
+	&__item {
+		width: 96.2174825175%;
+		margin-bottom: 20px;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		pointer-events: none;
+		z-index: 2;
+		width: 97.5%;
+		height: 100px;
+	}
+
+	&::before {
+		top: -5%;
+		background: linear-gradient(180deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
+	}
+	&::after {
+		bottom: -5.5%;
+		background: linear-gradient(0deg, #212429 50%, rgba(33, 36, 41, 0) 100%);
+	}
+
+	&__noGames {
+		position: absolute;
+		top: 80%;
+		left: 50%;
+		right: 0;
+		bottom: 0;
+		margin: auto;
+
+		font-weight: 300;
+		font-size: 1.5rem;
+		line-height: 29px;
+		color: #707070;
+	}
+}
+
+.wrapper {
+	min-height: 300px;
+	max-height: 930px;
+}

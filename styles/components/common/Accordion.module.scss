@@ -1,0 +1,75 @@
+.accordion {
+	width: 100%;
+
+	border-bottom: 1px solid #434853;
+
+	display: flex;
+	flex-direction: column;
+
+	&__header {
+		padding-bottom: 1.2916666667em;
+	}
+
+	&__content {
+		padding: 0 2.0416666667em 0 1.25em;
+	}
+}
+
+.header {
+	display: flex;
+	align-items: center;
+
+	color: #d6d6d6;
+	font-weight: 300;
+	font-size: 1rem;
+	line-height: 1.2083333333em;
+	padding-left: 1.25em;
+
+	@media (min-width: 767.98px) {
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	&__chevron {
+		vertical-align: middle;
+		width: 30px;
+		height: 30px;
+		margin-right: 1.6666666667em;
+		transition: transform 350ms ease-in-out;
+	}
+
+	&__opened {
+		transform: rotate(180deg);
+	}
+}
+.content {
+	position: relative;
+	display: block;
+
+	&__wrapper {
+		transition: all 350ms ease-in-out;
+		max-height: 0;
+		pointer-events: none;
+		margin-bottom: 0;
+
+		&_opened {
+			max-height: 180px;
+			pointer-events: all;
+			margin-bottom: 1em;
+		}
+	}
+
+	&__restricted::after {
+		content: "";
+		position: absolute;
+		z-index: 100;
+		top: -10%;
+		left: 0;
+		width: 100%;
+		height: 110%;
+		background-color: rgba(rgb(83, 83, 83), 0.3);
+		pointer-events: all;
+		border-radius: 10px;
+	}
+}
