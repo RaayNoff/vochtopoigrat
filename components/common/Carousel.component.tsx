@@ -3,7 +3,6 @@ import clsx from "clsx";
 
 import { FC, useEffect, useRef, useState } from "react";
 
-import testImage from "../../assets/images/test.jpg";
 import s from "../../styles/components/common/Carousel.module.scss";
 
 type CarouselPropsType = {
