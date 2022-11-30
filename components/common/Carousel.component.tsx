@@ -24,8 +24,10 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 
 	const nextImage = () => {
 		if (slideAction + 1 == sliders.length) {
+			console.log(slideAction + 1);
 			setSlideAction(0);
 		} else {
+			console.log(slideAction + 1);
 			setSlideAction((state) => state + 1);
 		}
 	};
@@ -39,7 +41,6 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 	};
 
 	const onClickSlider = (event: React.MouseEvent<HTMLDivElement>) => {
-		event.stopPropagation();
 		const isNext = event.currentTarget.classList.contains(s.slide__next);
 		const isPrev = event.currentTarget.classList.contains(s.slide__prev);
 
@@ -62,13 +63,13 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 
 	useEffect(() => {
 		// setSrcBg(sliders[0].img);
-		const autoplay = setInterval(() => {
-			nextImageRef.current?.click();
-		}, 5000);
+		const autoplay = setTimeout(() => {
+			nextImage();
+		}, 1000);
 		return () => {
-			clearInterval(autoplay);
+			clearTimeout(autoplay);
 		};
-	}, []);
+	}, [ slideAction ]);
 
 	return (
 		<section
@@ -80,7 +81,7 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 			<div className={clsx(s.carousel__blur)}></div>
 			{sliders?.map((img, index) => {
 				return (
-					<div
+					<Image
 						key={img.id}
 						className={clsx(
 							s.slide,
@@ -94,15 +95,12 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 						onClick={(event) => {
 							onClickSlider(event);
 						}}
-					>
-						<Image
-							width={1000}
-							height={1000}
-							priority
-							src={img.img}
-							alt={img.title}
-						/>
-					</div>
+						width={1000}
+						height={1000}
+						priority
+						src={img.img}
+						alt={img.title}
+					/>
 				);
 			})}
 			<div
