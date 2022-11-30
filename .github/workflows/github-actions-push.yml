@@ -1,25 +1,26 @@
-name: Vochtopoigrat CI/CD
+name: Vochtopoigrat CI
 run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 on: [push]
 jobs:
- init:
-  runs-on: ubuntu-latest
-  strategy:
-    matrix:
-  node-version: [17.x]
-  steps:
-   - uses: actions/checkout@v3
+  init:
+    runs-on: ubuntu-latest
 
-   - name: Starting Node.js ${{ matrix.node-version }}
-     uses: actions/setup-node@v3
-     with:
-      node-version: ${{ matrix.node-version }}
+    strategy:
+      matrix:
+        node-version: [17.x]
+    steps:
+      - uses: actions/checkout@v3
 
-  - name: install modules
-    run: npm install
+      - name: Starting Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
 
-  - name: lint test
-    run: npm run lint:fix
+      - name: install modules
+        run: npm install
 
-  - name: unit test
-    run: npm run test
+      - name: lint test
+        run: npm run lint:fix
+
+      - name: unit test
+        run: npm run test
