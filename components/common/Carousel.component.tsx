@@ -81,7 +81,7 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 			<div className={clsx(s.carousel__blur)}></div>
 			{sliders?.map((img, index) => {
 				return (
-					<div
+					<Image
 						key={img.id}
 						className={clsx(
 							s.slide,
@@ -95,15 +95,12 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 						onClick={(event) => {
 							onClickSlider(event);
 						}}
-					>
-						<Image
-							width={1000}
-							height={1000}
-							priority
-							src={img.img}
-							alt={img.title}
-						/>
-					</div>
+						width={1000}
+						height={1000}
+						priority
+						src={img.img}
+						alt={img.title}
+					/>
 				);
 			})}
 			<div
