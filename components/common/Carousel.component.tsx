@@ -4,30 +4,22 @@ import clsx from "clsx";
 import { FC, useEffect, useRef, useState } from "react";
 
 import s from "../../styles/components/common/Carousel.module.scss";
-
-type CarouselPropsType = {
-	id: number;
-	img: string;
-	title: string;
-};
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface ICarouselProps {
-	sliders: CarouselPropsType[];
 	className?: string;
 }
 
-const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
+const Carousel: FC<ICarouselProps> = ({ className }) => {
+	const { sliders } = useTypedSelector((state) => state.sliders);
 	const [slideAction, setSlideAction] = useState<number>(0);
-	// eslint-disable-next-line prefer-const
-	let nextImageRef = useRef<HTMLDivElement | null>(null);
+	const nextImageRef = useRef<HTMLDivElement>(null);
 	const [srcBg, setSrcBg] = useState<string>("");
 
 	const nextImage = () => {
 		if (slideAction + 1 == sliders.length) {
-			console.log(slideAction + 1);
 			setSlideAction(0);
 		} else {
-			console.log(slideAction + 1);
 			setSlideAction((state) => state + 1);
 		}
 	};
@@ -62,14 +54,13 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 	}, [slideAction, sliders]);
 
 	useEffect(() => {
-		// setSrcBg(sliders[0].img);
 		const autoplay = setTimeout(() => {
 			nextImage();
-		}, 1000);
+		}, 4500);
 		return () => {
 			clearTimeout(autoplay);
 		};
-	}, [ slideAction ]);
+	}, [slideAction]);
 
 	return (
 		<section
@@ -111,21 +102,15 @@ const Carousel: FC<ICarouselProps> = ({ sliders, className }) => {
 				}}
 			></div>
 			<div className={clsx(s.pagination)}>
-				{sliders?.map((_, index) => {
-					return (
-						<div
-							key={index}
-							className={clsx(
-								s.pagination__item,
-								index == slideAction && s.pagination__action,
-							)}
-							onLoadStart={(event) => {
-								console.log(event.currentTarget.offsetTop);
-								console.log(event.currentTarget.offsetLeft);
-							}}
-						></div>
-					);
-				})}
+				{sliders?.map((_, i) => (
+					<div
+						key={i}
+						className={clsx(
+							s.pagination__item,
+							i == slideAction && s.pagination__action,
+						)}
+					></div>
+				))}
 			</div>
 		</section>
 	);
