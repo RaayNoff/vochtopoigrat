@@ -1,6 +1,6 @@
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
 import Games from "../../components/common/Games.component";
@@ -10,62 +10,66 @@ import MainLayout from "../../layouts/MainLayout.component";
 import { ApiGamesTypes, Game } from "../../types/api";
 
 import s from "../../styles/pages/Home.module.scss";
-
-type SliderPropsType = {
-	id: number;
-	img: string;
-	title: string;
-};
+import { ISlider } from "../../models/interfaces/ISlidersState";
 
 interface IHomeProps {
 	initialGames: Game[];
+	initialSliders: ISlider[];
 }
 
-const Home: NextPage<IHomeProps> = ({ initialGames: games }) => {
-	const { setGames } = useActions();
-	const [props, setProps] = useState<SliderPropsType[]>([]);
-
-	useEffect(() => {
-		const sliders = games?.map((item) => {
-			return {
-				id: item.id,
-				img: item.background_image,
-				title: item.name,
-			} as SliderPropsType;
-		});
-		setProps(sliders);
-	}, []);
+const Home: NextPage<IHomeProps> = ({
+	initialGames: games,
+	initialSliders: sliders,
+}) => {
+	const { setGames, setSliders } = useActions();
 
 	useEffect(() => {
 		setGames(games);
+		setSliders(sliders);
 	}, []);
 
 	return (
 		<MainLayout testid="home-page" selfClassName={s.home}>
-			<Carousel sliders={props} className={s.home__carousel} />
+			<Carousel className={s.home__carousel} />
 
 			<Games className={s.home__games} />
 		</MainLayout>
 	);
 };
 
-export default Home;
+export const getServerSideProps: GetServerSideProps = async () => {
+	let initialGames: Game[];
+	let initialSliders: ISlider[];
 
-export const getServerSideProps = async () => {
-	let games: Game[];
 	try {
 		const options = { method: "GET" };
-		const res = await fetch(
+		const initialGamesResponse = await fetch(
 			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`,
 			options,
 		);
-		// console.log(await res.json());
-		const data: ApiGamesTypes = await res.json();
-		games = data.results;
+		const initialGamesData: ApiGamesTypes = await initialGamesResponse.json();
+		initialGames = initialGamesData.results;
+
+		const initialCarouselResponse = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6&dates=2022-01-01`,
+			options,
+		);
+
+		const initialSlidersData: ApiGamesTypes =
+			await initialCarouselResponse.json();
+
+		initialSliders = initialSlidersData.results.map((item) => {
+			return {
+				id: item.id,
+				img: item.background_image,
+				title: item.name,
+			};
+		});
 
 		return {
 			props: {
-				initialGames: games,
+				initialGames,
+				initialSliders,
 			},
 		};
 	} catch (error) {
@@ -74,7 +78,10 @@ export const getServerSideProps = async () => {
 		return {
 			props: {
 				initialGames: [] as Game[],
+				initialSliders: [] as ISlider[],
 			},
 		};
 	}
 };
+
+export default Home;
