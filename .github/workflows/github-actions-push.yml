@@ -1,5 +1,4 @@
-name: GitHub CI/CD
-run-name: ${{ github.actor }} is trying to push changes 🚀
+name: GitHub Actions CI
 on: [push]
 jobs:
  init:
