@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 
 import MainLayout from "../layouts/MainLayout.component";
-import { Routes } from "../models/enums/Routes";
+import { Route } from "../models/enums/Routes";
 import s from "../styles/pages/Error.module.scss";
 
 interface IErrorProps {
@@ -16,7 +16,7 @@ const Error: NextPage<IErrorProps> = ({ statusCode, statusMessage }) => {
 
 	useEffect(() => {
 		setTimeout(() => {
-			router.push(Routes.HOME);
+			router.push(Route.HOME);
 		}, 2500);
 	}, []);
 

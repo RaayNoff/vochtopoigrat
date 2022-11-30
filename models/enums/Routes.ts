@@ -1,4 +1,4 @@
-export const enum Routes {
+export const enum Route {
 	HOME = "/home",
 	RANDOM = "/random",
 	CHARTS = "/charts",

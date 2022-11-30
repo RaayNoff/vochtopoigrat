@@ -4,7 +4,7 @@ import Link from "next/link";
 import { FC } from "react";
 
 import { useGameById } from "../../hooks/useGameById";
-import { Routes } from "../../models/enums/Routes";
+import { Route } from "../../models/enums/Routes";
 
 import s from "../../styles/components/ui/GameItem.module.scss";
 
@@ -23,7 +23,7 @@ const GameItem: FC<IGameItemProps> = ({ gameId }) => {
 	} = useGameById(gameId);
 
 	return (
-		<Link href={`${Routes.HOME}/${id}`}>
+		<Link href={`${Route.HOME}/${id}`}>
 			<article className={clsx(s.game)}>
 				<section className={clsx(s.game__description)}>
 					<header className={clsx(s.game__title)}>{name}</header>
