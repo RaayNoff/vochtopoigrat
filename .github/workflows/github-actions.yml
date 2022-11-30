@@ -1,0 +1,23 @@
+name: GitHub CI/CD
+run-name: ${{ github.actor }} is trying to push changes 🚀
+on: [push]
+jobs:
+ init:
+  runs-on: ubuntu-latest
+  strategy:
+  matrix:
+  node-version: [17.x]
+  steps:
+   - uses: actions/checkout@v3
+   - name: Starting Node.js ${{ matrix.node-version }}
+     uses: actions/setup-node@v3
+     with:
+      node-version: ${{ matrix.node-version }}
+  - name: install modules
+    run: npm install
+  - name: build project
+    run: npm run build
+  - name: lint test
+    run: npm run lint:fix
+  - name: unit test
+    run: npm run test
