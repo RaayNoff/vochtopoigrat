@@ -66,7 +66,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		<section
 			className={clsx(s.carousel, className)}
 			style={{
-				"--url": `url(${srcBg})`,
+				backgroundImage: `url(${srcBg})`,
 			}}
 		>
 			<div className={clsx(s.carousel__blur)}></div>
