@@ -1,5 +1,5 @@
 name: Vochtopoigrat CI
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: CI activated by @${{ github.actor }}
 on:
   push:
     branches: [master, dev]
@@ -24,8 +24,11 @@ jobs:
       - name: install modules
         run: npm install
 
-      - name: lint test
+      - name: building project
+        run: npm run build
+
+      - name: lint testing
         run: npm run lint:fix
 
-      - name: unit test
+      - name: unit testing
         run: npm run test
