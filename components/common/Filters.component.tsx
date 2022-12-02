@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useCallback } from "react";
 import clsx from "clsx";
 
 import s from "../../styles/components/common/Filters.module.scss";
@@ -13,6 +13,8 @@ import Accordion from "./Accordion.component";
 const Filters: FC = () => {
 	const { handleClick, resetFilters } = useFitlers();
 	const { isLoading } = useTypedSelector((state) => state.games);
+
+	const resetHandler = useCallback(() => resetFilters(), []);
 
 	return (
 		<aside className={clsx(s.filters)} onClick={(e) => handleClick(e)}>
@@ -59,7 +61,7 @@ const Filters: FC = () => {
 				))}
 			</Accordion>
 
-			<Button callback={() => resetFilters()} className={s.filters__reset}>
+			<Button callback={resetHandler} className={s.filters__reset}>
 				Reset
 			</Button>
 		</aside>

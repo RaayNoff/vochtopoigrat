@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { FC, useState } from "react";
+import { FC, useState, memo } from "react";
 
 import { FiCheck } from "react-icons/fi";
 
@@ -11,7 +11,7 @@ interface ICheckboxProps {
 	name: string;
 }
 
-const Checkbox: FC<ICheckboxProps> = ({ title, className, name }) => {
+const Checkbox: FC<ICheckboxProps> = memo(({ title, className, name }) => {
 	const [checked, setChecked] = useState(false);
 
 	return (
@@ -28,6 +28,6 @@ const Checkbox: FC<ICheckboxProps> = ({ title, className, name }) => {
 			</div>
 		</label>
 	);
-};
+});
 
 export default Checkbox;

@@ -1,10 +1,11 @@
 import clsx from "clsx";
+import dynamic from "next/dynamic";
 import { FC } from "react";
 
 import s from "../../styles/components/common/Games.module.scss";
 
-import Filters from "./Filters.component";
-import ReleaseList from "./ReleaseList.component";
+const Filters = dynamic(() => import("./Filters.component"));
+const ReleaseList = dynamic(() => import("./ReleaseList.component"));
 
 interface IGamesProps {
 	className?: string;

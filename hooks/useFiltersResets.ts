@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import { useActions } from "./useActions";
 
 export const useFiltersResets = () => {

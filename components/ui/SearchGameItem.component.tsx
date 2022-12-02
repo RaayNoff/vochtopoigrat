@@ -27,7 +27,8 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
 						alt={game.name}
 						width={500}
 						height={500}
-						priority
+						loading="lazy"
+						placeholder="empty"
 					/>
 				</div>
 				<p className={clsx(s.gameLink__name)}>{game.name}</p>
