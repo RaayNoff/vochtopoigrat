@@ -43,7 +43,8 @@ const GameItem: FC<IGameItemProps> = ({ gameId }) => {
 							className={clsx(s.image__pic)}
 							width={500}
 							height={500}
-							priority
+							loading="lazy"
+							placeholder="empty"
 						/>
 					) : (
 						<p className={clsx(s.image__noImgText)}>NO IMAGE</p>

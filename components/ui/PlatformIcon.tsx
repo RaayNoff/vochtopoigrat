@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { DiAndroid, DiApple, DiLinux, DiWindows } from "react-icons/di";
 import { FaPlaystation, FaXbox, FaAppStoreIos } from "react-icons/fa";
@@ -11,7 +11,7 @@ interface IPlatformIcon {
 	platform: ParentPlatform;
 }
 
-const PlatformIcon: FC<IPlatformIcon> = ({ platform }) => {
+const PlatformIcon: FC<IPlatformIcon> = memo(({ platform }) => {
 	switch (platform.slug) {
 		case "android":
 			return <DiAndroid />;
@@ -33,6 +33,6 @@ const PlatformIcon: FC<IPlatformIcon> = ({ platform }) => {
 		default:
 			return null;
 	}
-};
+});
 
 export default PlatformIcon;

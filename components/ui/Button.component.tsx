@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, memo, useCallback } from "react";
 import clsx from "clsx";
 
 import s from "../../styles/components/ui/Button.module.scss";
@@ -9,7 +9,7 @@ interface IButtonProps {
 	callback?: () => void;
 }
 
-const Button: FC<IButtonProps> = ({ children, callback, className }) => {
+const Button: FC<IButtonProps> = memo(({ children, callback, className }) => {
 	const clickHandler = () => {
 		if (callback) callback();
 	};
@@ -19,6 +19,6 @@ const Button: FC<IButtonProps> = ({ children, callback, className }) => {
 			{children}
 		</button>
 	);
-};
+});
 
 export default Button;

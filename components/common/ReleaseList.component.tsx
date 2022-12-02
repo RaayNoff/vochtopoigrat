@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { OverlayScrollbarsComponent } from "overlayscrollbars-react";
 
-import { FC, useRef } from "react";
+import { useRef } from "react";
 
 import { useGamesLoad } from "../../hooks/useGamesLoad";
 
@@ -11,7 +11,7 @@ import s from "../../styles/components/common/ReleaseList.module.scss";
 import GameItem from "../ui/GameItem.component";
 import Loader from "../ui/Loader.component";
 
-const ReleaseList: FC = () => {
+const ReleaseList = () => {
 	const { games, isLoading, next } = useTypedSelector((state) => state.games);
 
 	const lastElement = useRef<HTMLDivElement>(null);
