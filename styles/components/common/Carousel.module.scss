@@ -1,12 +1,14 @@
+
 .carousel {
 	width: 100%;
-	height: 86vh;
+	height: calc(var(--index) * .2);
 	overflow: hidden;
 	display: flex;
 	background-image: var(--url);
 	background-size: cover;
 	background-position: center;
 	backdrop-filter: blur(5px);
+	margin-bottom: 50px !important;
 	&__blur {
 		width: 100%;
 		height: 100%;
@@ -16,13 +18,13 @@
 	}
 }
 .slide {
-	width: 25vw;
-	height: 25vh;
+	width: calc(calc(var(--index) * .007) * 16);
+	max-height: calc(calc(var(--index) * .007) * 9);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: 27.1%;
+	bottom: calc(var(--index) * .06);
 	left: 50%;
 	transform: translateX(-50%);
 	transition-property: transform position border-radius opacity;
@@ -53,15 +55,15 @@
 	}
 	&__prev {
 		z-index: 1;
-		bottom: 14%;
-		left: 20%;
+		bottom: calc(var(--index) * .03);
+		left: calc(50% - calc(var(--index) * .14));
 		filter: blur(5px);
 		opacity: 1;
 	}
 	&__next {
 		z-index: 1;
-		bottom: 14%;
-		left: 80%;
+		bottom: calc(var(--index) * .03);
+		left: calc(50% + calc(var(--index) * .14));
 		filter: blur(5px);
 		opacity: 1;
 	}

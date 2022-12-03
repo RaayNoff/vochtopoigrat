@@ -9,6 +9,10 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--index: calc(100vh + 150vw);
+}
+
 .container {
 	max-width: 1664px;
 	width: 100%;
