@@ -1,17 +1,13 @@
 import { FC, memo } from "react";
 import clsx from "clsx";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 
 import { Genre, ParentPlatforms } from "../../types/api";
 import { Developer, Publisher, Store, StoreDetailed } from "../../types/game";
 
 import s from "../../styles/components/ui/GameData.module.scss";
 
-const GameDescription = dynamic(() => import("./GameDescription.component"), {
-	ssr: false,
-	suspense: false,
-});
+import GameDescription from "./GameDescription.component";
 
 interface IGameDataProps {
 	name: string;
