@@ -10,6 +10,7 @@ import s from "../../styles/components/ui/GameData.module.scss";
 
 const GameDescription = dynamic(() => import("./GameDescription.component"), {
 	ssr: false,
+	suspense: false,
 });
 
 interface IGameDataProps {

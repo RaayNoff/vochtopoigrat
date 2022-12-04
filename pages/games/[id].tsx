@@ -33,6 +33,7 @@ const ScreenshootsSwiper = dynamic(
 	() => import("../../components/ui/ScreenshootsSwiper.component"),
 	{
 		ssr: false,
+		suspense: false,
 	},
 );
 
