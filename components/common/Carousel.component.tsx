@@ -1,15 +1,10 @@
-import { GetServerSideProps } from "next";
 import Image from "next/image";
 import clsx from "clsx";
 import { FC, useEffect, useRef, useState } from "react";
-import axios from "axios";
-
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-
-import type { ISlider } from "../../models/interfaces/ISlidersState";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
+import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface ICarouselProps {
 	className?: string;
