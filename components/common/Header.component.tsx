@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import { Routes } from "../../models/enums/Routes";
 import s from "../../styles/components/common/Header.module.scss";
 import Navlink from "../ui/Navlink.component";
 import Searchbar from "../ui/Searchbar.component";
 
-const Header: FC = () => {
+const Header: FC = memo(() => {
 	return (
 		<header className={clsx(s.header)}>
 			<div className="container">
@@ -48,6 +48,6 @@ const Header: FC = () => {
 			</div>
 		</header>
 	);
-};
+});
 
 export default Header;

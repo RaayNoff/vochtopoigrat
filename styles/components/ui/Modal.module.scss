@@ -1,0 +1,25 @@
+.modal {
+	top: 0;
+	left: 0;
+	z-index: 99;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(rgb(15, 15, 15), 0.7);
+	pointer-events: none;
+
+	opacity: 0;
+	transition: opacity 150ms ease-in-out;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__active {
+		opacity: 1;
+		pointer-events: all;
+	}
+
+	&__container {
+	}
+}
