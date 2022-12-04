@@ -1,14 +1,15 @@
+import { GetServerSideProps } from "next";
 import Image from "next/image";
 import clsx from "clsx";
-
 import { FC, useEffect, useRef, useState } from "react";
+import axios from "axios";
+
 import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { GetServerSideProps } from "next";
 
 import type { ISlider } from "../../models/interfaces/ISlidersState";
 
 import s from "../../styles/components/common/Carousel.module.scss";
-import axios, { Axios } from "axios";
+
 
 interface ICarouselProps {
 	className?: string;
@@ -69,16 +70,22 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	useEffect(() => {
 		console.log(sliders);
 		
-	}, [])
+	}, []);
 
 	return (
 		<section
 			className={clsx(s.carousel, className)}
-			style={{
-				backgroundImage: `url(${srcBg})`,
-			}}
 		>
-			<div className={clsx(s.carousel__blur)}></div>
+			<div className={clsx(s.carousel__blur)}> </div>
+			<Image 
+				width={1152} 
+				height={648} 
+				className={clsx(s.carousel__bg)} 
+				src={srcBg} 
+				alt="" 
+				loading="lazy"
+				placeholder="empty"
+			/>
 			{sliders?.map((img, index) => {
 				return (
 					<Image
@@ -95,11 +102,12 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 						onClick={(event) => {
 							onClickSlider(event);
 						}}
-						width={1000}
-						height={1000}
-						priority
+						width={1152}
+						height={648}
 						src={img.img}
 						alt={img.title}
+						loading="lazy"
+						placeholder="empty"
 					/>
 				);
 			})}
@@ -123,29 +131,6 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			</div>
 		</section>
 	);
-};
-
-export const getServerSideProps: GetServerSideProps<{data: ISlider }> = async () => {
-	const options = {
-		method: "GET",
-		url: "https://opencritic-api.p.rapidapi.com/game/reviewed-this-week",
-		headers: {
-			"X-RapidAPI-Key": "3bc898de2amsh072cc25d9017614p1c2f9bjsn65de6560bf1c",
-			"X-RapidAPI-Host": "opencritic-api.p.rapidapi.com",
-		},
-	};
-
-	let result = await axios.request(options);
-
-	return {
-		props: {
-			data: {
-				id: 1,
-				title: "",
-				img: "",
-			},
-		},
-	};
 };
 
 export default Carousel;

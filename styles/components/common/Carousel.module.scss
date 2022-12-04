@@ -7,7 +7,7 @@
 	display: flex;
 	background-image: var(--url);
 	background-size: cover;
-	background-position: center;
+	background-position: start;
 	backdrop-filter: blur(5px);
 	margin-bottom: 50px !important;
 	&__blur {
@@ -16,6 +16,13 @@
 		position: absolute;
 		backdrop-filter: blur(15px);
 		background: linear-gradient(0deg, rgba(33, 36, 41, 1) 15%, rgba(33, 36, 41, 0) 43%);
+		z-index: 2;
+	}
+	&__bg {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		position: absolute;
 	}
 }
 .slide {
@@ -51,20 +58,22 @@
 	&__active {
 		transform: scale(2.3) translateX(-23%);
 		z-index: 5;
-		box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+		box-shadow: -10px 10px 25px rgba(17, 20, 23, 0.6);
 		opacity: 1;
 	}
 	&__prev {
-		z-index: 1;
+		z-index: 3;
 		bottom: calc(var(--index) * .04);
 		left: calc(50% - calc(var(--index) * .12));
 		filter: blur(5px);
+		box-shadow: -10px 10px 35px rgba(17, 20, 23, 0.3);
 		opacity: 1;
 	}
 	&__next {
-		z-index: 1;
+		z-index: 3;
 		bottom: calc(var(--index) * .04);
 		left: calc(50% + calc(var(--index) * .12));
+		box-shadow: 10px 10px 35px rgba(17, 20, 23, 0.3);
 		filter: blur(5px);
 		opacity: 1;
 	}
@@ -78,9 +87,11 @@
 	column-gap: 35px;
 	position: absolute;
 	bottom: 9px;
-	transition-property: all;
+	transition-property: width height;
 	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	transition-duration: 550ms;
+	will-change: transform;
+	z-index: 2;
 
 	&__item {
 		width: 15px;
