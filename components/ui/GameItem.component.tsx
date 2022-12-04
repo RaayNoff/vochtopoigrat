@@ -23,7 +23,7 @@ const GameItem: FC<IGameItemProps> = ({ gameId }) => {
 	} = useGameById(gameId);
 
 	return (
-		<Link href={`${Routes.HOME}/${id}`}>
+		<Link href={`${Routes.GAMES}/${id}`}>
 			<article className={clsx(s.game)}>
 				<section className={clsx(s.game__description)}>
 					<header className={clsx(s.game__title)}>{name}</header>

@@ -6,6 +6,7 @@ import { FC } from "react";
 import imagePlaceholder from "../../assets/images/noImage.jpg";
 
 import { useSearchedGameById } from "../../hooks/useSearchedGameById";
+import { Routes } from "../../models/enums/Routes";
 import s from "../../styles/components/ui/SearchGameItem.module.scss";
 
 interface ISearchGameItemProps {
@@ -18,7 +19,7 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
 	if (!game) return null;
 
 	return (
-		<Link href={"#"} className={clsx(s.gameLink)}>
+		<Link href={`${Routes.GAMES}/${gameId}`} className={clsx(s.gameLink)}>
 			<div className={clsx(s.gameLink__container)}>
 				<div className={clsx(s.gameLink__imageContainer, s.imageContainer)}>
 					<Image
