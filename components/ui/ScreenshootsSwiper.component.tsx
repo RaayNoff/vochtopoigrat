@@ -39,6 +39,7 @@ const ScreenshootsSwiper: FC<IScreenshootsSwiperProps> = ({
 				modules={[Navigation]}
 				onSwiper={(swiper) => setSwiper(swiper)}
 				containerModifierClass={"customSwiper"}
+				centeredSlides={true}
 			>
 				{screenshoots?.map((sshot) => (
 					<SwiperSlide key={sshot.id}>
