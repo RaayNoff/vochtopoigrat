@@ -70,30 +70,28 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			}}
 		>
 			<div className={clsx(s.carousel__blur)}></div>
-			{sliders?.map((img, index) => {
-				return (
-					<Image
-						key={img.id}
-						className={clsx(
-							s.slide,
-							s.slide__hidden,
-							index == slideAction && s.slide__active,
-							index - 1 == slideAction && s.slide__next,
-							slideAction + 1 == sliders.length && index == 0 && s.slide__next,
-							index + 1 == slideAction && s.slide__prev,
-							slideAction == 0 && index + 1 == sliders.length && s.slide__prev,
-						)}
-						onClick={(event) => {
-							onClickSlider(event);
-						}}
-						width={1000}
-						height={1000}
-						priority
-						src={img.img}
-						alt={img.title}
-					/>
-				);
-			})}
+			{sliders?.map((slider, index) => (
+				<Image
+					key={slider.id}
+					className={clsx(
+						s.slide,
+						s.slide__hidden,
+						index == slideAction && s.slide__active,
+						index - 1 == slideAction && s.slide__next,
+						slideAction + 1 == sliders.length && index == 0 && s.slide__next,
+						index + 1 == slideAction && s.slide__prev,
+						slideAction == 0 && index + 1 == sliders.length && s.slide__prev,
+					)}
+					onClick={(event) => {
+						onClickSlider(event);
+					}}
+					width={1000}
+					height={1000}
+					priority
+					src={slider.img}
+					alt={slider.title}
+				/>
+			))}
 			<div
 				ref={nextImageRef}
 				className={clsx(s.slide__next, s.slide__hidden)}

@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 		initialGames = initialGamesData.results;
 
 		const initialCarouselResponse = await fetch(
-			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6&dates=2022-01-01`,
+			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6`,
 			options,
 		);
 

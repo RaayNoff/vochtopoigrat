@@ -1,0 +1,39 @@
+.data {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		font-weight: 800;
+		font-size: 2.0833333333rem;
+		line-height: 1.2em;
+		color: #fff;
+		margin-bottom: 0.2em;
+	}
+
+	&__paragraph {
+		margin-bottom: 0.5em;
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+}
+
+.paragraph {
+	font-weight: 300;
+	font-size: 0.8333333333rem;
+	line-height: 1.2em;
+	color: rgba(173, 173, 173, 1);
+
+	&__value {
+		color: rgba(255, 255, 255, 1);
+	}
+	&__link {
+		transition: color 150ms ease-in-out;
+
+		@media (min-width: 767.98px) {
+			&:hover {
+				color: #226dff;
+			}
+		}
+	}
+}
