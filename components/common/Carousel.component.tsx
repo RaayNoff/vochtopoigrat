@@ -1,9 +1,9 @@
 import Image from "next/image";
 import clsx from "clsx";
-
 import { FC, useEffect, useRef, useState } from "react";
 
 import s from "../../styles/components/common/Carousel.module.scss";
+
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 
 interface ICarouselProps {
@@ -62,36 +62,50 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		};
 	}, [slideAction]);
 
+	useEffect(() => {
+		console.log(sliders);
+		
+	}, []);
+
 	return (
 		<section
 			className={clsx(s.carousel, className)}
-			style={{
-				backgroundImage: `url(${srcBg})`,
-			}}
 		>
-			<div className={clsx(s.carousel__blur)}></div>
-			{sliders?.map((slider, index) => (
-				<Image
-					key={slider.id}
-					className={clsx(
-						s.slide,
-						s.slide__hidden,
-						index == slideAction && s.slide__active,
-						index - 1 == slideAction && s.slide__next,
-						slideAction + 1 == sliders.length && index == 0 && s.slide__next,
-						index + 1 == slideAction && s.slide__prev,
-						slideAction == 0 && index + 1 == sliders.length && s.slide__prev,
-					)}
-					onClick={(event) => {
-						onClickSlider(event);
-					}}
-					width={1000}
-					height={1000}
-					priority
-					src={slider.img}
-					alt={slider.title}
-				/>
-			))}
+			<div className={clsx(s.carousel__blur)}> </div>
+			<Image 
+				width={1152} 
+				height={648} 
+				className={clsx(s.carousel__bg)} 
+				src={srcBg} 
+				alt="" 
+				loading="lazy"
+				placeholder="empty"
+			/>
+			{sliders?.map((img, index) => {
+				return (
+					<Image
+						key={img.id}
+						className={clsx(
+							s.slide,
+							s.slide__hidden,
+							index == slideAction && s.slide__active,
+							index - 1 == slideAction && s.slide__next,
+							slideAction + 1 == sliders.length && index == 0 && s.slide__next,
+							index + 1 == slideAction && s.slide__prev,
+							slideAction == 0 && index + 1 == sliders.length && s.slide__prev,
+						)}
+						onClick={(event) => {
+							onClickSlider(event);
+						}}
+						width={1152}
+						height={648}
+						src={img.img}
+						alt={img.title}
+						loading="lazy"
+						placeholder="empty"
+					/>
+				);
+			})}
 			<div
 				ref={nextImageRef}
 				className={clsx(s.slide__next, s.slide__hidden)}
