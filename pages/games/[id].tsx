@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { GetServerSideProps, NextPage } from "next";
 
 import Swiper from "swiper";
+import dynamic from "next/dynamic";
 
 import { getPlaiceholder } from "plaiceholder";
 
@@ -23,11 +24,18 @@ import {
 	StoreDetailed,
 	StoreResponse,
 } from "../../types/game";
-import ScreenshootsSwiper from "../../components/ui/ScreenshootsSwiper.component";
 import PersonalImageGame from "../../components/ui/PersonalImageGame.componen";
 import Metascore from "../../components/ui/Metascore.component";
 import Screenshoot from "../../components/ui/Screenshoot.component";
 import { useBodyLock } from "../../hooks/useBodyLock";
+
+const ScreenshootsSwiper = dynamic(
+	() => import("../../components/ui/ScreenshootsSwiper.component"),
+	{
+		ssr: false,
+		suspense: false,
+	},
+);
 
 interface IGamePageProps {
 	released: string;
