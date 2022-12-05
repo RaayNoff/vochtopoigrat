@@ -1,3 +1,4 @@
+import { selectGames } from "../store/selectors";
 import { GenresSlug, StoreSlug, TagSlug } from "../types/api";
 
 import { useActions } from "./useActions";
@@ -7,7 +8,7 @@ import { useTypedSelector } from "./useTypedSelector";
 export const useFiltersHandler = () => {
 	const { resetGames } = useFiltersResets();
 	const { applyedGenresList, applyedTagsList, applyedStoresList } =
-		useTypedSelector((state) => state.games);
+		useTypedSelector(selectGames);
 	const {
 		removeGenreFilter,
 		addGenreFilter,

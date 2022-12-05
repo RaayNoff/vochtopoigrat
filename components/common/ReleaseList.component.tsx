@@ -6,13 +6,14 @@ import { useRef } from "react";
 import { useGamesLoad } from "../../hooks/useGamesLoad";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { selectGames } from "../../store/selectors";
 
 import s from "../../styles/components/common/ReleaseList.module.scss";
 import GameItem from "../ui/GameItem.component";
 import Loader from "../ui/Loader.component";
 
 const ReleaseList = () => {
-	const { games, isLoading, next } = useTypedSelector((state) => state.games);
+	const { games, isLoading, next } = useTypedSelector(selectGames);
 
 	const lastElement = useRef<HTMLDivElement>(null);
 

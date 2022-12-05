@@ -5,13 +5,14 @@ import { FC, useEffect, useRef, useState } from "react";
 import s from "../../styles/components/common/Carousel.module.scss";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { selectSliders } from "../../store/selectors";
 
 interface ICarouselProps {
 	className?: string;
 }
 
 const Carousel: FC<ICarouselProps> = ({ className }) => {
-	const { sliders } = useTypedSelector((state) => state.sliders);
+	const { sliders } = useTypedSelector(selectSliders);
 	const [slideAction, setSlideAction] = useState<number>(0);
 	const nextImageRef = useRef<HTMLDivElement>(null);
 	const [srcBg, setSrcBg] = useState<string>("");
@@ -64,20 +65,17 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 
 	useEffect(() => {
 		console.log(sliders);
-		
 	}, []);
 
 	return (
-		<section
-			className={clsx(s.carousel, className)}
-		>
+		<section className={clsx(s.carousel, className)}>
 			<div className={clsx(s.carousel__blur)}> </div>
-			<Image 
-				width={1152} 
-				height={648} 
-				className={clsx(s.carousel__bg)} 
-				src={srcBg} 
-				alt="" 
+			<Image
+				width={1152}
+				height={648}
+				className={clsx(s.carousel__bg)}
+				src={srcBg}
+				alt=""
 				loading="lazy"
 				placeholder="empty"
 			/>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { selectGames } from "../store/selectors";
+
 import { useActions } from "./useActions";
 import { useFiltersHandler } from "./useFiltersHandler";
 import { useFiltersResets } from "./useFiltersResets";
@@ -12,7 +14,7 @@ export const useFitlers = () => {
 		applyedGenresList,
 		applyedTagsList,
 		applyedStoresList,
-	} = useTypedSelector((state) => state.games);
+	} = useTypedSelector(selectGames);
 
 	const { fetchNextGamesPage } = useActions();
 
