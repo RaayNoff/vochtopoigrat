@@ -6,7 +6,6 @@ import s from "../../styles/components/common/Carousel.module.scss";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
-import { log } from "console";
 
 interface ICarouselProps {
 	className?: string;
@@ -52,7 +51,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		const target = event.target as HTMLDivElement;
 		if (target.dataset.index) {
 			setSlideAction(Number(target.dataset.index));
-		};
+		}
 	};
 
 	useEffect(() => {
