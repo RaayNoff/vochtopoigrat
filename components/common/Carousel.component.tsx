@@ -6,6 +6,7 @@ import s from "../../styles/components/common/Carousel.module.scss";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
+import { log } from "console";
 
 interface ICarouselProps {
 	className?: string;
@@ -18,19 +19,20 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const [srcBg, setSrcBg] = useState<string>("");
 
 	const nextImage = () => {
-		if (slideAction + 1 == sliders.length) {
-			setSlideAction(0);
-		} else {
+		if (!(slideAction + 1 == sliders.length)) {
 			setSlideAction((state) => state + 1);
+			return;
 		}
+
+		setSlideAction(0);
 	};
 
 	const prevImage = () => {
-		if (slideAction == 0) {
-			setSlideAction(sliders.length - 1);
-		} else {
+		if (!(slideAction == 0)) {
 			setSlideAction((state) => state - 1);
+			return;
 		}
+		setSlideAction(sliders.length - 1);
 	};
 
 	const onClickSlider = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -46,12 +48,17 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		setSrcBg(sliders[slideAction].img);
 	};
 
+	const paginationClick = (event: React.MouseEvent) => {
+		const target = event.target as HTMLDivElement;
+		if (target.dataset.index) {
+			setSlideAction(Number(target.dataset.index));
+		};
+	};
+
 	useEffect(() => {
 		if (sliders && sliders[slideAction]) {
 			setSrcBg(sliders[slideAction].img);
-		} else {
-			setSrcBg("");
-		}
+		}	
 	}, [slideAction, sliders]);
 
 	useEffect(() => {
@@ -62,10 +69,6 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			clearTimeout(autoplay);
 		};
 	}, [slideAction]);
-
-	useEffect(() => {
-		console.log(sliders);
-	}, []);
 
 	return (
 		<section className={clsx(s.carousel, className)}>
@@ -80,17 +83,23 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 				placeholder="empty"
 			/>
 			{sliders?.map((img, index) => {
+				const isActive = index == slideAction;
+				const isNext = index - 1 == slideAction;
+				const isNextFromStart = slideAction + 1 == sliders.length && index == 0;
+				const isPrev = index + 1 == slideAction;
+				const isPrevFromEnd = slideAction == 0 && index + 1 == sliders.length;
+
 				return (
 					<Image
 						key={img.id}
 						className={clsx(
 							s.slide,
 							s.slide__hidden,
-							index == slideAction && s.slide__active,
-							index - 1 == slideAction && s.slide__next,
-							slideAction + 1 == sliders.length && index == 0 && s.slide__next,
-							index + 1 == slideAction && s.slide__prev,
-							slideAction == 0 && index + 1 == sliders.length && s.slide__prev,
+							isActive && s.slide__active,
+							isNext && s.slide__next,
+							isNextFromStart && s.slide__next,
+							isPrev && s.slide__prev,
+							isPrevFromEnd && s.slide__prev,
 						)}
 						onClick={(event) => {
 							onClickSlider(event);
@@ -111,7 +120,10 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 					onClickSlider(event);
 				}}
 			></div>
-			<div className={clsx(s.pagination)}>
+			<div 
+				className={clsx(s.pagination)}
+				onClick={event => paginationClick(event)}
+			>
 				{sliders?.map((_, i) => (
 					<div
 						key={i}
@@ -119,6 +131,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 							s.pagination__item,
 							i == slideAction && s.pagination__action,
 						)}
+						data-index={i}
 					></div>
 				))}
 			</div>
