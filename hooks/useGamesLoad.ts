@@ -1,4 +1,5 @@
 import { RefObject, useEffect, useRef } from "react";
+import { selectGames } from "../store/selectors";
 
 import { useActions } from "./useActions";
 
@@ -6,7 +7,7 @@ import { useTypedSelector } from "./useTypedSelector";
 
 export const useGamesLoad = (observableRef: RefObject<HTMLDivElement>) => {
 	const { currentPage, isLoading, applyedGenresList, applyedTagsList, next } =
-		useTypedSelector((state) => state.games);
+		useTypedSelector(selectGames);
 
 	const { setCurrentPage, fetchNextGamesPage } = useActions();
 

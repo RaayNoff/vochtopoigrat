@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 
+import { selectGames } from "../store/selectors";
+
 import { Game } from "../types/api";
 
 import { useTypedSelector } from "./useTypedSelector";
 
 export const useGameById = (gameId: number) => {
-	const { games } = useTypedSelector((state) => state.games);
+	const { games } = useTypedSelector(selectGames);
 	const [requiredGame, setRequiredGame] = useState<Game>({} as Game);
 
 	useEffect(() => {

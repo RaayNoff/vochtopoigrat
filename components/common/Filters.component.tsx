@@ -7,12 +7,13 @@ import Checkbox from "../ui/Checkbox.component";
 import { useFitlers } from "../../hooks/useFilters";
 import FiltersStatic from "../../models/static/FiltersStatic";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { selectGames } from "../../store/selectors";
 
 import Accordion from "./Accordion.component";
 
 const Filters: FC = () => {
 	const { handleClick, resetFilters } = useFitlers();
-	const { isLoading } = useTypedSelector((state) => state.games);
+	const { isLoading } = useTypedSelector(selectGames);
 
 	const resetHandler = useCallback(() => resetFilters(), []);
 

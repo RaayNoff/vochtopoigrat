@@ -6,6 +6,7 @@ import { useActions } from "../../hooks/useActions";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { selectSearch } from "../../store/selectors";
 
 import s from "../../styles/components/ui/Searchbar.module.scss";
 
@@ -16,7 +17,7 @@ import SearchGameItem from "./SearchGameItem.component";
 
 const Searchbar: FC = () => {
 	const { isSearchActive, searchQuery, searchResult, isLoading } =
-		useTypedSelector((state) => state.search);
+		useTypedSelector(selectSearch);
 
 	const { setSearchBarActive, setSearchQuery, fetchSearch } = useActions();
 
