@@ -26,7 +26,7 @@ const Home: NextPage<IHomeProps> = ({
 	useEffect(() => {
 		setGames(games);
 		setSliders(sliders);
-	}, []);
+	}, [games, sliders]);
 
 	return (
 		<MainLayout testid="home-page" selfClassName={s.home}>
