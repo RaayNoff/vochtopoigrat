@@ -107,7 +107,7 @@
 			height: 22.9938271605%;
 			z-index: 100;
 
-			font-size: 1.75rem;
+			font-size: 0.8rem;
 			line-height: 1.243902439em;
 			font-weight: 800;
 			color: #226dff;
@@ -119,9 +119,10 @@
 
 			background: rgba(0, 0, 0, 0.25);
 			backdrop-filter: blur(17.5px);
-			border-radius: 0 0 0.380952381em 0.380952381em;
+			border-radius: 0 0 0.8em 0.8em;
 
 			opacity: 0;
+			pointer-events: none;
 			transition: opacity 350ms ease-in-out;
 		}
 	}
