@@ -62,53 +62,63 @@ const GameData: FC<IGameDataProps> = memo(
 				<p className={clsx(s.data__paragraph, s.paragraph)}>
 					Release: <span className={s.paragraph__value}>{released}</span>
 				</p>
-				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Genres:{" "}
-					<span className={s.paragraph__value}>
-						{genres.map((g, i) =>
-							makeParagraphValue(g.name, genres.length - 1 === i),
-						)}
-					</span>
-				</p>
-				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Platforms:{" "}
-					<span className={s.paragraph__value}>
-						{platfroms.map((p, i) =>
-							makeParagraphValue(p.platform.name, platfroms.length - 1 === i),
-						)}
-					</span>
-				</p>
-				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Developers:{" "}
-					<span className={s.paragraph__value}>
-						{developers.map((d, i) =>
-							makeParagraphValue(d.name, developers.length - 1 === i),
-						)}
-					</span>
-				</p>
-				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Publishers:{" "}
-					<span className={s.paragraph__value}>
-						{publishers.map((p, i) =>
-							makeParagraphValue(p.name, publishers.length - 1 === i),
-						)}
-					</span>
-				</p>
-				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Stores:{" "}
-					<span className={s.paragraph__value}>
-						{stores.map((st, i) => (
-							<Link
-								key={st.id}
-								href={getStoreUrl(st.store.id)}
-								target="_blank"
-								className={s.paragraph__link}
-							>
-								{makeParagraphValue(st.store.name, stores.length - 1 === i)}
-							</Link>
-						))}
-					</span>
-				</p>
+				{!!genres.length && (
+					<p className={clsx(s.data__paragraph, s.paragraph)}>
+						Genres:{" "}
+						<span className={s.paragraph__value}>
+							{genres.map((g, i) =>
+								makeParagraphValue(g.name, genres.length - 1 === i),
+							)}
+						</span>
+					</p>
+				)}
+				{!!platfroms.length && (
+					<p className={clsx(s.data__paragraph, s.paragraph)}>
+						Platforms:{" "}
+						<span className={s.paragraph__value}>
+							{platfroms.map((p, i) =>
+								makeParagraphValue(p.platform.name, platfroms.length - 1 === i),
+							)}
+						</span>
+					</p>
+				)}
+				{!!developers.length && (
+					<p className={clsx(s.data__paragraph, s.paragraph)}>
+						Developers:{" "}
+						<span className={s.paragraph__value}>
+							{developers.map((d, i) =>
+								makeParagraphValue(d.name, developers.length - 1 === i),
+							)}
+						</span>
+					</p>
+				)}
+				{!!publishers.length && (
+					<p className={clsx(s.data__paragraph, s.paragraph)}>
+						Publishers:{" "}
+						<span className={s.paragraph__value}>
+							{publishers.map((p, i) =>
+								makeParagraphValue(p.name, publishers.length - 1 === i),
+							)}
+						</span>
+					</p>
+				)}
+				{!!stores.length && (
+					<p className={clsx(s.data__paragraph, s.paragraph)}>
+						Stores:{" "}
+						<span className={s.paragraph__value}>
+							{stores.map((st, i) => (
+								<Link
+									key={st.id}
+									href={getStoreUrl(st.store.id)}
+									target="_blank"
+									className={s.paragraph__link}
+								>
+									{makeParagraphValue(st.store.name, stores.length - 1 === i)}
+								</Link>
+							))}
+						</span>
+					</p>
+				)}
 			</section>
 		);
 	},

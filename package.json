@@ -14,6 +14,7 @@
 		"@plaiceholder/next": "^2.5.0",
 		"@reduxjs/toolkit": "^1.9.0",
 		"@types/react-redux": "^7.1.24",
+		"antd": "^5.0.4",
 		"axios": "^1.1.3",
 		"clsx": "^1.2.1",
 		"dotenv": "^16.0.3",

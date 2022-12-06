@@ -4,8 +4,6 @@ import { FC, useCallback, useEffect, useState } from "react";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
-import noImage from "../../assets/images/noImage.jpg";
-
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
 import { useAutoPlay } from "../../hooks/useAutoPlay";
@@ -76,7 +74,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		>
 			<div className={clsx(s.carousel__blur)}> </div>
 			<Image
-				src={srcBg || noImage}
+				src={srcBg || "/assets/noImage.jpg"}
 				width={1152}
 				height={648}
 				className={clsx(s.carousel__bg)}

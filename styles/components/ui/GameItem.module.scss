@@ -24,12 +24,19 @@
 	}
 
 	&__title {
+		position: relative;
+		width: 210%;
 		z-index: 2;
 		color: #e1e1e1;
 		font-weight: 800;
 		font-size: 1.5rem;
 		line-height: 43px;
-		white-space: nowrap;
+		word-break: normal;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
 	}
 }
 

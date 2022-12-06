@@ -9,7 +9,7 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectGames } from "../../store/selectors";
 
 import s from "../../styles/components/common/ReleaseList.module.scss";
-import GameItem from "../ui/GameItem.component";
+import GameItemWithId from "../ui/GameItemWithId.component";
 import Loader from "../ui/Loader.component";
 
 const ReleaseList = () => {
@@ -42,7 +42,7 @@ const ReleaseList = () => {
 				<ul className={clsx(s.releaseList__list)}>
 					{games?.map((game) => (
 						<li key={game.id} className={clsx(s.releaseList__item)}>
-							<GameItem key={game.id} gameId={game.id} />
+							<GameItemWithId gameId={game.id} />
 						</li>
 					))}
 					{isLoading && (
