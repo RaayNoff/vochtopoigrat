@@ -3,32 +3,35 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 
-import { useGameById } from "../../hooks/useGameById";
 import { Routes } from "../../models/enums/Routes";
 
 import s from "../../styles/components/ui/GameItem.module.scss";
+import { ParentPlatforms } from "../../types/api";
 
 import PlatformIcon from "./PlatformIcon";
 
-interface IGameItemProps {
-	gameId: number;
+export interface IGameItemProps {
+	name: string;
+	id: number;
+	picture: string;
+	className?: string;
+	platforms: ParentPlatforms[];
 }
 
-const GameItem: FC<IGameItemProps> = ({ gameId }) => {
-	const {
-		name,
-		id,
-		background_image: picture,
-		parent_platforms: plats,
-	} = useGameById(gameId);
-
+const GameItem: FC<IGameItemProps> = ({
+	name,
+	id,
+	picture,
+	platforms,
+	className,
+}) => {
 	return (
-		<Link href={`${Routes.GAMES}/${id}`}>
+		<Link href={`${Routes.GAMES}/${id}`} className={clsx(className)}>
 			<article className={clsx(s.game)}>
 				<section className={clsx(s.game__description)}>
 					<header className={clsx(s.game__title)}>{name}</header>
 					<ul className={clsx(s.game__platforms, s.platforms)}>
-						{plats?.map((item) => (
+						{platforms?.map((item) => (
 							<li key={item.platform.id} className={clsx(s.platforms__item)}>
 								<PlatformIcon key={item.platform.id} platform={item.platform} />
 							</li>
