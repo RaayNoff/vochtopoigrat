@@ -1,6 +1,6 @@
 import Image from "next/image";
 import clsx from "clsx";
-import { FC, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
@@ -40,7 +40,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 
 	const { callbackRef: setActiveSlideRef } = useAutoPlay(nextImage, slideAction);
 
-	const onClickSlider = (event: React.MouseEvent) => {
+	const onClickSlider = useCallback( (event: React.MouseEvent) => {
 		const isNext = event.currentTarget.classList.contains(s.slide__next);
 		const isPrev = event.currentTarget.classList.contains(s.slide__prev);
 		if (isNext) {
@@ -50,7 +50,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			prevImage();
 		}
 		setSrcBg(sliders[slideAction].img);
-	};
+	}, []);
 
 	const paginationClick = (event: React.MouseEvent) => {
 		const target = event.target as HTMLDivElement;
@@ -94,7 +94,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 						url={img.img}
 						index={index}
 						slideAction={slideAction}
-						onClickSlider={(event) => onClickSlider(event as React.MouseEvent)}
+						onClickSlider={onClickSlider}
 						length={sliders.length}
 					/>
 				);

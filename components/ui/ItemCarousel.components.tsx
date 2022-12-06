@@ -16,8 +16,8 @@ type ItemCarouselType = {
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
-export const ItemCarousel: FC<ItemCarouselType> 
-	= ({ id, title, url, slideAction, onClickSlider, index, length }) => {
+export const ItemCarousel = React.memo(
+	function ItemCarousel({ id, title, url, slideAction, onClickSlider, index, length }: ItemCarouselType) {
 
 	const [isHover, setIsHover] = useState(false);
 
@@ -29,7 +29,7 @@ export const ItemCarousel: FC<ItemCarouselType>
 			onMouseOver={() => setIsHover(true)}
 			>
 			<Image
-				onClick={onClickSlider}
+				onClick={event => onClickSlider(event)}
 				width={1152}
 				height={648}
 				src={url}
@@ -59,7 +59,7 @@ export const ItemCarousel: FC<ItemCarouselType>
 			index + 1 == slideAction && s.slide__prev,
 			slideAction == 0 && index + 1 == length && s.slide__prev,
 		)}
-		onClick={onClickSlider}
+		onClick={event => onClickSlider(event)}
 		onMouseOver={() => setIsHover(true)}
 	>
 		<Image
@@ -72,4 +72,4 @@ export const ItemCarousel: FC<ItemCarouselType>
 		/>
 	</div>
 	);
-};
+});
