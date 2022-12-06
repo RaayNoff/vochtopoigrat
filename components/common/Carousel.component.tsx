@@ -1,11 +1,16 @@
 import Image from "next/image";
 import clsx from "clsx";
 import { FC, useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
+import noImage from "../../assets/images/noImage.jpg";
+
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
+import { Routes } from "../../models/enums/Routes";
+import { useHover } from "../../hooks/useHover";
 
 interface ICarouselProps {
 	className?: string;
@@ -13,8 +18,11 @@ interface ICarouselProps {
 
 const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const { sliders } = useTypedSelector(selectSliders);
+	const router = useRouter();
+	const { callbackRef: setActiveSlideRef, value: isActiveSlideHovering } =
+		useHover();
+	const autoPlay = useRef({} as NodeJS.Timeout);
 	const [slideAction, setSlideAction] = useState<number>(0);
-	const nextImageRef = useRef<HTMLDivElement>(null);
 	const [srcBg, setSrcBg] = useState<string>("");
 
 	const nextImage = () => {
@@ -22,6 +30,8 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			setSlideAction((state) => state + 1);
 			return;
 		}
+
+		console.log("Next page");
 
 		setSlideAction(0);
 	};
@@ -34,10 +44,19 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		setSlideAction(sliders.length - 1);
 	};
 
-	const onClickSlider = (event: React.MouseEvent<HTMLDivElement>) => {
-		const isNext = event.currentTarget.classList.contains(s.slide__next);
-		const isPrev = event.currentTarget.classList.contains(s.slide__prev);
+	const onClickSlider = (event: React.MouseEvent) => {
+		const target = event.target as HTMLDivElement;
+		const parent = target.parentElement as HTMLDivElement;
 
+		if (!target.dataset.index) return;
+
+		const isActive = parent.classList.contains(s.slide__active);
+		const isNext = parent.classList.contains(s.slide__next);
+		const isPrev = parent.classList.contains(s.slide__prev);
+
+		if (isActive) {
+			router.push(`${Routes.GAMES}/${target.dataset.index}`);
+		}
 		if (isNext) {
 			nextImage();
 		}
@@ -57,26 +76,39 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	useEffect(() => {
 		if (sliders && sliders[slideAction]) {
 			setSrcBg(sliders[slideAction].img);
-		}	
+
+			const activeSlide = document.querySelector(`.${s.slide__active}`);
+
+			if (activeSlide) setActiveSlideRef(activeSlide as HTMLElement);
+		}
 	}, [slideAction, sliders]);
 
 	useEffect(() => {
-		const autoplay = setTimeout(() => {
+		if (isActiveSlideHovering) {
+			clearTimeout(autoPlay.current);
+			return;
+		}
+
+		autoPlay.current = setTimeout(() => {
+			console.log("Autoplay");
 			nextImage();
 		}, 4500);
+
 		return () => {
-			clearTimeout(autoplay);
+			clearTimeout(autoPlay.current);
 		};
-	}, [slideAction]);
+	}, [slideAction, isActiveSlideHovering]);
 
 	return (
-		<section className={clsx(s.carousel, className)}>
-			<div className={clsx(s.carousel__blur)}> </div>
+		<section
+			className={clsx(s.carousel, className)}
+			onClick={(e) => onClickSlider(e)}
+		>
 			<Image
+				src={srcBg || noImage}
 				width={1152}
 				height={648}
 				className={clsx(s.carousel__bg)}
-				src={srcBg}
 				alt=""
 				loading="lazy"
 				placeholder="empty"
@@ -89,8 +121,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 				const isPrevFromEnd = slideAction == 0 && index + 1 == sliders.length;
 
 				return (
-					<Image
-						key={img.id}
+					<div
 						className={clsx(
 							s.slide,
 							s.slide__hidden,
@@ -100,28 +131,23 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 							isPrev && s.slide__prev,
 							isPrevFromEnd && s.slide__prev,
 						)}
-						onClick={(event) => {
-							onClickSlider(event);
-						}}
-						width={1152}
-						height={648}
-						src={img.img}
-						alt={img.title}
-						loading="lazy"
-						placeholder="empty"
-					/>
+						key={img.id}
+					>
+						<Image
+							data-index={img.id}
+							width={1152}
+							height={648}
+							src={img.img}
+							alt={img.title}
+							loading="lazy"
+							placeholder="empty"
+						/>
+					</div>
 				);
 			})}
 			<div
-				ref={nextImageRef}
-				className={clsx(s.slide__next, s.slide__hidden)}
-				onClick={(event) => {
-					onClickSlider(event);
-				}}
-			></div>
-			<div 
 				className={clsx(s.pagination)}
-				onClick={event => paginationClick(event)}
+				onClick={(event) => paginationClick(event)}
 			>
 				{sliders?.map((_, i) => (
 					<div
