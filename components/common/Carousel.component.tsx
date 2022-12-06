@@ -5,8 +5,6 @@ import { useRouter } from "next/router";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
-import noImage from "../../assets/images/noImage.jpg";
-
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
 import { Routes } from "../../models/enums/Routes";
@@ -88,7 +86,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			onClick={(e) => onClickSlider(e)}
 		>
 			<Image
-				src={srcBg || noImage}
+				src={srcBg || "/assets/noImage.jpg"}
 				width={1152}
 				height={648}
 				className={clsx(s.carousel__bg)}
