@@ -14,7 +14,6 @@ export const useAutoPlay = (playCallback: () => void, ...deps: any[]) => {
 		}
 
 		autoPlay.current = setTimeout(() => {
-			console.log("Autoplay");
 			playCallback();
 		}, 4500);
 
