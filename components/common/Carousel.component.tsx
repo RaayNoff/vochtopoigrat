@@ -11,6 +11,8 @@ import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
 import { Routes } from "../../models/enums/Routes";
 import { useHover } from "../../hooks/useHover";
+import Slider from "../ui/Slider.component";
+import { useAutoPlay } from "../../hooks/useAutoPlay";
 
 interface ICarouselProps {
 	className?: string;
@@ -18,20 +20,15 @@ interface ICarouselProps {
 
 const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const { sliders } = useTypedSelector(selectSliders);
-	const router = useRouter();
-	const { callbackRef: setActiveSlideRef, value: isActiveSlideHovering } =
-		useHover();
-	const autoPlay = useRef({} as NodeJS.Timeout);
 	const [slideAction, setSlideAction] = useState<number>(0);
 	const [srcBg, setSrcBg] = useState<string>("");
+	const router = useRouter();
 
 	const nextImage = () => {
 		if (!(slideAction + 1 == sliders.length)) {
 			setSlideAction((state) => state + 1);
 			return;
 		}
-
-		console.log("Next page");
 
 		setSlideAction(0);
 	};
@@ -43,6 +40,8 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		}
 		setSlideAction(sliders.length - 1);
 	};
+
+	const { callbackRef: setActiveSlideRef } = useAutoPlay(nextImage, slideAction);
 
 	const onClickSlider = (event: React.MouseEvent) => {
 		const target = event.target as HTMLDivElement;
@@ -83,22 +82,6 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		}
 	}, [slideAction, sliders]);
 
-	useEffect(() => {
-		if (isActiveSlideHovering) {
-			clearTimeout(autoPlay.current);
-			return;
-		}
-
-		autoPlay.current = setTimeout(() => {
-			console.log("Autoplay");
-			nextImage();
-		}, 4500);
-
-		return () => {
-			clearTimeout(autoPlay.current);
-		};
-	}, [slideAction, isActiveSlideHovering]);
-
 	return (
 		<section
 			className={clsx(s.carousel, className)}
@@ -113,7 +96,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 				loading="lazy"
 				placeholder="empty"
 			/>
-			{sliders?.map((img, index) => {
+			{sliders?.map((slider, index) => {
 				const isActive = index == slideAction;
 				const isNext = index - 1 == slideAction;
 				const isNextFromStart = slideAction + 1 == sliders.length && index == 0;
@@ -121,28 +104,15 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 				const isPrevFromEnd = slideAction == 0 && index + 1 == sliders.length;
 
 				return (
-					<div
-						className={clsx(
-							s.slide,
-							s.slide__hidden,
-							isActive && s.slide__active,
-							isNext && s.slide__next,
-							isNextFromStart && s.slide__next,
-							isPrev && s.slide__prev,
-							isPrevFromEnd && s.slide__prev,
-						)}
-						key={img.id}
-					>
-						<Image
-							data-index={img.id}
-							width={1152}
-							height={648}
-							src={img.img}
-							alt={img.title}
-							loading="lazy"
-							placeholder="empty"
-						/>
-					</div>
+					<Slider
+						key={slider.id}
+						isActive={isActive}
+						isNext={isNext}
+						isNextFromStart={isNextFromStart}
+						isPrev={isPrev}
+						isPrevFromEnd={isPrevFromEnd}
+						slider={slider}
+					/>
 				);
 			})}
 			<div
