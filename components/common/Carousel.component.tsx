@@ -1,7 +1,6 @@
 import Image from "next/image";
 import clsx from "clsx";
-import { FC, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/router";
+import { FC, useEffect, useState } from "react";
 
 import s from "../../styles/components/common/Carousel.module.scss";
 
@@ -9,10 +8,9 @@ import noImage from "../../assets/images/noImage.jpg";
 
 import { useTypedSelector } from "../../hooks/useTypedSelector";
 import { selectSliders } from "../../store/selectors";
-import { Routes } from "../../models/enums/Routes";
-import { useHover } from "../../hooks/useHover";
-import Slider from "../ui/Slider.component";
 import { useAutoPlay } from "../../hooks/useAutoPlay";
+
+import { ItemCarousel } from "../ui/ItemCarousel.components";
 
 interface ICarouselProps {
 	className?: string;
@@ -22,7 +20,6 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const { sliders } = useTypedSelector(selectSliders);
 	const [slideAction, setSlideAction] = useState<number>(0);
 	const [srcBg, setSrcBg] = useState<string>("");
-	const router = useRouter();
 
 	const nextImage = () => {
 		if (!(slideAction + 1 == sliders.length)) {
@@ -44,18 +41,8 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const { callbackRef: setActiveSlideRef } = useAutoPlay(nextImage, slideAction);
 
 	const onClickSlider = (event: React.MouseEvent) => {
-		const target = event.target as HTMLDivElement;
-		const parent = target.parentElement as HTMLDivElement;
-
-		if (!target.dataset.index) return;
-
-		const isActive = parent.classList.contains(s.slide__active);
-		const isNext = parent.classList.contains(s.slide__next);
-		const isPrev = parent.classList.contains(s.slide__prev);
-
-		if (isActive) {
-			router.push(`${Routes.GAMES}/${target.dataset.index}`);
-		}
+		const isNext = event.currentTarget.classList.contains(s.slide__next);
+		const isPrev = event.currentTarget.classList.contains(s.slide__prev);
 		if (isNext) {
 			nextImage();
 		}
@@ -87,6 +74,7 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 			className={clsx(s.carousel, className)}
 			onClick={(e) => onClickSlider(e)}
 		>
+			<div className={clsx(s.carousel__blur)}> </div>
 			<Image
 				src={srcBg || noImage}
 				width={1152}
@@ -96,22 +84,18 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 				loading="lazy"
 				placeholder="empty"
 			/>
-			{sliders?.map((slider, index) => {
-				const isActive = index == slideAction;
-				const isNext = index - 1 == slideAction;
-				const isNextFromStart = slideAction + 1 == sliders.length && index == 0;
-				const isPrev = index + 1 == slideAction;
-				const isPrevFromEnd = slideAction == 0 && index + 1 == sliders.length;
 
+			{sliders?.map((img, index) => {
 				return (
-					<Slider
-						key={slider.id}
-						isActive={isActive}
-						isNext={isNext}
-						isNextFromStart={isNextFromStart}
-						isPrev={isPrev}
-						isPrevFromEnd={isPrevFromEnd}
-						slider={slider}
+					<ItemCarousel 
+						key={img.id}
+						id={img.id}
+						title={img.title}
+						url={img.img}
+						index={index}
+						slideAction={slideAction}
+						onClickSlider={(event) => onClickSlider(event as React.MouseEvent)}
+						length={sliders.length}
 					/>
 				);
 			})}
