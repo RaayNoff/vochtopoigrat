@@ -1,5 +1,6 @@
 import { GetServerSideProps, NextPage } from "next";
 
+import axios from "axios";
 import { useEffect } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
@@ -50,21 +51,41 @@ export const getServerSideProps: GetServerSideProps = async () => {
 		const initialGamesData: ApiGamesTypes = await initialGamesResponse.json();
 		initialGames = initialGamesData.results;
 
-		const initialCarouselResponse = await fetch(
-			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6`,
-			options,
-		);
+		// const initialCarouselResponse = await fetch(
+		// 	`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6`,
+		// 	options,
+		// );
+		//
+		// const initialSlidersData: ApiGamesTypes =
+		// 	await initialCarouselResponse.json();
+		//
+		// initialSliders = initialSlidersData.results.map((item) => {
+		// 	return {
+		// 		id: item.id,
+		// 		img: item.background_image,
+		// 		title: item.name,
+		// 	};
+		// });
 
-		const initialSlidersData: ApiGamesTypes =
-			await initialCarouselResponse.json();
+	const date = new Date();
+	const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
 
-		initialSliders = initialSlidersData.results.map((item) => {
-			return {
-				id: item.id,
-				img: item.background_image,
-				title: item.name,
-			};
-		});
+	const year: number = (date.getMonth() < 6) ? date.getFullYear() - 1 : date.getFullYear();
+	const mounth: number = (date.getMonth() < 6) ? date.getMonth() + 6 : date.getMonth();
+	const nDate = `${year}-${mounth}-${date.getDay()}`;
+	const dates = `${currentDate}%${nDate}`;
+
+	const optionsSlider = { method: "GET" };
+	const res: any = await fetch(`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&metacritic=80%2C100&dates=${dates}&ordering=released&page_size=6`, optionsSlider);
+	const resu: any = await res.json();
+	const results: Game[] = resu.results;
+	const initialSliders = results.map( item => {
+		return {
+			id: item.id,
+			title: item.name,
+			img: item.background_image,
+		} as ISlider;
+	} );
 
 		return {
 			props: {

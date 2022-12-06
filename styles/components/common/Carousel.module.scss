@@ -136,8 +136,22 @@
 		align-items: center;
 		color: #226DFF;
 		text-shadow: -1px 1px 10px #226DFF;
-		font-family: 'Roboto';
 		font-weight: 800;
-		
+		animation-name: hover;
+		animation-duration: 0.3s, 2s;
+	}
+}
+
+@keyframes hover {
+	0% {
+		bottom: -100px;
+		backdrop-filter: blur(0.5px);
+	}
+	50% {
+		bottom: 0;
+		backdrop-filter: blur(8.75px);
+	}
+	100% {
+		backdrop-filter: blur(17.5px);
 	}
 }

@@ -2,6 +2,10 @@ import Image from "next/image";
 import clsx from "clsx";
 import { FC, useCallback, useEffect, useState } from "react";
 
+import axios from "axios";
+
+import { GetServerSideProps } from "next";
+
 import s from "../../styles/components/common/Carousel.module.scss";
 
 import noImage from "../../assets/images/noImage.jpg";
@@ -11,6 +15,9 @@ import { selectSliders } from "../../store/selectors";
 import { useAutoPlay } from "../../hooks/useAutoPlay";
 
 import { ItemCarousel } from "../ui/ItemCarousel.components";
+import { ISlider } from "../../models/interfaces/ISlidersState";
+import { Game } from "../../types/api";
+
 
 interface ICarouselProps {
 	className?: string;
@@ -20,6 +27,8 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 	const { sliders } = useTypedSelector(selectSliders);
 	const [slideAction, setSlideAction] = useState<number>(0);
 	const [srcBg, setSrcBg] = useState<string>("");
+	// console.log(data);
+	
 
 	const nextImage = () => {
 		if (!(slideAction + 1 == sliders.length)) {
@@ -49,8 +58,9 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		if (isPrev) {
 			prevImage();
 		}
-		setSrcBg(sliders[slideAction].img);
-	}, []);
+		
+		setSrcBg(sliders[slideAction].img || "");
+	}, [sliders, slideAction]);
 
 	const paginationClick = (event: React.MouseEvent) => {
 		const target = event.target as HTMLDivElement;
@@ -117,5 +127,6 @@ const Carousel: FC<ICarouselProps> = ({ className }) => {
 		</section>
 	);
 };
+
 
 export default Carousel;
