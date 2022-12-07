@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import { FC, useEffect, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { useActions } from "../../hooks/useActions";
 import { useDebounce } from "../../hooks/useDebounce";
@@ -59,9 +60,13 @@ const Searchbar: FC = () => {
 
 			<DropDown isVisible={isSearchActive}>
 				{!isLoading ? (
-					searchResult?.map((game) => (
-						<SearchGameItem key={game.id} gameId={game.id}></SearchGameItem>
-					))
+					<TransitionGroup component={null} appear={true}>
+						{searchResult?.map((game) => (
+							<CSSTransition key={game.id} timeout={150} classNames="item">
+								<SearchGameItem gameId={game.id} className="item" />
+							</CSSTransition>
+						))}
+					</TransitionGroup>
 				) : (
 					<Loader className={s.loader} />
 				)}

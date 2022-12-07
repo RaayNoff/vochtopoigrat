@@ -1,0 +1,7 @@
+.item-appear {
+	opacity: 0 !important;
+}
+.item-appear-done {
+	opacity: 1 !important;
+	transition: opacity 150ms ease-in !important;
+}
