@@ -12,26 +12,30 @@ import GameItem from "../../components/ui/GameItem.component";
 import Loader from "../../components/ui/Loader.component";
 
 const Random: NextPage = () => {
-	const { error, game, isLoading } = useTypedSelector(selectRandom);
-	const { fetchRandomGame } = useActions();
+	const { error, game, isLoading, score } = useTypedSelector(selectRandom);
+	const { fetchRandomGame, setScore, initScore } = useActions();
 
 	useEffect(() => {
 		if (isLoading) return;
 		fetchRandomGame();
+		initScore();
 	}, []);
 
 	const clickHandler = useCallback(() => {
+		setScore(score + Math.ceil(Math.random() * 10));
 		fetchRandomGame();
-	}, []);
+	}, [score]);
 
 	return (
 		<MainLayout testid="random-page" selfClassName={s.random}>
 			<div className="container">
 				<div className={s.random__container}>
+					<h2 className={s.random__score}>
+						Your score: <span>{score}</span>
+					</h2>
 					<Button callback={clickHandler} className={s.random__button}>
 						Random
 					</Button>
-
 					{!isLoading && game && (
 						<GameItem
 							id={game.id}
@@ -41,7 +45,6 @@ const Random: NextPage = () => {
 							className={s.random__game}
 						/>
 					)}
-
 					{!game && isLoading && <Loader className={s.random__loader} />}
 					{!game && !isLoading && <h3 className={s.random__fortune}>{error}</h3>}
 				</div>

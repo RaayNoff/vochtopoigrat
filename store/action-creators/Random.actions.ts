@@ -1,7 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+import { AppDispatch } from "..";
+
 import { Game } from "../../types/game";
+import { randomSlice } from "../reducers/Random.slice";
 
 export const fetchRandomGame = createAsyncThunk(
 	"random/fetchGame",
@@ -28,3 +31,15 @@ export const fetchRandomGame = createAsyncThunk(
 		}
 	},
 );
+
+export const setScore = (newScore: number) => (dispatch: AppDispatch) => {
+	localStorage.setItem("score", newScore.toString());
+
+	dispatch(randomSlice.actions.setScore(newScore));
+};
+
+export const initScore = () => (dispatch: AppDispatch) => {
+	dispatch(
+		randomSlice.actions.setScore(Number(localStorage.getItem("score")) || 0),
+	);
+};
