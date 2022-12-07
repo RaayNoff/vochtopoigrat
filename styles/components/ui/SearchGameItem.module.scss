@@ -8,7 +8,6 @@
 		padding: 7px 20px 7px 6px;
 		display: flex;
 		flex-direction: row;
-		// justify-content: space-between;
 	}
 
 	&__imageContainer {
@@ -39,6 +38,7 @@
 }
 
 .imageContainer {
+	position: relative;
 	width: 27.7879341865%;
 	min-width: 27.7879341865%;
 	border-radius: 5px;
@@ -51,4 +51,15 @@
 		object-fit: cover;
 		object-position: center 25%;
 	}
+
+	&__hidden {
+		opacity: 0;
+	}
+}
+
+.imageLoader {
+	position: absolute;
+	z-index: 1;
+	top: 5%;
+	left: 25%;
 }
