@@ -33,7 +33,11 @@ const Random: NextPage = () => {
 					<h2 className={s.random__score}>
 						Your score: <span>{score}</span>
 					</h2>
-					<Button callback={clickHandler} className={s.random__button}>
+					<Button
+						disabled={isLoading}
+						callback={clickHandler}
+						className={s.random__button}
+					>
 						Random
 					</Button>
 					{!isLoading && game && (
