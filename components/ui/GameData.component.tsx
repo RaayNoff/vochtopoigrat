@@ -2,6 +2,7 @@ import { FC, memo } from "react";
 import clsx from "clsx";
 import Link from "next/link";
 import dynamic from "next/dynamic";
+import moment from "moment";
 
 import { Genre, ParentPlatforms } from "../../types/api";
 import { Developer, Publisher, Store, StoreDetailed } from "../../types/game";
@@ -53,6 +54,20 @@ const GameData: FC<IGameDataProps> = memo(
 			return `${value}, `;
 		};
 
+		const getNormalDate = (formatedDate: string) => {
+			const month = formatedDate.substring(5, 7);
+			const year = formatedDate.substring(0, 4);
+			const day = formatedDate.substring(8, 10);
+
+			const date = new Date(Number(year), Number(month) - 1, Number(day));
+
+			const normalDate = moment
+				.unix(Math.ceil(date.getTime() / 1000))
+				.format("Do MMMM YYYY");
+
+			return normalDate;
+		};
+
 		return (
 			<section className={clsx(s.data, className)}>
 				<h1 className={s.data__title}>{name}</h1>
@@ -60,7 +75,8 @@ const GameData: FC<IGameDataProps> = memo(
 				<GameDescription content={description} />
 
 				<p className={clsx(s.data__paragraph, s.paragraph)}>
-					Release: <span className={s.paragraph__value}>{released}</span>
+					Release:{" "}
+					<span className={s.paragraph__value}>{getNormalDate(released)}</span>
 				</p>
 				{!!genres.length && (
 					<p className={clsx(s.data__paragraph, s.paragraph)}>
