@@ -1,4 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
+import moment from "moment";
 
 import { useEffect } from "react";
 
@@ -45,7 +46,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 		const options = { method: "GET" };
 		const urls = {
 			games: `${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`,
-			sliders: `${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=20`,
+			sliders: `${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=8&ordering=released,-metacritic,rating&exclude_stores=1,4,6&metacritic=82,100`,
 		};
 
 		const initialGamesResponse: ApiGamesTypes = await fetch(
@@ -65,11 +66,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
 			const yearAgoDate = new Date(yearAgoTimestamp * 1000);
 
 			const formated = {
-				yearAgo: `${yearAgoDate.getFullYear()}-${yearAgoDate.getMonth()}-${yearAgoDate.getDay()}`,
-				current: `${nowDate.getFullYear()}-${nowDate.getMonth()}-${nowDate.getDay()}`,
+				yearAgo: moment(yearAgoDate).format("YYYY-MM-DD"),
+				current: moment(nowDate).format("YYYY-MM-DD"),
 			};
 
-			return `${formated.yearAgo}%${formated.current}`;
+			return `${formated.yearAgo},${formated.current}`;
 		};
 
 		const optionsSlider = { method: "GET" };
@@ -77,7 +78,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 			urls.sliders + `&dates=${getDateRange()}`,
 			optionsSlider,
 		).then((data) => data.json());
-		console.log(urls.sliders + `&dates=${getDateRange()}`);
 
 		initialSliders = initialSlidersResponse.results.map((item) => {
 			return {
