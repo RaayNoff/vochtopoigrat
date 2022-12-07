@@ -11,9 +11,10 @@ import ImageLoader from "./ImageLoader.component";
 
 interface ISearchGameItemProps {
 	gameId: number;
+	className?: string;
 }
 
-const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
+const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId, className }) => {
 	const game = useSearchedGameById(gameId);
 	const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -24,7 +25,10 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
 	if (!game) return null;
 
 	return (
-		<Link href={`${Routes.GAMES}/${gameId}`} className={clsx(s.gameLink)}>
+		<Link
+			href={`${Routes.GAMES}/${gameId}`}
+			className={clsx(s.gameLink, className)}
+		>
 			<div className={clsx(s.gameLink__container)}>
 				<div className={clsx(s.gameLink__imageContainer, s.imageContainer)}>
 					<Image
