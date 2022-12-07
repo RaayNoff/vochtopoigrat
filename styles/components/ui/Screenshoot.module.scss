@@ -1,0 +1,10 @@
+.screenshoot {
+	position: relative;
+
+	&__loader {
+		position: absolute;
+		z-index: 1;
+		top: 20%;
+		left: 30%;
+	}
+}
