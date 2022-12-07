@@ -7,18 +7,25 @@ interface IButtonProps {
 	children?: React.ReactNode;
 	className?: string;
 	callback?: () => void;
+	disabled?: boolean;
 }
 
-const Button: FC<IButtonProps> = memo(({ children, callback, className }) => {
-	const clickHandler = () => {
-		if (callback) callback();
-	};
+const Button: FC<IButtonProps> = memo(
+	({ children, callback, className, disabled }) => {
+		const clickHandler = () => {
+			if (callback) callback();
+		};
 
-	return (
-		<button onClick={clickHandler} className={clsx(s.button, className)}>
-			{children}
-		</button>
-	);
-});
+		return (
+			<button
+				disabled={disabled}
+				onClick={clickHandler}
+				className={clsx(s.button, className)}
+			>
+				{children}
+			</button>
+		);
+	},
+);
 
 export default Button;
