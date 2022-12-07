@@ -1,6 +1,5 @@
 import { GetServerSideProps, NextPage } from "next";
 
-import axios from "axios";
 import { useEffect } from "react";
 
 import Carousel from "../../components/common/Carousel.component";
@@ -8,7 +7,7 @@ import Games from "../../components/common/Games.component";
 import { useActions } from "../../hooks/useActions";
 
 import MainLayout from "../../layouts/MainLayout.component";
-import { ApiGamesTypes, Game } from "../../types/api";
+import { ApiGamesTypes, Game, SlidersResponse } from "../../types/api";
 
 import s from "../../styles/pages/Home.module.scss";
 import { ISlider } from "../../models/interfaces/ISlidersState";
@@ -44,48 +43,49 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 	try {
 		const options = { method: "GET" };
-		const initialGamesResponse = await fetch(
-			`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`,
+		const urls = {
+			games: `${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=5`,
+			sliders: `${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=20`,
+		};
+
+		const initialGamesResponse: ApiGamesTypes = await fetch(
+			urls.games,
 			options,
-		);
-		const initialGamesData: ApiGamesTypes = await initialGamesResponse.json();
-		initialGames = initialGamesData.results;
+		).then((data) => data.json());
 
-		// const initialCarouselResponse = await fetch(
-		// 	`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&page_size=6`,
-		// 	options,
-		// );
-		//
-		// const initialSlidersData: ApiGamesTypes =
-		// 	await initialCarouselResponse.json();
-		//
-		// initialSliders = initialSlidersData.results.map((item) => {
-		// 	return {
-		// 		id: item.id,
-		// 		img: item.background_image,
-		// 		title: item.name,
-		// 	};
-		// });
+		initialGames = initialGamesResponse.results;
 
-	const date = new Date();
-	const currentDate = `${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`;
+		const getDateRange = () => {
+			const nowDate = new Date();
 
-	const year: number = (date.getMonth() < 6) ? date.getFullYear() - 1 : date.getFullYear();
-	const mounth: number = (date.getMonth() < 6) ? date.getMonth() + 6 : date.getMonth();
-	const nDate = `${year}-${mounth}-${date.getDay()}`;
-	const dates = `${currentDate}%${nDate}`;
+			const nowDateTimestamp = Math.ceil(nowDate.getTime() / 1000);
 
-	const optionsSlider = { method: "GET" };
-	const res: any = await fetch(`${process.env.NEXT_PUBLIC_API_URL}?key=${process.env.NEXT_PUBLIC_API_KEY}&metacritic=80%2C100&dates=${dates}&ordering=released&page_size=6`, optionsSlider);
-	const resu: any = await res.json();
-	const results: Game[] = resu.results;
-	const initialSliders = results.map( item => {
-		return {
-			id: item.id,
-			title: item.name,
-			img: item.background_image,
-		} as ISlider;
-	} );
+			const yearAgoTimestamp = nowDateTimestamp - 63072000;
+
+			const yearAgoDate = new Date(yearAgoTimestamp * 1000);
+
+			const formated = {
+				yearAgo: `${yearAgoDate.getFullYear()}-${yearAgoDate.getMonth()}-${yearAgoDate.getDay()}`,
+				current: `${nowDate.getFullYear()}-${nowDate.getMonth()}-${nowDate.getDay()}`,
+			};
+
+			return `${formated.yearAgo}%${formated.current}`;
+		};
+
+		const optionsSlider = { method: "GET" };
+		const initialSlidersResponse: SlidersResponse = await fetch(
+			urls.sliders + `&dates=${getDateRange()}`,
+			optionsSlider,
+		).then((data) => data.json());
+		console.log(urls.sliders + `&dates=${getDateRange()}`);
+
+		initialSliders = initialSlidersResponse.results.map((item) => {
+			return {
+				id: item.id,
+				title: item.name,
+				img: item.background_image,
+			} as ISlider;
+		});
 
 		return {
 			props: {
@@ -94,8 +94,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
 			},
 		};
 	} catch (error) {
-		console.log(error);
-
 		return {
 			props: {
 				initialGames: [] as Game[],

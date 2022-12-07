@@ -22,7 +22,7 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId }) => {
 				<div className={clsx(s.gameLink__imageContainer, s.imageContainer)}>
 					<Image
 						className={clsx(s.imageContainer__img)}
-						src={game.background_image || "/assets/noImage.jpg"}
+						src={game.background_image || "/assets/images/noImage.jpg"}
 						alt={game.name}
 						width={500}
 						height={500}

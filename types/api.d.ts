@@ -315,3 +315,11 @@ declare type ApiSearchTypes = {
 	results: Game[];
 	user_platforms: boolean;
 };
+
+declare type SlidersResponse = {
+	count: number;
+	next: string | null;
+	previous: string | null;
+	results: Game[];
+	user_platforms: boolean;
+};

@@ -1,11 +1,13 @@
 .carousel {
+	position: relative;
 	width: 100%;
 	height: 98vh;
 	overflow: hidden;
 	display: flex;
 	margin-bottom: 50px !important;
 
-	&__blur {
+	&::before {
+		content: " ";
 		position: absolute;
 		width: 100%;
 		height: 100%;
@@ -13,24 +15,24 @@
 		background: linear-gradient(0deg, rgba(33, 36, 41, 1) 15%, rgba(33, 36, 41, 0) 43%);
 		z-index: 2;
 	}
+
 	&__bg {
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		position: absolute;
 	}
-
 }
 
 .slide {
-	width: calc(calc(var(--index) * .0081) * 16);
-	height: calc(calc(var(--index) * .0081) * 9);
+	width: calc(calc(var(--index) * 0.0081) * 16);
+	height: calc(calc(var(--index) * 0.0081) * 9);
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	position: absolute;
-	bottom: calc(var(--index) * .075);
+	bottom: calc(var(--index) * 0.075);
 	left: 50%;
 	transform: translateX(-50%);
 	transition-property: transform position border-radius opacity;
@@ -61,8 +63,8 @@
 	}
 	&__prev {
 		z-index: 2;
-		bottom: calc(var(--index) * .045);
-		left: calc(50% - calc(var(--index) * .12));
+		bottom: calc(var(--index) * 0.045);
+		left: calc(50% - calc(var(--index) * 0.12));
 		filter: blur(5px);
 		box-shadow: -10px 10px 35px rgba(17, 20, 23, 0.3);
 		opacity: 1;
@@ -70,8 +72,8 @@
 	}
 	&__next {
 		z-index: 2;
-		bottom: calc(var(--index) * .045);
-		left: calc(50% + calc(var(--index) * .12));
+		bottom: calc(var(--index) * 0.045);
+		left: calc(50% + calc(var(--index) * 0.12));
 		box-shadow: 10px 10px 35px rgba(17, 20, 23, 0.3);
 		filter: blur(5px);
 		opacity: 1;
@@ -109,12 +111,11 @@
 	}
 }
 
-
 .slide_hover {
-	width: calc(calc(var(--index) * .0081) * 16);
-	height: calc(calc(var(--index) * .0081) * 9);
+	width: calc(calc(var(--index) * 0.0081) * 16);
+	height: calc(calc(var(--index) * 0.0081) * 9);
 	position: absolute;
-	bottom: calc(var(--index) * .075);
+	bottom: calc(var(--index) * 0.075);
 	left: 50%;
 	overflow: hidden;
 	img {
@@ -134,8 +135,8 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		color: #226DFF;
-		text-shadow: -1px 1px 10px #226DFF;
+		color: #226dff;
+		text-shadow: -1px 1px 10px #226dff;
 		font-weight: 800;
 		animation-name: hover;
 		animation-duration: 0.3s, 2s;
