@@ -83,4 +83,15 @@
 		font-size: 5rem;
 		line-height: 90px;
 	}
+
+	&__hidden {
+		opacity: 0;
+	}
+}
+
+.imageLoader {
+	position: absolute;
+	z-index: 1;
+	top: 25%;
+	left: 45%;
 }
