@@ -1,12 +1,14 @@
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
-import { FC } from "react";
+import { FC, useState } from "react";
 
 import { Routes } from "../../models/enums/Routes";
 
 import s from "../../styles/components/ui/GameItem.module.scss";
 import { ParentPlatforms } from "../../types/api";
+
+import ImageLoader from "./ImageLoader.component";
 
 import PlatformIcon from "./PlatformIcon";
 
@@ -25,6 +27,12 @@ const GameItem: FC<IGameItemProps> = ({
 	platforms,
 	className,
 }) => {
+	const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+	const onImageLoaded = () => {
+		setIsImageLoaded(true);
+	};
+
 	return (
 		<Link href={`${Routes.GAMES}/${id}`} className={clsx(className)}>
 			<article className={clsx(s.game)}>
@@ -43,15 +51,18 @@ const GameItem: FC<IGameItemProps> = ({
 						<Image
 							src={picture}
 							alt={name}
-							className={clsx(s.image__pic)}
+							className={clsx(s.image__pic, !isImageLoaded && s.image__hidden)}
 							width={500}
 							height={500}
 							loading="lazy"
 							placeholder="empty"
+							onLoadingComplete={onImageLoaded}
 						/>
 					) : (
 						<p className={clsx(s.image__noImgText)}>NO IMAGE</p>
 					)}
+
+					{!isImageLoaded && picture && <ImageLoader className={s.imageLoader} />}
 
 					<div
 						className={clsx(s.image__gradient, !picture && s.image__noImgGradient)}
