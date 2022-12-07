@@ -7,18 +7,24 @@ interface IRandomState {
 	isLoading: boolean;
 	error: null | string;
 	game: Game | null;
+	score: number;
 }
 
 const initialState: IRandomState = {
 	error: null,
 	game: null,
 	isLoading: false,
+	score: 0,
 };
 
 export const randomSlice = createSlice({
 	name: "random",
 	initialState,
-	reducers: {},
+	reducers: {
+		setScore: (state, action: PayloadAction<number>) => {
+			state.score = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder.addCase(fetchRandomGame.pending.type, (state) => {
 			state.error = null;

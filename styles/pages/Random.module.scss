@@ -37,4 +37,16 @@
 
 		color: #ffffff;
 	}
+
+	&__score {
+		font-weight: 800;
+		font-size: 1.3833333333rem;
+		line-height: 1.2em;
+		color: #ffffff;
+		margin-bottom: 2em;
+
+		span {
+			color: #2073ff;
+		}
+	}
 }
