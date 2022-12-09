@@ -16,7 +16,11 @@ import DropDown from "./DropDown.component";
 import Loader from "./Loader.component";
 import SearchGameItem from "./SearchGameItem.component";
 
-const Searchbar: FC = () => {
+interface ISearchbarProps {
+	className?: string;
+}
+
+const Searchbar: FC<ISearchbarProps> = ({ className }) => {
 	const { isSearchActive, searchQuery, searchResult, isLoading } =
 		useTypedSelector(selectSearch);
 
@@ -45,7 +49,7 @@ const Searchbar: FC = () => {
 	};
 
 	return (
-		<section ref={searchbarRef} className={clsx(s.searchbar)}>
+		<section ref={searchbarRef} className={clsx(s.searchbar, className)}>
 			<input
 				id="search"
 				type="text"
