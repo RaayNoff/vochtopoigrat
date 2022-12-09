@@ -28,13 +28,6 @@ const Header: FC = memo(() => {
 							Random
 						</Navlink>
 						<Navlink
-							href={Routes.CHARTS}
-							className={s.nav__link}
-							testid="charts-link"
-						>
-							Charts
-						</Navlink>
-						<Navlink
 							href={Routes.RELEASES}
 							className={s.nav__link}
 							testid="releases-link"
@@ -43,7 +36,7 @@ const Header: FC = memo(() => {
 						</Navlink>
 					</nav>
 
-					<Searchbar />
+					<Searchbar className={s.header__searchbar} />
 				</div>
 			</div>
 		</header>
