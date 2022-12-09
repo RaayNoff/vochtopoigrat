@@ -41,14 +41,18 @@
 
 	&__nav {
 	}
+
+	&__searchbar {
+		margin-left: auto;
+	}
 }
 
 .nav {
-	width: 35.8536585366%;
+	width: 25.8536585366%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-right: 13.9024390244%;
+	margin-right: 23.9024390244%;
 
 	&__link {
 	}
