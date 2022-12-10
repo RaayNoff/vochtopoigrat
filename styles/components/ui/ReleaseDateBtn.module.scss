@@ -7,12 +7,12 @@
 
 	background-color: transparent;
 	border: none;
-	transition: transform 150ms ease-in-out;
+	transition: color 150ms ease-in-out;
 
 	@media (min-width: 767.98px) {
 		&:hover {
 			cursor: pointer;
-			transform: scale(1.05);
+			color: #1986fe;
 		}
 	}
 

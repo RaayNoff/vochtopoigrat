@@ -1,6 +1,6 @@
 import Head from "next/head";
 import clsx from "clsx";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 import Header from "../components/common/Header.component";
 import s from "../styles/layouts/MainLayout.module.scss";
@@ -33,5 +33,4 @@ const MainLayout: FC<IMainLayoutProps> = ({
 		</>
 	);
 };
-
 export default MainLayout;
