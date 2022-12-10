@@ -1,0 +1,66 @@
+.releases {
+	padding-top: 206px;
+
+	&__container {
+		width: 100%;
+		height: 100%;
+	}
+	&__title {
+		font-weight: 700;
+		font-size: 2.0833333333rem;
+		line-height: 36px;
+		color: #fff;
+
+		margin-bottom: 0.8em;
+	}
+
+	&__list {
+		margin-bottom: 3em;
+	}
+
+	&__loader {
+		position: relative;
+		left: 50%;
+		margin-bottom: 3em;
+	}
+}
+
+.list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: 1.8292682927%;
+
+	&__item {
+		width: 23.4756097561%;
+		margin-bottom: 1em;
+		animation-name: appear;
+		animation-duration: 250ms;
+		animation-direction: normal;
+		animation-timing-function: ease-in-out;
+	}
+}
+
+.months {
+	width: 35.0609756098%;
+	justify-content: space-between;
+	display: flex;
+	align-items: center;
+	margin-bottom: 2em;
+	&__item {
+		display: flex;
+
+		span {
+			margin-left: 0.5em;
+		}
+	}
+}
+
+@keyframes appear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}

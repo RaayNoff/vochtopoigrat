@@ -1,0 +1,30 @@
+.month {
+	font-size: 1rem;
+	line-height: 1.5em;
+
+	color: #adadad;
+	font-weight: 300;
+
+	background-color: transparent;
+	border: none;
+	transition: transform 150ms ease-in-out;
+
+	@media (min-width: 767.98px) {
+		&:hover {
+			cursor: pointer;
+			transform: scale(1.05);
+		}
+	}
+
+	&__active {
+		text-decoration-line: underline;
+		color: #fff;
+	}
+
+	&__separator {
+		display: block;
+		width: 1px;
+		height: 36px;
+		background: rgba(255, 255, 255, 1);
+	}
+}
