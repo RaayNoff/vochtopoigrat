@@ -316,6 +316,8 @@ declare type ApiSearchTypes = {
 	user_platforms: boolean;
 };
 
+declare type ApiReleasesTypes = ApiSearchTypes;
+
 declare type SlidersResponse = {
 	count: number;
 	next: string | null;
