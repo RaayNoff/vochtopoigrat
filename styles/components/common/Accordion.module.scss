@@ -1,3 +1,5 @@
+@import "../../lib/transitions.scss";
+
 .accordion {
 	width: 100%;
 
@@ -71,5 +73,8 @@
 		background-color: rgba(rgb(83, 83, 83), 0.3);
 		pointer-events: all;
 		border-radius: 10px;
+
+		@extend %appearTemplate;
+		animation-duration: 100ms;
 	}
 }

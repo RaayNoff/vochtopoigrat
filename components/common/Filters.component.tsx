@@ -62,7 +62,11 @@ const Filters: FC = () => {
 				))}
 			</Accordion>
 
-			<Button callback={resetHandler} className={s.filters__reset}>
+			<Button
+				disabled={isLoading}
+				callback={resetHandler}
+				className={s.filters__reset}
+			>
 				Reset
 			</Button>
 		</aside>

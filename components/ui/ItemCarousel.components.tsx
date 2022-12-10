@@ -29,7 +29,9 @@ export const ItemCarousel: FC<ItemCarouselType> = memo(
 						loading="lazy"
 						placeholder="empty"
 					/>
-					<Link href={`/games/${id}`}>{title}</Link>
+					<Link href={`/games/${id}`} title={title} target="_blank">
+						{title}
+					</Link>
 				</div>
 			);
 		}

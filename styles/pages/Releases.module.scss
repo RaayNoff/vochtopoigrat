@@ -1,3 +1,5 @@
+@import "../lib/transitions.scss";
+
 .releases {
 	padding-top: 206px;
 	min-height: 1000px;
@@ -35,10 +37,7 @@
 	&__item {
 		width: 23.4756097561%;
 		margin-bottom: 1em;
-		animation-name: appear;
-		animation-duration: 250ms;
-		animation-direction: normal;
-		animation-timing-function: ease-in-out;
+		@extend %appearTemplate;
 	}
 }
 
@@ -54,14 +53,5 @@
 		span {
 			margin-left: 0.5em;
 		}
-	}
-}
-
-@keyframes appear {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
 	}
 }
