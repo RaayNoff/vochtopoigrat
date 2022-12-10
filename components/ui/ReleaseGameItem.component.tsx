@@ -27,7 +27,7 @@ const ReleaseGameItem: FC<IReleaseGameItemProps> = memo(
 
 		return (
 			<article className={s.game}>
-				<header className={s.game__img}>
+				<header className={clsx(s.game__img, isLoaded && s.game__img_loaded)}>
 					<Image
 						alt={name}
 						src={background_image || "/assets/images/noImage.jpg"}
@@ -47,7 +47,7 @@ const ReleaseGameItem: FC<IReleaseGameItemProps> = memo(
 							</li>
 						))}
 					</ul>
-					<Link href={Routes.GAMES + "/" + id} className={s.data__name}>
+					<Link href={Routes.GAMES + "/" + id} className={s.data__name} title={name}>
 						{name}
 					</Link>
 				</main>

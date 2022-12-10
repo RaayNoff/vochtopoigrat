@@ -61,7 +61,6 @@ const Releases: NextPage<IReleasesProps> = ({
 			_: IntersectionObserver,
 		) {
 			if (entries[0].isIntersecting) {
-				console.log("Залупа в объективе");
 				setReleasesPage(page + 1);
 			}
 		};
@@ -95,11 +94,7 @@ const Releases: NextPage<IReleasesProps> = ({
 	};
 
 	return (
-		<MainLayout
-			testid="releases-page"
-			title="WTP | Release calendar"
-			selfClassName={s.releases}
-		>
+		<MainLayout title="WTP | Release calendar" selfClassName={s.releases}>
 			<div className="container">
 				<div className={s.releases__container}>
 					<h1 className={s.releases__title}>{currentTitle}</h1>
@@ -109,7 +104,11 @@ const Releases: NextPage<IReleasesProps> = ({
 					>
 						{dates?.map((date, i) => (
 							<li className={s.months__item} key={i}>
-								<ReleaseDateBtn index={i} date={date} />
+								{currentDates === date.formatedForUrl ? (
+									<ReleaseDateBtn isSelected={true} index={i} date={date} />
+								) : (
+									<ReleaseDateBtn index={i} date={date} />
+								)}
 							</li>
 						))}
 					</ul>

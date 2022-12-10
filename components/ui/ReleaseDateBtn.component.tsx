@@ -1,33 +1,25 @@
-import { FC, memo, useEffect, useState } from "react";
+import { FC, memo } from "react";
 import clsx from "clsx";
 
 import { IReleaseDate } from "../../types/date";
 import s from "../../styles/components/ui/ReleaseDateBtn.module.scss";
-import { useTypedSelector } from "../../hooks/useTypedSelector";
-import { selectReleases } from "../../store/selectors";
 
 interface IReleaseDateBtnProps {
 	date: IReleaseDate;
 	className?: string;
 	disabled?: boolean;
 	index: number;
+	isSelected?: boolean;
 }
 
 const ReleaseDateBtn: FC<IReleaseDateBtnProps> = memo(
 	({
-		date: { formatedForBtn, formatedForUrl, month },
+		date: { formatedForBtn, month },
 		className,
 		disabled,
 		index,
+		isSelected,
 	}) => {
-		const { currentDates } = useTypedSelector(selectReleases);
-		const [isSelected, setIsSelected] = useState(false);
-
-		useEffect(() => {
-			if (currentDates === formatedForUrl) setIsSelected(true);
-			if (currentDates !== formatedForUrl) setIsSelected(false);
-		}, [currentDates]);
-
 		return (
 			<>
 				<button
