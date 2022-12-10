@@ -44,7 +44,6 @@ const Releases: NextPage<IReleasesProps> = ({
 	const lastElemRef = useRef<HTMLDivElement>(null);
 	const observer = useRef<any>(null);
 	useEffect(() => {
-		console.log(nextPage);
 		setNextPage(nextPage);
 		setReleases(initialReleases);
 		setCurrentDates(currentDate?.formatedForUrl);
