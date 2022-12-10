@@ -28,6 +28,8 @@ const SearchGameItem: FC<ISearchGameItemProps> = ({ gameId, className }) => {
 		<Link
 			href={`${Routes.GAMES}/${gameId}`}
 			className={clsx(s.gameLink, className)}
+			target="_blank"
+			title={game.name}
 		>
 			<div className={clsx(s.gameLink__container)}>
 				<div className={clsx(s.gameLink__imageContainer, s.imageContainer)}>

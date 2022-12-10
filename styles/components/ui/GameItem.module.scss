@@ -1,3 +1,5 @@
+@import "../../lib/transitions.scss";
+
 .game {
 	overflow: hidden;
 	height: 169px;
@@ -5,6 +7,7 @@
 	background: #2b2e35;
 	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 	border-radius: 50px;
+	@extend %appearTemplate;
 
 	display: flex;
 	flex-direction: row;
@@ -86,6 +89,10 @@
 
 	&__hidden {
 		opacity: 0;
+	}
+
+	&__loaded {
+		@extend %appearTemplate;
 	}
 }
 

@@ -34,7 +34,12 @@ const GameItem: FC<IGameItemProps> = ({
 	};
 
 	return (
-		<Link href={`${Routes.GAMES}/${id}`} className={clsx(className)}>
+		<Link
+			href={`${Routes.GAMES}/${id}`}
+			className={clsx(className)}
+			title={name}
+			target="_blank"
+		>
 			<article className={clsx(s.game)}>
 				<section className={clsx(s.game__description)}>
 					<header className={clsx(s.game__title)}>{name}</header>
@@ -51,7 +56,11 @@ const GameItem: FC<IGameItemProps> = ({
 						<Image
 							src={picture}
 							alt={name}
-							className={clsx(s.image__pic, !isImageLoaded && s.image__hidden)}
+							className={clsx(
+								s.image__pic,
+								!isImageLoaded && s.image__hidden,
+								isImageLoaded && s.image__loaded,
+							)}
 							width={500}
 							height={500}
 							loading="lazy"
