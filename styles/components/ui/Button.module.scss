@@ -33,7 +33,7 @@
 	}
 
 	&:disabled {
-		background: linear-gradient(90deg, #2f343d -26.11%, #2b2e35 120.56%);
+		background: linear-gradient(90deg, #555555 -26.11%, #2b2e35 120.56%);
 
 		&::after {
 			box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.15);
