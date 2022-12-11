@@ -35,6 +35,10 @@ const Screenshoot: FC<ScreenshootProps> = memo(
 					data-index={dataIndex}
 					alt={alt}
 					onLoadingComplete={onImageLoaded}
+					className={clsx(
+						!isImageLoaded && s.screenshoot__hidden,
+						isImageLoaded && s.screenshoot__loaded,
+					)}
 				/>
 				{!isImageLoaded && src && <ImageLoader className={s.screenshoot__loader} />}
 			</div>

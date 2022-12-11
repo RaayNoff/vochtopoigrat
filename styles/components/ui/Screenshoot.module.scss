@@ -1,3 +1,5 @@
+@import "../../lib/transitions.scss";
+
 .screenshoot {
 	position: relative;
 
@@ -6,5 +8,14 @@
 		z-index: 1;
 		top: 20%;
 		left: 30%;
+	}
+
+	&__hidden {
+		opacity: 0;
+	}
+
+	&__loaded {
+		@extend %appearTemplate;
+		animation-duration: 550ms;
 	}
 }
