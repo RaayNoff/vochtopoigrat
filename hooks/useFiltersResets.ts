@@ -3,11 +3,11 @@ import { useCallback } from "react";
 import { useActions } from "./useActions";
 
 export const useFiltersResets = () => {
-	const { setNextPage, setCurrentPage, setGames, clearAllFilters } =
+	const { setGamesNextPage, setCurrentPage, setGames, clearAllFilters } =
 		useActions();
 
 	const resetGames = () => {
-		setNextPage("");
+		setGamesNextPage("");
 		setCurrentPage(1);
 		setGames([]);
 	};

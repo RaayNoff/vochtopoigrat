@@ -86,7 +86,7 @@ export const removeStoreFilter =
 		dispatch(gamesSlice.actions.removeStore(store));
 	};
 
-export const setNextPage = (value: string) => (dispatch: AppDispatch) => {
+export const setGamesNextPage = (value: string) => (dispatch: AppDispatch) => {
 	dispatch(gamesSlice.actions.setNextPage(value));
 };
 
