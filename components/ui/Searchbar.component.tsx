@@ -1,5 +1,6 @@
 import clsx from "clsx";
-import { FC, useEffect, useRef } from "react";
+import { useRouter } from "next/router";
+import { FC, useCallback, useEffect, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
@@ -7,13 +8,14 @@ import { useActions } from "../../hooks/useActions";
 import { useDebounce } from "../../hooks/useDebounce";
 import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { useTypedSelector } from "../../hooks/useTypedSelector";
+import { Routes } from "../../models/enums/Routes";
 import { selectSearch } from "../../store/selectors";
 
 import s from "../../styles/components/ui/Searchbar.module.scss";
 
-import Button from "./Button.component";
 import DropDown from "./DropDown.component";
 import Loader from "./Loader.component";
+import Search from "./Search";
 import SearchGameItem from "./SearchGameItem.component";
 
 interface ISearchbarProps {
@@ -23,6 +25,7 @@ interface ISearchbarProps {
 const Searchbar: FC<ISearchbarProps> = ({ className }) => {
 	const { isSearchActive, searchQuery, searchResult, isLoading } =
 		useTypedSelector(selectSearch);
+	const router = useRouter();
 
 	const { setSearchBarActive, setSearchQuery, fetchSearch } = useActions();
 
@@ -48,29 +51,28 @@ const Searchbar: FC<ISearchbarProps> = ({ className }) => {
 		setSearchQuery(e.target.value);
 	};
 
+	const onClickSearch = useCallback(() => {
+		router.push({
+			pathname: Routes.SEARCH,
+			query: {
+				q: searchQuery,
+			},
+		});
+	}, [searchQuery]);
+
 	return (
 		<section ref={searchbarRef} className={clsx(s.searchbar, className)}>
-			<input
-				id="search"
-				type="text"
-				className={clsx(s.searchbar__input)}
-				placeholder="Search games"
+			<Search
 				value={searchQuery}
-				onChange={(e) => handleSearchChange(e)}
+				handleSearchChange={handleSearchChange}
+				onClickSearch={onClickSearch}
 			/>
-			<Button className={clsx(s.searchbar__button)}>
-				<FiSearch className={clsx(s.searchbar__loupe)} />
-			</Button>
 
 			<DropDown isVisible={isSearchActive}>
 				{!isLoading ? (
-					<TransitionGroup component={null} appear={true}>
-						{searchResult?.map((game) => (
-							<CSSTransition key={game.id} timeout={150} classNames="item">
-								<SearchGameItem gameId={game.id} className="item" />
-							</CSSTransition>
-						))}
-					</TransitionGroup>
+					searchResult?.map((game) => (
+						<SearchGameItem key={game.id} gameId={game.id} />
+					))
 				) : (
 					<Loader className={s.loader} />
 				)}

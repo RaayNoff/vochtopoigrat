@@ -1,9 +1,14 @@
+@import "../../lib/transitions.scss";
+
 .gameLink {
 	display: block;
 	width: 100%;
 
 	border-bottom: 2px solid #212429;
 	transition: background-color 150ms ease;
+
+	@extend %appearTemplate;
+	animation-duration: 550ms;
 
 	&__container {
 		padding: 7px 20px 7px 6px;

@@ -3,5 +3,6 @@ export const enum Routes {
 	RANDOM = "/random",
 	RELEASES = "/releases",
 	GAMES = "/games",
+	SEARCH = "/search",
 	DEFAULT = "/",
 }

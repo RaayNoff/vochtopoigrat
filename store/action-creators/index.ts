@@ -3,6 +3,7 @@ import * as SearchActions from "./Search.actions";
 import * as SlidersActions from "./Sliders.actions";
 import * as RandomActions from "./Random.actions";
 import * as ReleasesActions from "./Releases.actions";
+import * as SearchPageActions from "./SearchPage.actions";
 
 export default {
 	...GamesActions,
@@ -10,4 +11,5 @@ export default {
 	...SlidersActions,
 	...RandomActions,
 	...ReleasesActions,
+	...SearchPageActions,
 };
