@@ -4,6 +4,7 @@ import { gamesSlice } from "./Games.slice";
 import { randomSlice } from "./Random.slice";
 import { releasesSlice } from "./Releases.slice";
 import { searchSlice } from "./Search.slice";
+import { searchPageSlice } from "./SearchPage.slice";
 import { slidersSlice } from "./Sliders.slice";
 
 export const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ export const rootReducer = combineReducers({
 	sliders: slidersSlice.reducer,
 	random: randomSlice.reducer,
 	releases: releasesSlice.reducer,
+	searchPage: searchPageSlice.reducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

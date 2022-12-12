@@ -3,32 +3,6 @@
 	width: 33.3536585366%;
 	height: 50px;
 
-	background: linear-gradient(90deg, #212429 57.04%, #476699 138.57%);
-	border-radius: 500px;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding-left: 30px;
-
-	&__loupe {
-		width: 35px;
-		height: 35px;
-		vertical-align: middle;
-	}
-
-	&__input {
-		border: none;
-		width: 77.2340036563%;
-		height: fit-content;
-		background-color: transparent;
-
-		font-weight: 300;
-		font-size: 1rem;
-		line-height: 29px;
-		color: #707070;
-	}
-
 	&__noGames {
 		position: absolute;
 		top: 50%;
