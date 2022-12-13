@@ -30,7 +30,7 @@ const ReleaseGameItem: FC<IReleaseGameItemProps> = memo(
 				<header className={clsx(s.game__img, isLoaded && s.game__img_loaded)}>
 					<Image
 						alt={name}
-						src={background_image || "/assets/images/noImage.jpg"}
+						src={background_image || "/assets/images/releasesNoImage.jpg"}
 						width={1920}
 						height={1080}
 						placeholder="empty"
