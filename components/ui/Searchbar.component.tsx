@@ -1,8 +1,6 @@
 import clsx from "clsx";
 import { useRouter } from "next/router";
 import { FC, useCallback, useEffect, useRef } from "react";
-import { FiSearch } from "react-icons/fi";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import { useActions } from "../../hooks/useActions";
 import { useDebounce } from "../../hooks/useDebounce";
