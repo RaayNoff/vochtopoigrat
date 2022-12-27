@@ -20,7 +20,7 @@
 </section>
 
 <details>
-  <summary>Example picture</summary>
+  <summary>Pictures</summary>
   
 	Main page of the application:
 
